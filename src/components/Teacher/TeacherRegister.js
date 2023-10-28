@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 
-function Register(){
+function TeacherLogin(){
     return(
         <div className="container mt-4">
             <div className="row">
                 <div className="col-6 offset-3">
                     <div className="card">
-                        <h4 className="card-header bg-success">User Registration</h4> 
+                        <h4 className="card-header bg-success">Teacher Registration</h4> 
                         <div className="card-body">
                         <form>
                             <img className="mb-3 mt-0 img-thumbnail bg-success" src="logo002.png" alt="Centered Image" width="600" height="100"/>
@@ -43,7 +43,7 @@ function Register(){
                             </div>
                             <div className="form-floating mb-3 mt-1">
                                 <input type="text" className="form-control mb-2" id="floatingUsername" placeholder="Username"/>
-                                <label for="floatingInput">Interested Topics</label>
+                                <label for="floatingInput">Skills</label>
                                 <div id="textHelp" className="form-text text-dark">python,css,java, etc.</div>
                             </div>
                             <button className="w-100 btn btn-lg btn-primary" type="submit">Register</button>
@@ -56,4 +56,4 @@ function Register(){
     );
 }
 
-export default Register;
+export default TeacherLogin;

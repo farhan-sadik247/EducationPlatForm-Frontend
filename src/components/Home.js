@@ -139,31 +139,31 @@ function Home() {
     </div>
     <div className="carousel-inner">
       <div className="carousel-item active">
-      <figure class="text-center">
-        <blockquote class="blockquote">
+      <figure className="text-center">
+        <blockquote className="blockquote">
           <p>A well-known quote, contained in a blockquote element.</p>
         </blockquote>
-        <figcaption class="blockquote-footer">
+        <figcaption className="blockquote-footer">
           Someone famous in <cite title="Source Title">Source Title</cite>
         </figcaption>
       </figure>
       </div>
       <div className="carousel-item">
-      <figure class="text-center">
-        <blockquote class="blockquote">
+      <figure className="text-center">
+        <blockquote className="blockquote">
           <p>A well-known quote, contained in a blockquote element.</p>
         </blockquote>
-        <figcaption class="blockquote-footer">
+        <figcaption className="blockquote-footer">
           Someone famous in <cite title="Source Title">Source Title</cite>
         </figcaption>
       </figure>
       </div>
       <div className="carousel-item">
-      <figure class="text-center">
-          <blockquote class="blockquote">
+      <figure className="text-center">
+          <blockquote className="blockquote">
             <p>A well-known quote, contained in a blockquote element.</p>
           </blockquote>
-          <figcaption class="blockquote-footer">
+          <figcaption className="blockquote-footer">
             Someone famous in <cite title="Source Title">Source Title</cite>
           </figcaption>
       </figure>

@@ -42,37 +42,37 @@ function CourseDetail(){
                     <li className="list-group-item">Content--1
                     <span className="float-end">
                         <span className="me-5"> 1 Hour 10 Min 45 Sec</span>
-                        <button className="btn btn-sm btn-outline-danger float-end"><i class="bi bi-youtube"></i></button>
+                        <button className="btn btn-sm btn-outline-danger float-end"><i className="bi bi-youtube"></i></button>
                     </span>
                     </li>
                     <li className="list-group-item">Content--2
                     <span className="float-end">
                         <span className="me-5"> 1 Hour 10 Min 45 Sec</span>
-                        <button className="btn btn-sm btn-outline-danger float-end"><i class="bi bi-youtube"></i></button>
+                        <button className="btn btn-sm btn-outline-danger float-end"><i className="bi bi-youtube"></i></button>
                     </span>
                     </li>
                     <li className="list-group-item">Content--3
                     <span className="float-end">
                         <span className="me-5"> 1 Hour 10 Min 45 Sec</span>
-                        <button className="btn btn-sm btn-outline-danger float-end"><i class="bi bi-youtube"></i></button>
+                        <button className="btn btn-sm btn-outline-danger float-end"><i className="bi bi-youtube"></i></button>
                     </span>
                     </li>
                     <li className="list-group-item">Content--4
                     <span className="float-end">
                         <span className="me-5"> 1 Hour 10 Min 45 Sec</span>
-                        <button className="btn btn-sm btn-outline-danger float-end"><i class="bi bi-youtube"></i></button>
+                        <button className="btn btn-sm btn-outline-danger float-end"><i className="bi bi-youtube"></i></button>
                     </span>
                     </li>
                     <li className="list-group-item">Content--5
                     <span className="float-end">
                         <span className="me-5"> 1 Hour 10 Min 45 Sec</span>
-                        <button className="btn btn-sm btn-outline-danger float-end"><i class="bi bi-youtube"></i></button>
+                        <button className="btn btn-sm btn-outline-danger float-end"><i className="bi bi-youtube"></i></button>
                     </span>
                     </li>
                     <li className="list-group-item">Content--6
                     <span className="float-end">
                         <span className="me-5"> 1 Hour 10 Min 45 Sec</span>
-                        <button className="btn btn-sm btn-outline-danger float-end"><i class="bi bi-youtube"></i></button>
+                        <button className="btn btn-sm btn-outline-danger float-end"><i className="bi bi-youtube"></i></button>
                     </span>
                     </li>
                 </ul>
