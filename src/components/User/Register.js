@@ -3,7 +3,7 @@ import { useState } from "react";
 import djserver from "../..";
 
 
-function Login(){
+function Register(){
 
 
     const [username, setUsername] = useState("")
@@ -100,4 +100,4 @@ function Login(){
     );
 }
 
-export default Login;
+export default Register;
