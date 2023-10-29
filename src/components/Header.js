@@ -21,7 +21,7 @@ function Header() {
                     <li><Link className="dropdown-item" to="/teacher-register">Register</Link></li>
                     <li><hr className="dropdown-divider"/></li>
                     <li><Link className="dropdown-item" to="/teacher-dashboard"><i className="bi bi-speedometer2"></i>Dashboard</Link></li>
-                    <li><Link className="dropdown-item" to="tracher-signout"><i className="bi bi-box-arrow-right"></i>Sign out</Link></li>
+                    <li><Link className="dropdown-item" to="teacher-signout"><i className="bi bi-box-arrow-right"></i>Sign out</Link></li>
                   </ul>
                 </li>
               <li className="nav-item dropdown">

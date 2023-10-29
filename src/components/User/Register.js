@@ -20,9 +20,9 @@ function Register(){
         return <Navigate to = "/"/>;
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = () => {
         const credential = { username, fullname, email, password, cpass, it}
-        fetch(djserver + "signup", {
+        fetch(djserver + "auth/signup", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(credential)
@@ -34,7 +34,7 @@ function Register(){
             if (data === "g"){usercheck2(true)}
             if (data === "gg"){
                 const cred = {username, password}
-                fetch(djserver + "signin",{
+                fetch(djserver + "auth/signin",{
                     method: "POST",
                     headers: {"Content-Type": "application/json"},
                     body: JSON.stringify(cred)})

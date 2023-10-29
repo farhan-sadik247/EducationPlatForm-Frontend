@@ -17,7 +17,7 @@ function Login(){
 
     const handleSubmit = () => {
         const credential = { username, password}
-        fetch(djserver + "signup", {
+        fetch(djserver + "auth/signup", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(credential)})

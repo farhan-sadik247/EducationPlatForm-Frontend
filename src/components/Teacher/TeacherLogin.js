@@ -1,6 +1,29 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import djserver from "../..";
+import { Navigate } from "react-router-dom";
 
 function TeacherLogin(){
+
+
+    const [username, setUsername] = useState("")
+    const [password, setPassowrd] = useState("")
+    const [home, goHome] = useState(false)
+
+    if (home){
+        return <Navigate to = "/"/>;
+    }
+
+
+    const handleSubmit = () => {
+        const credential = { username, password}
+        fetch(djserver + "auth/signup", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(credential)})
+        .then(goHome(true))      
+    }
+
     return(
         <div className="container mt-4">
             <div className="row">
@@ -13,19 +36,19 @@ function TeacherLogin(){
                             {/* <h1 className="h3 mb-3 fw-normal">Please sign in</h1> */}
                             {/* <div className="form-floating">
                             <input type="email" className="form-control mb-2" id="floatingInput" placeholder="name@example.com"/>
-                            <label for="floatingInput">Email address</label>
+                            <label htmlFor="floatingInput">Email address</label>
                             </div> */}
                             <div className="form-floating">
-                            <input type="text" className="form-control mb-2" id="floatingUsername" placeholder="Username"/>
-                            <label for="floatingInput">Username</label>
+                            <input type="text" className="form-control mb-2" id="floatingUsername" placeholder="Username" value = {username} onChange={(e) => setUsername(e.target.value)}/>
+                            <label htmlFor="floatingInput">Username</label>
                             </div>
                             <div className="form-floating">
-                            <input type="password" className="form-control" id="floatingPassword" placeholder="Password"/>
-                            <label for="floatingPassword">Password</label>
+                            <input type="password" className="form-control" id="floatingPassword" placeholder="Password" value = {password} onChange={(e) => setPassowrd(e.target.value)}/>
+                            <label htmlFor="floatingPassword">Password</label>
                             </div>
                             <div className="checkbox mb-3 mt-1">
                                 <input type="checkbox" className="from-check-input" id="exampleCheck1" />
-                                <label className="from-check-label" for="exampleCheck1">Remember Me</label>
+                                <label className="from-check-label" htmlFor="exampleCheck1">Remember Me</label>
                             </div>
                             <button className="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
                         </form>
