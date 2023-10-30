@@ -1,9 +1,6 @@
 import { Link, Navigate } from "react-router-dom";
 import TeacherSidebar from "./TeacherSidebar";
 import { useState } from "react";
-import djserver from "../..";
-
-
 
 
 function TeacherProfileUpdate(){
@@ -27,7 +24,7 @@ function TeacherProfileUpdate(){
 
     const handleSubmit = () => {
         const credential = { username, email, password, dob, phone, pic, gender}
-        fetch(djserver + "auth/signup", {
+        fetch("/auth/signup", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(credential)

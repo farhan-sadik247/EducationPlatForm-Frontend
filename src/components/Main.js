@@ -50,7 +50,7 @@ function Main() {
         <Route path="/teacher-login" element={ <TeacherLogin /> } />
         <Route path="/teacher-register" element={ <TeacherRegister /> } />
         <Route path="/teacher-dashboard" element={ <TeacherDashboard /> } />
-        <Route path="/teacher-courses" element={ <TeacherCourses /> } />
+        <Route path="/:teacher_id/teacher-courses" element={ <TeacherCourses /> } />
         <Route path="/teacher-change-password" element={ <TeacherChangePassword /> } />
         <Route path="/teacher-profile-update" element={ <TeacherProfileUpdate /> } />
         <Route path="/add-courses" element={ <AddCourse /> } />

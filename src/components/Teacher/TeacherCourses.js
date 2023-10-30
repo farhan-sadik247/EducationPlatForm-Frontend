@@ -1,9 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import TeacherSidebar from "./TeacherSidebar";
 import { useEffect, useState } from "react";
-import djserver from "../..";
 
-function TeacherCourses(teacher_id){
+function TeacherCourses(){
+
+    const { teacher_id } = useParams()
 
     let [courses, setCourses] = useState([])
 
@@ -13,7 +14,7 @@ function TeacherCourses(teacher_id){
 
     let getCourses = async () => {
 
-        let response = await fetch(djserver + `course/${teacher_id}/teachercourses`)
+        let response = await fetch(`/course/${teacher_id}/teachercourses`)
         let data = await response.json()
         setCourses(data)
     }
@@ -21,7 +22,7 @@ function TeacherCourses(teacher_id){
     
     const handleDelete = (index) =>{
         let credential = {index}
-        fetch(djserver + `course/${teacher_id}/delelteCourse`, {
+        fetch(`/course/${teacher_id}/delelteCourse`, {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(credential)

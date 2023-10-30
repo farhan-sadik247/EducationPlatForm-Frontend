@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
-import djserver from "../..";
 
 function TeacherLogin(){
-
 
     const [username, setUsername] = useState("")
     const [fullname, setFullname] = useState("")
@@ -21,7 +19,7 @@ function TeacherLogin(){
 
     const handleSubmit = (e) => {
         const credential = { username, fullname, email, password, cpass, it}
-        fetch(djserver + "auth/t_signup", {
+        fetch("/auth/t_signup", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(credential)
@@ -33,7 +31,7 @@ function TeacherLogin(){
             if (data === "g"){usercheck2(true)}
             if (data === "gg"){
                 const cred = {username, password}
-                fetch(djserver + "auth/signin",{
+                fetch("/auth/signin",{
                     method: "POST",
                     headers: {"Content-Type": "application/json"},
                     body: JSON.stringify(cred)})

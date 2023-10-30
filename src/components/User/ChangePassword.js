@@ -1,7 +1,6 @@
 import { Link, Navigate } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import { useState } from "react";
-import djserver from "../..";
 
 
 function ChangePassword(){
@@ -18,7 +17,7 @@ function ChangePassword(){
 
     const handleSubmit = () => {
         const credential = { pass1, pass2}
-        fetch(djserver + "auth/change_pass", {
+        fetch("/auth/change_pass", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(credential)})

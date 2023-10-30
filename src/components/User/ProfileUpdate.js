@@ -1,8 +1,6 @@
 import { Link, Navigate } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import { useState } from "react";
-import djserver from "../..";
-
 
 
 function ProfileUpdate(){
@@ -26,7 +24,7 @@ function ProfileUpdate(){
 
     const handleSubmit = () => {
         const credential = { username, email, password, dob, phone, pic, gender}
-        fetch(djserver + "auth/signup", {
+        fetch("/auth/signup", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(credential)

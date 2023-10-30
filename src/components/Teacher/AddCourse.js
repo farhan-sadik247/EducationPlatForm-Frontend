@@ -1,6 +1,5 @@
 import { Link, Navigate } from "react-router-dom";
 import TeacherSidebar from "./TeacherSidebar";
-import djserver from "../..";
 import { useState } from "react";
 
 
@@ -19,7 +18,7 @@ function AddCourse(){
 
     const handleSubmit = () => {
         const credential = { title, description, techs}
-        fetch(djserver + "course/addCourse", {
+        fetch("/course/addCourse", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(credential)

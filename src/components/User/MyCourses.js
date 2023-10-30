@@ -1,7 +1,26 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Sidebar from "./Sidebar";
+import { useEffect, useState } from "react";
 
 function MyCourses(){
+
+    const { student_id } = useParams()
+
+
+    let [courses, setCourses] = useState([])
+
+    useEffect(
+        () => {getCourses()}, []
+    )
+
+    let getCourses = async () => {
+
+        let response = await fetch(`/course/${student_id}/boughtcourses`)
+        let data = await response.json()
+        setCourses(data)
+    }
+
+
     return(
         <div className="container mt-4">
             <div className="row">
@@ -21,12 +40,18 @@ function MyCourses(){
                                 </tr>
                             </thead>
                             <tbody>
-                                <td><center>Learn ReactJs for begginers </center></td>    
+                                {/* <td><center>Learn ReactJs for begginers </center></td>    
                                 <td><center><Link to="/">Farhan Sadik</Link></center></td>  
                                 <td>
                                 <center><button className="btn btn-danger text-dark">Remove</button></center>  
-                                </td>  
-                                <td></td>  
+                                </td>   */}
+                                <td>{courses.map((coursetitle, student, index) => (
+                                    <>
+                                    <td><center><Link to="/">{coursetitle}</Link></center></td>
+                                    <td><center><Link to="/">{student}</Link> </center></td>
+                                    {/* <td><center><button className="btn btn-danger text-dark" onClick={()=>{handleDelete(index)}}>Remove</button></center></td> */}
+                                    </>
+                                ))}</td>  
                             </tbody>
                         </table>
                     </div>

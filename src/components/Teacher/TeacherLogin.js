@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import djserver from "../..";
 import { Navigate } from "react-router-dom";
 
 function TeacherLogin(){
@@ -17,7 +16,7 @@ function TeacherLogin(){
 
     const handleSubmit = () => {
         const credential = { username, password}
-        fetch(djserver + "auth/signup", {
+        fetch("/auth/signup", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(credential)})
@@ -50,7 +49,7 @@ function TeacherLogin(){
                                 <input type="checkbox" className="from-check-input" id="exampleCheck1" />
                                 <label className="from-check-label" htmlFor="exampleCheck1">Remember Me</label>
                             </div>
-                            <button className="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+                            <button className="w-100 btn btn-lg btn-primary" type="submit" onClick={handleSubmit}>Sign in</button>
                         </form>
                         </div>
                     </div>

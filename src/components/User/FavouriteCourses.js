@@ -1,7 +1,36 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Sidebar from "./Sidebar";
+import { useEffect, useState } from "react";
+
 
 function FavouriteCourses(){
+
+    const { student_id } = useParams()
+
+    let [courses, setCourses] = useState([])
+
+    useEffect(
+        () => {getCourses()}, []
+    )
+
+    let getCourses = async () => {
+
+        let response = await fetch(`/course/${student_id}/favCourses`)
+        let data = await response.json()
+        setCourses(data)
+    }
+
+    
+    const handleDelete = (index) =>{
+        let credential = {index}
+        fetch(`/course/${student_id}/removeCourse`, {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(credential)
+        })
+        .then( getCourses())
+    }
+
     return(
         <div className="container mt-4">
             <div className="row">
@@ -21,12 +50,18 @@ function FavouriteCourses(){
                                 </tr>
                             </thead>
                             <tbody>
-                                <td><center>Learn ReactJs for begginers </center></td>    
+                                {/* <td><center>Learn ReactJs for begginers </center></td>    
                                 <td><center><Link to="/">Farhan Sadik</Link></center></td>  
                                 <td>
                                 <center><button className="btn btn-danger text-dark">Remove</button></center>  
-                                </td>  
-                                <td></td>  
+                                </td>   */}
+                                <td>{courses.map((coursetitle, student, index) => (
+                                    <>
+                                    <td><center><Link to="/">{coursetitle}</Link></center></td>
+                                    <td><center><Link to="/">{student}</Link> </center></td>
+                                    <td><center><button className="btn btn-danger text-dark" onClick={()=>{handleDelete(index)}}>Remove</button></center></td>
+                                    </>
+                                ))}</td>  
                             </tbody>
                         </table>
                     </div>

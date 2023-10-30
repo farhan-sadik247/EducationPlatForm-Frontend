@@ -1,6 +1,5 @@
 import { Link, Navigate } from "react-router-dom";
 import { useState } from "react";
-import djserver from "../..";
 
 
 function Register(){
@@ -22,7 +21,7 @@ function Register(){
 
     const handleSubmit = () => {
         const credential = { username, fullname, email, password, cpass, it}
-        fetch(djserver + "auth/signup", {
+        fetch("/auth/signup", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(credential)
@@ -34,7 +33,7 @@ function Register(){
             if (data === "g"){usercheck2(true)}
             if (data === "gg"){
                 const cred = {username, password}
-                fetch(djserver + "auth/signin",{
+                fetch("/auth/signin",{
                     method: "POST",
                     headers: {"Content-Type": "application/json"},
                     body: JSON.stringify(cred)})

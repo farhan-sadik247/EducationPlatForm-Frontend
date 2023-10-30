@@ -1,7 +1,6 @@
 import { Link, Navigate } from "react-router-dom";
 import { useState } from "react";
 import Home from "../Home";
-import djserver from "../..";
 
 function Login(){
 
@@ -17,7 +16,7 @@ function Login(){
 
     const handleSubmit = () => {
         const credential = { username, password}
-        fetch(djserver + "auth/signup", {
+        fetch("/auth/signup", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(credential)})
