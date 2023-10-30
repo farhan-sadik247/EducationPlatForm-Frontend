@@ -13,7 +13,7 @@ function TeacherProfileUpdate(){
     const [email, setEmail] = useState("")
     const [password, setPassw] = useState("")
     const [dob, setdob] = useState("")
-    const [it, setIT] = useState("")
+    // const [skills, setSkills] = useState("")
     const [gender, setgender] = useState("")
     const [pic, setpic] = useState("")
     const [warning, usercheck] = useState(false)
@@ -26,7 +26,7 @@ function TeacherProfileUpdate(){
     }
 
     const handleSubmit = () => {
-        const credential = { username, email, password, it, dob, phone, pic, gender}
+        const credential = { username, email, password, dob, phone, pic, gender}
         fetch(djserver + "auth/signup", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
