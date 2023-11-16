@@ -1,16 +1,16 @@
 import { Link } from "react-router-dom";
-
+import AllCourses from "./AllCourses";
 function Home() {
   return (
     <div className="container mt-4">
       {/* Latest Courses */}
-      <h3 className="border-bottom pb-2 md-4">Latest Courses<a href="#" className="float-end" style={{ color: 'blue', fontSize: '18px' }} >See All</a></h3>
+      <h3 className="border-bottom pb-2 md-4">Latest Courses<Link to="all-courses" className="float-end" style={{ color: 'blue', fontSize: '18px' }} >See All</Link></h3>
       <div className="row mb-4">
         <div className="col-md-3">
           <div className=" card" style={{ color: 'blue', fontSize: '18px' }}>
-          <Link to="/details/1"><img src="logo001.png" className="card-img-top" alt="..." /></Link>
+          <Link to="/details/1"><img src="cse471.png" className="card-img-top" alt="..." /></Link>
             <div className="card-body">
-              <h5 className="card-title"><Link to="/details/1">Course Title</Link></h5>
+              <h5 className="card-title"><Link to="/details/1">SYSTEM ANALYSIS AND DESIGN</Link></h5>
               {/* <a href="#" className="btn btn-primary">Details</a> */}
             </div>
           </div>
@@ -20,7 +20,7 @@ function Home() {
             <a href="#"><img src="logo001.png" className="card-img-top" alt="..." /></a>
             <div className="card-body">
               <h5 className="card-title"><a href="#">Course Title</a></h5>
-              {/* <a href="#" className="btn btn-primary">Details</a> */}
+              {/* <a  href="#" className="btn btn-primary">Details</a> */}
             </div>
           </div>
         </div>
@@ -46,7 +46,7 @@ function Home() {
       {/* End Latest Courses */}
 
       {/* Popular Courses */}
-      <h3 className="border-bottom pb-3 md-3 mt-5">Popular Courses<a href="#" className="float-end" style={{ color: 'blue', fontSize: '18px' }} >See All</a></h3>
+      <h3 className="border-bottom pb-3 md-3 mt-5">Popular Courses<Link to="popular-courses" className="float-end" style={{ color: 'blue', fontSize: '18px' }} >See All</Link></h3>
       <div className="row mb-4">
         <div className="col-md-3">
           <div className=" card" style={{ color: 'blue', fontSize: '18px' }}>
@@ -54,6 +54,12 @@ function Home() {
             <div className="card-body">
               <h5 className="card-title"><a href="#">Course Title</a></h5>
               {/* <a href="#" className="btn btn-primary">Details</a> */}
+            </div>
+            <div className="card-footer">
+              <div className="title">
+                <span className="text-dark">Rating: 4.5/5</span>
+                <span className="float-end text-dark" >Views: 54658</span>
+              </div>
             </div>
           </div>
         </div> 
@@ -64,14 +70,11 @@ function Home() {
               <h5 className="card-title"><a href="#">Course Title</a></h5>
               {/* <a href="#" className="btn btn-primary">Details</a> */}
             </div>
-          </div>
-        </div>
-        <div className="col-md-3">
-          <div className=" card" style={{ color: 'blue', fontSize: '18px' }}>
-            <a href="#"><img src="logo001.png" className="card-img-top" alt="..." /></a>
-            <div className="card-body">
-              <h5 className="card-title"><a href="#">Course Title</a></h5>
-              {/* <a href="#" className="btn btn-primary">Details</a> */}
+            <div className="card-footer">
+              <div className="title">
+                <span className="text-dark">Rating: 4.5/5</span>
+                <span className="float-end text-dark" >Views: 54658</span>
+              </div>
             </div>
           </div>
         </div>
@@ -81,6 +84,27 @@ function Home() {
             <div className="card-body">
               <h5 className="card-title"><a href="#">Course Title</a></h5>
               {/* <a href="#" className="btn btn-primary">Details</a> */}
+            </div>
+            <div className="card-footer">
+              <div className="title">
+                <span className="text-dark">Rating: 4.5/5</span>
+                <span className="float-end text-dark" >Views: 54658</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="col-md-3">
+          <div className=" card" style={{ color: 'blue', fontSize: '18px' }}>
+            <a href="#"><img src="logo001.png" className="card-img-top" alt="..." /></a>
+            <div className="card-body">
+              <h5 className="card-title"><a href="#">Course Title</a></h5>
+              {/* <a href="#" className="btn btn-primary">Details</a> */}
+            </div>
+            <div className="card-footer">
+              <div className="title">
+                <span className="text-dark">Rating: 4.5/5</span>
+                <span className="float-end text-dark" >Views: 54658</span>
+              </div>
             </div>
           </div>
         </div>   
@@ -88,14 +112,19 @@ function Home() {
       {/* End Popular Courses */} 
 
       {/* Featured Teacher */}
-      <h3 className="border-bottom pb-2 md-4">Featured Teacher<a href="#" className="float-end" style={{ color: 'blue', fontSize: '18px' }} >See All</a></h3>
+      <h3 className="border-bottom pb-2 md-4">Featured Teacher<Link to="popular-teachers" className="float-end" style={{ color: 'blue', fontSize: '18px' }} >See All</Link></h3>
       <div className="row mb-4">
         <div className="col-md-3">
           <div className=" card" style={{ color: 'blue', fontSize: '18px' }}>
             <a href="#"><img src="logo001.png" className="card-img-top" alt="..." /></a>
             <div className="card-body">
-              <h5 className="card-title"><a href="#">Teacher Name</a></h5>
+              <h5 className="card-title"><Link to="/teacher-detail/1">Teacher Name</Link></h5>
               {/* <a href="#" className="btn btn-primary">Details</a> */}
+            </div>
+            <div className="card-footer">
+              <div className="title">
+                <span className="text-dark">Rating: 4.5/5</span>
+              </div>
             </div>
           </div>
         </div> 
@@ -103,8 +132,27 @@ function Home() {
           <div className=" card" style={{ color: 'blue', fontSize: '18px' }}>
             <a href="#"><img src="logo001.png" className="card-img-top" alt="..." /></a>
             <div className="card-body">
-              <h5 className="card-title"><a href="#">Teacher Name</a></h5>
+              <h5 className="card-title"><Link to="/teacher-detail/1">Teacher Name</Link></h5>
               {/* <a href="#" className="btn btn-primary">Details</a> */}
+            </div>
+            <div className="card-footer">
+              <div className="title">
+                <span className="text-dark">Rating: 4.5/5</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="col-md-3">
+          <div className=" card" style={{ color: 'blue', fontSize: '18px' }}>
+            <Link to="/teacher-detail/1"><img src="logo001.png" className="card-img-top" alt="..." /></Link>
+            <div className="card-body">
+              <h5 className="card-title"><Link to="/teacher-detail/1">Teacher Name</Link></h5>
+              {/* <a href="#" className="btn btn-primary">Details</a> */}
+            </div>
+            <div className="card-footer">
+              <div className="title">
+                <span className="text-dark">Rating: 4.5/5</span>
+              </div>
             </div>
           </div>
         </div>
@@ -112,17 +160,13 @@ function Home() {
           <div className=" card" style={{ color: 'blue', fontSize: '18px' }}>
             <a href="#"><img src="logo001.png" className="card-img-top" alt="..." /></a>
             <div className="card-body">
-              <h5 className="card-title"><a href="#">Teacher Name</a></h5>
+              <h5 className="card-title"><Link to="/teacher-detail/1">Teacher Name</Link></h5>
               {/* <a href="#" className="btn btn-primary">Details</a> */}
             </div>
-          </div>
-        </div>
-        <div className="col-md-3">
-          <div className=" card" style={{ color: 'blue', fontSize: '18px' }}>
-            <a href="#"><img src="logo001.png" className="card-img-top" alt="..." /></a>
-            <div className="card-body">
-              <h5 className="card-title"><a href="#">Teacher Name</a></h5>
-              {/* <a href="#" className="btn btn-primary">Details</a> */}
+            <div className="card-footer">
+              <div className="title">
+                <span className="text-dark">Rating: 4.5/5</span>
+              </div>
             </div>
           </div>
         </div>   
