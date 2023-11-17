@@ -1,4 +1,4 @@
-import { Link, Navigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import TeacherSidebar from "./TeacherSidebar";
 import { useState } from "react";
 
@@ -7,12 +7,9 @@ function TeacherChangePassword(){
 
     const [pass1, setpass1] = useState("")
     const [pass2, setpass2] = useState("")
-    const [home, goHome] = useState(false)
+    const goHome = useNavigate()
     const [warning, usercheck] = useState(false)
 
-    if (home){
-        return <Navigate to = "/"/>;
-    }
 
 
     const handleSubmit = () => {
@@ -23,8 +20,8 @@ function TeacherChangePassword(){
             body: JSON.stringify(credential)})
         .then(res => {return res.json()})
         .then(data => {
-            if (data === "g"){usercheck(true)}   
-            if (data === "gg") {goHome(true)}  
+            if (data === "g"){usercheck(prevWarning => prevWarning = true)}   
+            if (data === "gg") {goHome("/")}  
         })
     }
 
@@ -49,7 +46,7 @@ function TeacherChangePassword(){
                         <div className="mb-3 row">
                             <label htmlFor="inputPassword" className="col-sm-2 col-form-label">Confirm Password</label>
                             <div className="col-sm-10">
-                            <input type="password" className="form-control" id="inputPassword" value = {pass2} onChange={(e) => setpass2(e.target.value)}/>
+                            <input type="password" className="form-control" id="inputCPassword" value = {pass2} onChange={(e) => setpass2(e.target.value)}/>
                             </div>
                         </div>  
                         <hr/>

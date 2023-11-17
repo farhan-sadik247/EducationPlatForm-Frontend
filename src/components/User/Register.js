@@ -31,16 +31,19 @@ function Register(){
             if (data === "f"){usercheck(true)}
             else{usercheck(false)}
             if (data === "g"){usercheck2(true)}
+            else{usercheck(false)}
             if (data === "gg"){
                 const cred = {username, password}
                 fetch("/auth/signin",{
                     method: "POST",
                     headers: {"Content-Type": "application/json"},
-                    body: JSON.stringify(cred)})
+                    body: JSON.stringify(cred)
+                })
                 .then(res => {return res.json()})
-                .then (() =>{goHome(true)}
-
-                )}})}
+                .then (() =>{goHome(true)})
+            }
+        })
+    }
     return(
 
         <div className="container mt-4">

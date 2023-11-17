@@ -1,8 +1,21 @@
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 function CourseDetail(){
-    let {course_id}=useParams();
+    // let {course_id}=useParams();
+    const [course, getCourse] = useState(null)
+
+
+    useEffect(() =>{
+        fetch("course/allcourse")
+        .then(res => {return res.json();})
+        .then(data => getCourse(data))
+
+    }, [])
+
+
+
     return (
         <div className="container mt-3">
             <div className="row">

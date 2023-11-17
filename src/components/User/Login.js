@@ -1,26 +1,27 @@
-import { Link, Navigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import Home from "../Home";
 
 function Login(){
 
 
     const [username, setUsername] = useState("")
     const [password, setPassowrd] = useState("")
-    const [home, goHome] = useState(false)
+    const [warning, usercheck] = useState(false)
+    const goHome = useNavigate()
 
-    if (home){
-        return <Navigate to = "/"/>;
-    }
 
 
     const handleSubmit = () => {
         const credential = { username, password}
-        fetch("/auth/signup", {
+        fetch("/auth/signin", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(credential)})
-        .then(goHome(true))      
+        .then(data => {
+            if (data === "f"){usercheck(true)}
+            if (data === "welcome"){goHome("/")}
+
+        })      
     }
     
     
@@ -51,6 +52,7 @@ function Login(){
                                 <label className="from-check-label" htmlFor="exampleCheck1">Remember Me</label>
                             </div>
                             <button className="w-100 btn btn-lg btn-primary" type="submit" onClick={handleSubmit}>Sign in</button>
+                            {warning && <div className="text-danger">Unknown Cred {password}</div>}
                         </form>
                         </div>
                     </div>

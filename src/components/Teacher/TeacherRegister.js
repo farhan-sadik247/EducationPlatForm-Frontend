@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function TeacherLogin(){
 
@@ -11,34 +11,34 @@ function TeacherLogin(){
     const [skills, setSkills] = useState("")
     const [warning, usercheck] = useState(false)
     const [warning2, usercheck2] = useState(false)
-    const [home, goHome] = useState(false)
+    const navigate = useNavigate()
 
-    if (home){
-        return <Navigate to = "/"/>;
+    const handleSubmit = () => {
+        const credential = { username, fullname, email, password, cpass, skills}
+        try {fetch(
+            "auth/t_signup", {
+                method : "POST",
+                headers: {"Content-Type" : "application/json"},
+                body: JSON.stringify(credential)
+            }
+            )
+  
+        // console.log(data)
+        // if (data == "f"){usercheck(true)}
+        // else{usercheck(false)}
+        // if (data == "gg"){
+        //         const cred = {username, password}
+        //         fetch("/auth/signin", {
+        //             method: "POST",
+        //             headers: {"Content-Type": "application/json"},
+        //             body: JSON.stringify(cred)
+        //         })
+        //     navigate("/")
+        // }
+        usercheck2(true)
+        }
+        catch(error){console.log(error)}
     }
-
-    const handleSubmit = (e) => {
-        const credential = { username, fullname, email, password, cpass, it}
-        fetch("/auth/t_signup", {
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(credential)
-        })
-        .then(res => {return res.json()})
-        .then(data => {
-            if (data === "f"){usercheck(true)}
-            else{usercheck(false)}
-            if (data === "g"){usercheck2(true)}
-            if (data === "gg"){
-                const cred = {username, password}
-                fetch("/auth/signin",{
-                    method: "POST",
-                    headers: {"Content-Type": "application/json"},
-                    body: JSON.stringify(cred)})
-                .then(res => {return res.json()})
-                .then (() =>{goHome(true)}
-
-                )}})}
 
 
     return(
@@ -52,19 +52,20 @@ function TeacherLogin(){
                             <img className="mb-3 mt-0 img-thumbnail bg-success" src="logo002.png" alt="Centered Image" width="600" height="100"/>
 
                             <div className="form-floating mb-3 mt-1">
-                                <input type="text" className="form-control mb-2" id="floatingUsername" placeholder="Username"/>
+                                <input type="text" className="form-control mb-2" id="floatingUsername" placeholder="Username" value = {username} onChange={(e) => setUsername(e.target.value)}/>
                                 <label htmlFor="floatingUsername">Username</label>
                                 {warning && <div className="text-danger">Username already used</div>}
+                                {warning2 && <div className="text-danger">problem</div>}
                             </div>
 
                             <div className="form-floating mb-3 mt-1">
-                                <input type="text" className="form-control mb-2" id="floatingUsername" placeholder="Username"/>
-                                <label htmlFor="floatingUsername">Full Name</label>
+                                <input type="text" className="form-control mb-2" id="floatingFullname" placeholder="Username" value = {fullname} onChange={(e) => setFullname(e.target.value)}/>
+                                <label htmlFor="floatingFullname">Full Name</label>
                             </div>
 
                             <div className="form-floating mb-3 mt-1">
-                                <input type="email" className="form-control mb-2" id="floatingInput" placeholder="name@example.com" value = {username} onChange={(e) => setUsername(e.target.value)}/>
-                                <label htmlFor="floatingInput">Email address</label>
+                                <input type="email" className="form-control mb-2" id="floatingEmail" placeholder="name@example.com" value = {email} onChange={(e) => setEmail(e.target.value)}/>
+                                <label htmlFor="floatingEmail">Email address</label>
                                 <div id="emailHelp" className="form-text text-dark"><li>name@example.com</li></div>
                             </div>
                             <div className="form-floating mb-3 mt-1">
@@ -79,13 +80,13 @@ function TeacherLogin(){
                             </div>
 
                             <div className="form-floating mb-3 mt-1">
-                                <input type="password" className="form-control" id="floatingPassword" placeholder="confirmPassword" value = {cpass} onChange={(e) => setcpass(e.target.value)}/>
-                                <label htmlFor="floatingPassword">Confirm Password</label>
+                                <input type="password" className="form-control" id="floatingCPassword" placeholder="confirmPassword" value = {cpass} onChange={(e) => setcpass(e.target.value)}/>
+                                <label htmlFor="floatingCPassword">Confirm Password</label>
                                 {warning2 && <div className="text-danger">Password did not match</div>}
                             </div>
                             <div className="form-floating mb-3 mt-1">
-                                <input type="text" className="form-control mb-2" id="floatingUsername" placeholder="Username" value = {skills} onChange={(e) => setSkills(e.target.value)}/>
-                                <label htmlFor="floatingInput">Skills</label>
+                                <input type="text" className="form-control mb-2" id="floatingSkill" placeholder="Username" value = {skills} onChange={(e) => setSkills(e.target.value)}/>
+                                <label htmlFor="floatingSkill">Skills</label>
                                 <div id="textHelp" className="form-text text-dark">python,css,java, etc.</div>
                             </div>
                             <button className="w-100 btn btn-lg btn-primary" type="submit" onClick={handleSubmit}>Register</button>

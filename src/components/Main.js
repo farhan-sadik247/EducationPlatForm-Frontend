@@ -23,6 +23,7 @@ import TeacherCourses from "./Teacher/TeacherCourses";
 import TeacherChangePassword from "./Teacher/TeacherChangePassword";
 import TeacherProfileUpdate from "./Teacher/TeacherProfileUpdate";
 import AddCourse from "./Teacher/AddCourse";
+import Test from "./Teacher/test"
 
 
 
@@ -34,7 +35,8 @@ function Main() {
       <Switch>
         <Route path="/" element={ <Home /> } />
         <Route path="/about" element={ <About /> } />
-        <Route path="/details/:course_id" element={ <CourseDetail /> } />
+        <Route path="/details" element={ <CourseDetail /> } />
+        <Route path="/test" element={ <Test /> } />
 
         {/* User or Student */}
         <Route path="/user-login" element={ <Login /> } />
