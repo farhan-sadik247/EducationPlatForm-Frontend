@@ -24,6 +24,13 @@ import TeacherChangePassword from "./Teacher/TeacherChangePassword";
 import TeacherProfileUpdate from "./Teacher/TeacherProfileUpdate";
 import AddCourse from "./Teacher/AddCourse";
 import Test from "./Teacher/test"
+import TeacherDetail from "./TeacherDetail";
+
+//list Pages
+import AllCourses from "./AllCourses";
+import PopularCourses from "./PopularCourses";
+import PopularTeachers from "./PopularTeachers";
+import CategoryCourses from "./CategoryCourses";
 
 
 
@@ -35,7 +42,7 @@ function Main() {
       <Switch>
         <Route path="/" element={ <Home /> } />
         <Route path="/about" element={ <About /> } />
-        <Route path="/details" element={ <CourseDetail /> } />
+        <Route path="/details/:courseid" element={ <CourseDetail /> } />
         <Route path="/test" element={ <Test /> } />
 
         {/* User or Student */}
@@ -56,6 +63,16 @@ function Main() {
         <Route path="/teacher-change-password" element={ <TeacherChangePassword /> } />
         <Route path="/teacher-profile-update" element={ <TeacherProfileUpdate /> } />
         <Route path="/add-courses" element={ <AddCourse /> } />
+        <Route path="/teacher-detail/:teacher_id" element={ <TeacherDetail /> } />
+
+
+        {/* List Pages */}
+        <Route path="/all-courses" element={ <AllCourses /> } />
+        <Route path="/popular-courses" element={ <PopularCourses /> } />
+        <Route path="/popular-teachers" element={ <PopularTeachers /> } />
+        <Route path="/category/:category_slug" element={ <CategoryCourses /> } />
+        
+      
 
       </Switch>
       <Footer />

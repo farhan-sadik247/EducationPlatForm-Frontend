@@ -11,7 +11,7 @@ function Header() {
           <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div className="navbar-nav ms-auto">
               <Link className="nav-link active btn-outline-success" aria-current="page" to="/"><i className="bi bi-house"></i>Home</Link>
-              <Link className="nav-link btn-outline-success" to="#">Courses</Link>
+              <Link className="nav-link btn-outline-success" to="/all-courses">Courses</Link>
               <li className="nav-item dropdown">
                 <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Teachers

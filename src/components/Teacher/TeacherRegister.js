@@ -13,31 +13,18 @@ function TeacherLogin(){
     const [warning2, usercheck2] = useState(false)
     const navigate = useNavigate()
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         const credential = { username, fullname, email, password, cpass, skills}
-        try {fetch(
+        let res = await fetch(
             "auth/t_signup", {
                 method : "POST",
                 headers: {"Content-Type" : "application/json"},
                 body: JSON.stringify(credential)
             }
             )
-  
-        // console.log(data)
-        // if (data == "f"){usercheck(true)}
-        // else{usercheck(false)}
-        // if (data == "gg"){
-        //         const cred = {username, password}
-        //         fetch("/auth/signin", {
-        //             method: "POST",
-        //             headers: {"Content-Type": "application/json"},
-        //             body: JSON.stringify(cred)
-        //         })
-        //     navigate("/")
-        // }
-        usercheck2(true)
-        }
-        catch(error){console.log(error)}
+        console.log(res)
+        let data = await res.json()
+        console.log(data)
     }
 
 
@@ -50,14 +37,12 @@ function TeacherLogin(){
                         <div className="card-body">
                         <form>
                             <img className="mb-3 mt-0 img-thumbnail bg-success" src="logo002.png" alt="Centered Image" width="600" height="100"/>
-
                             <div className="form-floating mb-3 mt-1">
                                 <input type="text" className="form-control mb-2" id="floatingUsername" placeholder="Username" value = {username} onChange={(e) => setUsername(e.target.value)}/>
                                 <label htmlFor="floatingUsername">Username</label>
                                 {warning && <div className="text-danger">Username already used</div>}
                                 {warning2 && <div className="text-danger">problem</div>}
                             </div>
-
                             <div className="form-floating mb-3 mt-1">
                                 <input type="text" className="form-control mb-2" id="floatingFullname" placeholder="Username" value = {fullname} onChange={(e) => setFullname(e.target.value)}/>
                                 <label htmlFor="floatingFullname">Full Name</label>
@@ -68,6 +53,7 @@ function TeacherLogin(){
                                 <label htmlFor="floatingEmail">Email address</label>
                                 <div id="emailHelp" className="form-text text-dark"><li>name@example.com</li></div>
                             </div>
+
                             <div className="form-floating mb-3 mt-1">
                                 <input type="password" className="form-control" id="floatingPassword" placeholder="Password" value = {password} onChange={(e) => setPassw(e.target.value)}/>
                                 <label htmlFor="floatingPassword">Password</label>

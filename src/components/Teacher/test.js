@@ -1,10 +1,14 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 
 
 
 function Test(){
     const goHome = useNavigate()
+
+    const {para} = useParams()
+
+    console.log(para)
 
     const handleSubmit = () => {
         // const credential = { pass1, pass2}
@@ -21,7 +25,7 @@ function Test(){
         fetch("/auth/test",
             {method: "POST",
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(asd)}
+            body: JSON.stringify(asd)} 
         )
         .then(res => {
             return res.json()})
@@ -34,7 +38,7 @@ function Test(){
         <div className="card">
             
             <div className="list-group list-group-flush">
-                <Link to="/teacher-dashboard" className="list-group-item list-group-item-action"><center>Dashboard</center></Link>
+                <Link to="/teacher-dashboard" className="list-group-item list-group-item-action"><center>Dashboard{para}</center></Link>
                 <button className="w-100 btn btn-lg btn-primary" type="submit" onClick={handleSubmit}>Register</button>
             </div>
         </div>
