@@ -1,4 +1,5 @@
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, resolvePath, useNavigate, useParams } from "react-router-dom";
 
 
 
@@ -8,7 +9,18 @@ function Test(){
 
     const {para} = useParams()
 
-    console.log(para)
+
+    const [username, setusername] = useState("")
+
+    useEffect (
+        () => {
+            fetch(`auth/test/1${username}`)
+            .then (response => response.json())
+            .then(data => data === "ase" ? (true) : (false) )
+
+        },
+        [username]
+    )
 
     const handleSubmit = () => {
         // const credential = { pass1, pass2}
@@ -22,11 +34,7 @@ function Test(){
         //     if (data === "gg") {goHome("/")}  
         // })
         let asd = "asdd"
-        fetch("/auth/test",
-            {method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(asd)} 
-        )
+        fetch("/auth/test")
         .then(res => {
             return res.json()})
         .then(data => {
@@ -35,12 +43,17 @@ function Test(){
     }
 
     return(
-        <div className="card">
+        // <div className="card">
             
-            <div className="list-group list-group-flush">
-                <Link to="/teacher-dashboard" className="list-group-item list-group-item-action"><center>Dashboard{para}</center></Link>
-                <button className="w-100 btn btn-lg btn-primary" type="submit" onClick={handleSubmit}>Register</button>
-            </div>
+        //     <div className="list-group list-group-flush">
+        //         <Link to="/teacher-dashboard" className="list-group-item list-group-item-action"><center>Dashboard{para}</center></Link>
+        //         <button className="w-100 btn btn-lg btn-primary" type="submit" onClick={handleSubmit}>Register</button>
+        //     </div>
+        // </div>
+
+        <div className="form-floating mb-3 mt-1">
+        <input required type="text" className="form-control mb-2" id="floatingUsername" placeholder="Username" value = {username} onChange={((e)=>(setusername(e.target.value)))}/>
+        <label htmlFor="floatingUsername">Username {username}</label>
         </div>
     );
 }

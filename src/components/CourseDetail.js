@@ -10,6 +10,7 @@ function CourseDetail(){
     let [course, setCourses] = useState([])
     let [rating, setRating] = useState(0)
     let [teacher, setTeacher] = useState(0)
+    console.log(rating)
     
     useEffect(
         () => {getCourses()}, []
@@ -60,16 +61,16 @@ function CourseDetail(){
                     <p className="fw-bold">Duration: Doo</p>
                     <p className="fw-bold">Total Enrolled Student: Do</p>
                     <p className="fw-bold">Rating:
-                    <select id="rationSelect" name="quantity">
-                        <option value="1">1</option>
-                        <option value="1">1.5</option>
-                        <option value="2">2</option>
-                        <option value="2">2.5</option>
-                        <option value="3">3</option>
-                        <option value="3">3.5</option>
-                        <option value="4">4</option>
-                        <option value="4">4.5</option>
-                        <option value="5">5</option>
+                    <select id="rationSelect" name="quantity" onChange={(e) => setRating(e.target.value)}>
+                        <option value="1" >1</option>
+                        <option value="1" >1.5</option>
+                        <option value="2" >2</option>
+                        <option value="2" >2.5</option>
+                        <option value="3" >3</option>
+                        <option value="3" >3.5</option>
+                        <option value="4" >4</option>
+                        <option value="4" >4.5</option>
+                        <option value="5" >5</option>
                     </select>
                     /5 <button className=" btn btn-success" type="submit" onClick={handleSubmit}>Submit</button>
                     

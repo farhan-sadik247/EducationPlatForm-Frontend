@@ -33,7 +33,8 @@ function TeacherDetail() {
         setCourse(data)
     }
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (e) => {
+        e.preventDefault()
         let cred = { rating}
         let response = await fetch(`/auth/getteacher/${teacher_id}`, {
             method : "POST",
@@ -70,7 +71,7 @@ function TeacherDetail() {
                     <p className="fw-bold">Skills: <Link to="/category/python">Python</Link>,<Link to="/category/django">Django</Link>,<Link to="/category/reactjs">ReactJS</Link>,<Link to="/category/js">JavaScript</Link></p>
                     <p className="fw-bold">Recent Course: <Link to={`/details/${course.id}`}>{course.title}</Link></p>
                     <p className="fw-bold">Rating:
-                    <select id="rationSelect" name="quantity">
+                    <select id="rationSelect" name="quantity" onChange= {(e) => (setRating(e))}>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
