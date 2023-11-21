@@ -63,7 +63,6 @@ def teacher_signup(request):
         userinfo.save()
 
         return Response("gg")
-    return Response("Do")
 
 @api_view(["POST", "GET"])
 def signup(request):
@@ -98,6 +97,8 @@ def allTeacher(request):
     
 @api_view(["GET"])
 def getTeacher(request,teacher_id):
+    if teacher_id == "undefined":
+        return Response("None")
     teacher = Userinfo.objects.get(id = teacher_id)
     if request.method == "GET":
         serializer = UserinfoSerializer(teacher, many = False)
@@ -205,12 +206,21 @@ def admin_pass(request):
 #                 in_cart = True
 #                 break
         
-@api_view(["POST"])
-def test(request):
-    if request.method == "POST":
-        asd = request.data
-        # print(request.user)
-        logout(request)
-        return Response(asd)
 
-        
+@api_view(["POST","GET"])
+def check_name(request, username):
+    user = Userinfo.objects.filter(username__contains = username)
+    if len(user) == 0:
+        return Response("nai")
+    else:
+        return Response("ase")
+    
+@api_view(["POST","GET"])
+def test(request, username):
+    if len(username) == 1:
+        return Response("nai")
+    user = Userinfo.objects.filter(username = username[1:])
+    if len(user) == 0:
+        return Response("nai")
+    else:
+        return Response("ase")

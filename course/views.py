@@ -50,7 +50,7 @@ def lateCourse(request):
         serializer = CourseSerializer(course, many = True)
         return Response(serializer.data)
 
-@api_view(["GET", "PUT"])
+@api_view(["GET", "POST"])
 def getCourse(request, course_id):
     course = Course.objects.get(id = course_id)
     if request.method == "GET":

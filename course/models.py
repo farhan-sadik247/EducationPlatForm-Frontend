@@ -4,6 +4,7 @@ from authentication.models import Userinfo
 # Create your models here.
 
 class Catagory(models.Model):
+    title = models.CharField(max_length=100, blank=False, null=False, default="A")
     details = models.TextField(blank=True, null=True, default=None)
     added = models.DateTimeField(auto_now_add=True)
 
@@ -17,7 +18,7 @@ class Course(models.Model):
     created_at = models.DateTimeField(auto_now_add = True)
     no_rating = models.IntegerField(blank = True, null = True, default=1)
     total = models.DecimalField(max_digits=1000, decimal_places=1, blank=False, default=0)
-    # catagory = models.ForeignKey(Catagory, on_delete=models.CASCADE, default = 1)
+    catagory = models.ForeignKey(Catagory, on_delete=models.CASCADE, default = 0)
     
 
     teacher = models.ForeignKey(Userinfo, on_delete= models.CASCADE, default = None)
