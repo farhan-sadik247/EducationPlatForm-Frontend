@@ -1,11 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Navigate } from "react-router-dom";
 import Header from "../Header";
 
 function TeacherLogin(){
-
-
     const [username, setUsername] = useState("")
     const [user, setUser] = useState("1")
     const [password, setPassowrd] = useState("")
@@ -13,32 +10,60 @@ function TeacherLogin(){
     const goHome = useNavigate()
 
 
-    const handleSubmit = async (e) => {
-        e.preventDefault()
-        const credential = { username, password}
-        fetch("/auth/signin", {
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(credential)})
-        getUser()
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault()
+    //     const credential = { username, password}
+    //     fetch("/auth/signin", {
+    //         method: "POST",
+    //         headers: {"Content-Type": "application/json"},
+    //         body: JSON.stringify(credential)})
+    //     getUser()
         
-    }
+    // }
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const credential = { username, password };
+        fetch("/auth/signin", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(credential),
+        })
+          .then(() => getUser())
+          .catch((error) => {
+            console.error("Error logging in:", error);
+          });
+      };
 
-    const getUser = async () =>{
-        let res = await fetch("/auth/getuser")
-        let data = await res.json()
-        setUser(data)
-    }
+    // const getUser = async () =>{
+    //     let res = await fetch("/auth/getuser")
+    //     let data = await res.json()
+    //     setUser(data)
+    // }
+
+    const getUser = async () => {
+        try {
+          let res = await fetch("/auth/getuser");
+          let data = await res.json();
+          setUser(data)
+        } catch (error) {
+          console.error("Error getting user:", error);
+        }
+      };
+
 
     useEffect (
         () => {
             if (user === "")(setWarning(true))
-            if (user === "1")(setWarning(false))
+            else{if (user === "1")(setWarning(false))
             else{
                 goHome("/")
-            }
+            }}
         }, [user]
     )
+
+    useEffect (()=>{
+      document.title = 'Teacher Login'
+  })
     return(
         <div className="container mt-4">
             <div className="row">

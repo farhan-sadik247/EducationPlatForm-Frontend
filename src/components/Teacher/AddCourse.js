@@ -1,6 +1,7 @@
-import { Link, Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import TeacherSidebar from "./TeacherSidebar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Cookies from "js-cookie";
 
 
 function AddCourse(){
@@ -10,29 +11,25 @@ function AddCourse(){
     const [description, setdescription] = useState("")
     const [techs, settechs] = useState("")
     const [warning, usercheck] = useState(false)
-    const [home, goHome] = useState(false)
-
-    if (home){
-        return <Navigate to = "/"/>;
-    }
+    const goHome = useNavigate()
 
     const handleSubmit = () => {
         const credential = { title, description, techs}
-        fetch("/course/addCourse", {
+        fetch("/course/addcourse", {
             method: "POST",
-            headers: {"Content-Type": "application/json"},
+            headers: {"Content-Type": "application/json", "X-CSRFtoken" : Cookies.get("csrftoken")},
             body: JSON.stringify(credential)
         })
-        .then (res => {return res.json()})
-        .then(data => {
-            if (data === "cf"){usercheck(true)}
-            else {usercheck(false)}
-            if (data === "cgg"){goHome(true)}
-        })
-
     }
 
-
+    useEffect (
+        () => {
+            fetch(`course/checkname/1${title}`)
+            .then (response => response.json())
+            .then(data => data === "ase" ? usercheck(true) : usercheck(false) )
+        },
+        [title]
+    )
 
     return(
         <div className="container mt-4">
@@ -44,9 +41,18 @@ function AddCourse(){
                 <div className="card">
                     <h5 className="card-header">Add Course</h5>
                     <div className="card-body">
+                    <form onSubmit={handleSubmit}>
+                    {/* Category */}
+                    <div className="mb-3 row">
+                            <label htmlFor="title" className="form-label">Category</label> 
+                            <select name="category" className="form-control">
+                                
+                            </select>                         
+                        </div>
+                    {/* Category end */}
 
                         <div className="mb-3 row">
-                            <label htmlFor="textInput" className="col-sm-2 col-form-label">Course Title</label> 
+                            <label htmlFor="textInput" className="form-label">Course Title</label> 
                             <input type="text" className="form-control mb-3" id="textInput" value = {title} onChange={(e) => settitle(e.target.value)}/>
                             {warning && <div className="text-danger">Course name already used</div>}                           
                         </div>
@@ -56,20 +62,22 @@ function AddCourse(){
                         <textarea className="form-control" id="exampleFormControlTextarea1" rows="3" value = {description} onChange={(e) => setdescription(e.target.value)}></textarea>
                         </div>
 
-                        <div className="input-group mb-3">
-                        <label className="input-group-text" htmlFor="inputGroupFile01">Upload Content</label>
+                        {/* <div className="input-group mb-3">
+                        <label className="input-group-text" htmlFor="inputGroupFile01">Upload Featured Image</label>
                         <input type="file" className="form-control" id="inputGroupFile01" />
-                        </div>
+                        </div> */}
 
                         <div className="mb-3">
                         <label htmlFor="exampleFormControlTextarea1" className="form-label">Technologies</label>
-                        <textarea className="form-control" id="exampleFormControlTextarea1" rows="3" value = {techs} onChange={(e) => settechs(e.target.value)}></textarea>
+                        <textarea className="form-control" id="exampleFormControlTextarea1"  placeholder="JavaScript,Python,PHP,HTML etc" rows="3" value = {techs} onChange={(e) => settechs(e.target.value)}></textarea>
                         </div>
 
                         <hr/>
-                        <button className="btn btn-primary" onClick={handleSubmit}>Submit</button>
+                        {!warning && <button className="btn btn-primary">Submit</button>}
+                        {warning && <button className="btn btn-primary" disabled>Submit</button>}
                         <div className="mb-3 row">        
-                        </div>        
+                        </div> 
+                        </form>       
                     </div>
                 </div>
                 </section>

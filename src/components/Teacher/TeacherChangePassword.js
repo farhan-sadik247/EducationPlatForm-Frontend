@@ -30,6 +30,10 @@ function TeacherChangePassword(){
         [pass1,pass2]
     )
 
+    useEffect (()=>{
+        document.title = 'Teacher-Change-Password'
+    })
+
     return(
         <div className="container mt-4">
             <div className="row">

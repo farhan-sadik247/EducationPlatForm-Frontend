@@ -31,7 +31,9 @@ function TeacherCourses(){
         })
         window.location.reload()
     }
-
+    useEffect (()=>{
+        document.title = 'My courses'
+    })
     return(
         <div className="container mt-4">
             <div className="row">
@@ -48,18 +50,22 @@ function TeacherCourses(){
                                     <th><center>Course Name</center></th>
                                     <th><center>Created by</center></th>
                                     <th><center>Action</center></th>
+                                    <th><center>Action</center></th>
                                 </tr>
                             </thead>
                                 {/* <td><center>Learn ReactJs for begginers </center></td>    
                                 <td><center><Link to="/">Farhan Sadik</Link></center></td>  
                                 <td>
-                                <center><button className="btn btn-danger text-dark">Remove</button></center>  
-                                </td>   */}
+                                <center><button className="btn btn-danger text-dark">Remove</button></center> 
+                                </td>  
+                                <td><center><Link className="btn btn-primary text-dark" to="/add-chapter/2">Add chapter</Link></center> </td> */}
+                                
                                 {courses.map((coursetitle, index) => (
                                     <tbody>
-                                    <td><center><Link to="/">{courses[index].title}</Link></center></td>
-                                    <td><center><Link to="/">{courses[index].created_at.slice(0,10)}</Link> </center></td>
+                                    <td><center><Link to={`/details/${courses[index].id}`}>{courses[index].title}</Link></center></td>
+                                    <td><center>{courses[index].created_at.slice(0,10)} </center></td>
                                     <td><center><button className="btn btn-danger text-dark" onClick={()=>{handleDelete(courses[index].id)}}>Remove</button></center></td>
+                                    <td><center><Link to={`/add-chapter/${courses[index].id}`} className="btn btn-primary text-dark">Add chapter</Link></center> </td>
                                     </tbody>
                                 ))}
                         </table>

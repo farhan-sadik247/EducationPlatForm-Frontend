@@ -20,7 +20,7 @@ function TeacherRegister(){
         console.log("disable")
         setLoad(true)
         fetch(
-            "auth/t_signup", 
+            "/auth/t_signup", 
             {
                 method : "POST",
                 headers: {"Content-Type" : "application/json"},
@@ -45,6 +45,10 @@ function TeacherRegister(){
         },
         [password,cpass]
     )
+    
+    useEffect (()=>{
+        document.title = 'Teacher Register'
+    })
 
     return(
         <div className="container mt-4">

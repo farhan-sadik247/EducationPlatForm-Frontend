@@ -35,7 +35,9 @@ function Home() {
       let data = await response.json()
       setTeacher(data)
   }
-
+  useEffect (()=>{
+    document.title = "Professor's Hideout|Home"
+  })
   return (
     <div className="container mt-4">
       {/* Latest Courses */}

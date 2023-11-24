@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import Cookies from "js-cookie";
+
 function CourseDetail(){
 
 
@@ -8,9 +10,11 @@ function CourseDetail(){
 
     
     let [course, setCourses] = useState([])
+    let [content, setContent] = useState([])
     let [rating, setRating] = useState(1)
     let [teacher, setTeacher] = useState(0)
     let [total, setTotal] = useState(0)
+    let [submit, setSubmit] = useState(false)
     
     
     useEffect(
@@ -18,10 +22,12 @@ function CourseDetail(){
     )
 
     useEffect(
-        () => {getTeacher()}, [course.teacher]
+        () => {getTeacher()}, [course]
     )
-
-    console.log(total)
+    
+    useEffect(
+        () => {getContent()},[]
+    )
 
     let getCourses = async () => {
         let response = await fetch(`/course/${courseid}/getcourse`)
@@ -32,6 +38,7 @@ function CourseDetail(){
     let getTeacher = async () => {
         let response = await fetch(`/auth/getteacher/${course.teacher}`)
         let data = await response.json()
+        console.log(data)
         setTeacher(data)
         response = await fetch(`/course/${course.teacher}/totalstd`)
         data = await response.json()
@@ -39,15 +46,21 @@ function CourseDetail(){
 
     }
 
+    let getContent = async () => {
+        let response = await fetch(`/course/${courseid}/getcontent`)
+        let data = await response.json()
+        console.log(data)
+        setContent(data)
+    }
+
     const handleSubmit = async () => {
         let cred = { rating}
-        let response = await fetch(`/course/${courseid}/getcourse`, {
+        fetch(`/course/${courseid}/getcourse`, {
             method : "POST",
-            headers: {"Content-Type" : "application/json"},
+            headers: {"Content-Type" : "application/json", "X-CSRFtoken": Cookies.get("csrftoken")},
             body: JSON.stringify(cred)
         })
-        let data = await response.json()
-        setRating(data)
+        setSubmit(true)
     }
 
 
@@ -58,14 +71,14 @@ function CourseDetail(){
                     <img src="/cse471.png" className="img-thumbnail" alt="Course Image" />
                 </div>
                 <div className="col-8">
-                    <h5>CSE471</h5>
                     <h3>{course.title}</h3>
                     <p>{course.details}</p>
                     <p className="fw-bold">Course By: <Link to="/teacher-detail/1">{teacher.fullname}</Link></p>
                     <p className="fw-bold">Duration: Doo</p>
                     <p className="fw-bold">Total Enrolled Student: {total}</p>
                     <p className="fw-bold">Rating:
-                    <select id="rationSelect" name="quantity" onChange={(e) => setRating(e.target.value)}>
+                    {submit && course.rating}
+                    {!submit && <select id="rationSelect" name="quantity" onChange={(e) => setRating(e.target.value)}>
                         <option value="1" >1</option>
                         <option value="1" >1.5</option>
                         <option value="2" >2</option>
@@ -75,8 +88,8 @@ function CourseDetail(){
                         <option value="4" >4</option>
                         <option value="4" >4.5</option>
                         <option value="5" >5</option>
-                    </select>
-                    /5 <button className=" btn btn-success" type="submit" onClick={handleSubmit}>Submit</button>
+                    </select>}
+                    /5 {!submit && <button className=" btn btn-success" type="submit" onClick={handleSubmit}>Submit</button>}
                     
                     </p>
 
@@ -88,6 +101,7 @@ function CourseDetail(){
                 <div className="fw-bold card-header">
                     <h5 className="card-header">Course Contents</h5>
                 </div>
+                
                 <ul className="list-group list-group-flush">
                     <li className="list-group-item">Introduction
                     <span className="float-end">
