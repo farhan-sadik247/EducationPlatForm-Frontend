@@ -25,6 +25,7 @@ import TeacherProfileUpdate from "./Teacher/TeacherProfileUpdate";
 import AddCourse from "./Teacher/AddCourse";
 import AddChapter from "./Teacher/AddChapter";
 import CourseChapters from "./Teacher/CourseChapers";
+import CourseCategory from "./Teacher/CourseCategory";
 import Test from "./Teacher/test"
 import TeacherDetail from "./TeacherDetail";
 
@@ -33,6 +34,7 @@ import AllCourses from "./AllCourses";
 import PopularCourses from "./PopularCourses";
 import PopularTeachers from "./PopularTeachers";
 import CategoryCourses from "./CategoryCourses";
+
 
 
 
@@ -68,6 +70,7 @@ function Main() {
         <Route path="/teacher-profile-update" element={ <TeacherProfileUpdate /> } />
         <Route path="/add-courses" element={ <AddCourse /> } />
         <Route path="/course-chapters" element={ <CourseChapters /> } />
+        <Route path="/course-category" element={ <CourseCategory /> } />
         <Route path="/add-chapter/:course_id" element={ <AddChapter /> } />
         <Route path="/teacher-detail/:teacher_id" element={ <TeacherDetail /> } />
 
