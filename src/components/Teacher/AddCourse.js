@@ -9,6 +9,7 @@ function AddCourse(){
 
     const [title, settitle] = useState("")
     const [description, setdescription] = useState("")
+    const [subscriptionAmount, setSubscriptionAmount] = useState("")
     const [techs, settechs] = useState("")
     const [warning, usercheck] = useState(false)
     const [home, goHome] = useState(false)
@@ -66,6 +67,11 @@ function AddCourse(){
                         <div className="input-group mb-3">
                         <label className="input-group-text" for="inputGroupFile01">Upload Featured Image</label>
                         <input type="file" className="form-control" id="inputGroupFile01" />
+                        </div>
+
+                        <div className="mb-3">
+                            <label for="exampleFormControlInput1" className="form-label">Course Subscription Amount</label>
+                            <input type="number" className="form-control" id="exampleFormControlInput1" placeholder="Enter amount" value={subscriptionAmount} onChange={(e) => setSubscriptionAmount(e.target.value)} />
                         </div>
 
                         <div className="mb-3">
