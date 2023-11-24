@@ -53,21 +53,12 @@ function TeacherCourses(){
                                     <th><center>Action</center></th>
                                 </tr>
                             </thead>
-                                <td><center>Learn ReactJs for begginers </center></td>    
+                                <td><center><Link to="/course-chapters">Learn ReactJs for begginers</Link></center></td>    
                                 <td><center><Link to="/">Farhan Sadik</Link></center></td>  
                                 <td>
                                 <center><button className="btn btn-danger text-dark">Remove</button></center> 
                                 </td>  
                                 <td><center><Link className="btn btn-primary text-dark" to="/add-chapter/2">Add chapter</Link></center> </td>
-                                
-                                {/* {courses.map((coursetitle, index) => (
-                                    <tbody>
-                                    <td><center><Link to="/">{courses[index].title}</Link></center></td>
-                                    <td><center><Link to="/">{courses[index].created_at.slice(0,10)}</Link> </center></td>
-                                    <td><center><button className="btn btn-danger text-dark" onClick={()=>{handleDelete(courses[index].id)}}>Remove</button></center></td>
-                                    <td><center><Link className="btn btn-primary text-dark" to="">Add chapter</Link></center> </td>
-                                    </tbody>
-                                // ))} */}
                         </table>
                     </div>
                 </div>
