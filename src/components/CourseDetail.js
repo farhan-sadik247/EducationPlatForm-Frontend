@@ -58,7 +58,6 @@ function CourseDetail(){
                     <img src="/cse471.png" className="img-thumbnail" alt="Course Image" />
                 </div>
                 <div className="col-8">
-                    <h5>CSE471</h5>
                     <h3>{course.title}</h3>
                     <p>{course.details}</p>
                     <p className="fw-bold">Course By: <Link to="/teacher-detail/1">{teacher.fullname}</Link></p>

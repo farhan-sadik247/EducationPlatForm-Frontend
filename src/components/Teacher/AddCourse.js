@@ -45,25 +45,34 @@ function AddCourse(){
                     <h5 className="card-header">Add Course</h5>
                     <div className="card-body">
 
+                    {/* Category */}
+                    <div className="mb-3 row">
+                            <label for="title" className="form-label">Category</label> 
+                            <select name="category" className="form-control">
+                                
+                            </select>                         
+                        </div>
+                    {/* Category end */}
+
                         <div className="mb-3 row">
-                            <label htmlFor="textInput" className="col-sm-2 col-form-label">Course Title</label> 
+                            <label for="textInput" className="form-label">Course Title</label> 
                             <input type="text" className="form-control mb-3" id="textInput" value = {title} onChange={(e) => settitle(e.target.value)}/>
                             {warning && <div className="text-danger">Course name already used</div>}                           
                         </div>
 
                         <div className="mb-3">
-                        <label htmlFor="exampleFormControlTextarea1" className="form-label">Course Description</label>
+                        <label for="exampleFormControlTextarea1" className="form-label">Course Description</label>
                         <textarea className="form-control" id="exampleFormControlTextarea1" rows="3" value = {description} onChange={(e) => setdescription(e.target.value)}></textarea>
                         </div>
 
                         <div className="input-group mb-3">
-                        <label className="input-group-text" htmlFor="inputGroupFile01">Upload Content</label>
+                        <label className="input-group-text" for="inputGroupFile01">Upload Featured Image</label>
                         <input type="file" className="form-control" id="inputGroupFile01" />
                         </div>
 
                         <div className="mb-3">
-                        <label htmlFor="exampleFormControlTextarea1" className="form-label">Technologies</label>
-                        <textarea className="form-control" id="exampleFormControlTextarea1" rows="3" value = {techs} onChange={(e) => settechs(e.target.value)}></textarea>
+                        <label for="exampleFormControlTextarea1" className="form-label">Technologies</label>
+                        <textarea className="form-control" id="exampleFormControlTextarea1"  placeholder="JavaScript,Python,PHP,HTML etc" rows="3" value = {techs} onChange={(e) => settechs(e.target.value)}></textarea>
                         </div>
 
                         <hr/>

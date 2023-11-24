@@ -1,11 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Navigate } from "react-router-dom";
 import Header from "../Header";
 
 function TeacherLogin(){
-
-
     const [username, setUsername] = useState("")
     const [user, setUser] = useState("1")
     const [password, setPassowrd] = useState("")
@@ -13,22 +10,55 @@ function TeacherLogin(){
     const goHome = useNavigate()
 
 
-    const handleSubmit = async (e) => {
-        e.preventDefault()
-        const credential = { username, password}
-        fetch("/auth/signin", {
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(credential)})
-        getUser()
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault()
+    //     const credential = { username, password}
+    //     fetch("/auth/signin", {
+    //         method: "POST",
+    //         headers: {"Content-Type": "application/json"},
+    //         body: JSON.stringify(credential)})
+    //     getUser()
         
-    }
+    // }
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const credential = { username, password };
+        fetch("/auth/signin", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(credential),
+        })
+          .then(() => getUser())
+          .catch((error) => {
+            console.error("Error logging in:", error);
+            setWarning(true);
+          });
+      };
 
-    const getUser = async () =>{
-        let res = await fetch("/auth/getuser")
-        let data = await res.json()
-        setUser(data)
-    }
+    // const getUser = async () =>{
+    //     let res = await fetch("/auth/getuser")
+    //     let data = await res.json()
+    //     setUser(data)
+    // }
+
+    const getUser = async () => {
+        try {
+          let res = await fetch("/auth/getuser");
+          let data = await res.json();
+          if (data) {
+            goHome("/teacher-dashboard");
+          } else {
+            setWarning(true);
+          }
+        } catch (error) {
+          console.error("Error getting user:", error);
+          setWarning(true);
+        }
+      };
+    
+      useEffect(() => {
+        getUser();
+      }, []); 
 
     useEffect (
         () => {
