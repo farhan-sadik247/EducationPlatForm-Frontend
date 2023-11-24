@@ -7,6 +7,9 @@ from django.contrib.auth import authenticate, login, logout, get_user_model
 from .serializers import UserinfoSerializer
 from django.http import HttpResponse, HttpRequest, JsonResponse
 from .models import Userinfo
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt, ensure_csrf_cookie
+from django.utils.decorators import method_decorator
 User = get_user_model()
 
 # Create your views here.
@@ -19,14 +22,14 @@ def home(request):
         return Response(serializer.data)
     return Response(str(request.user.id))
 
-@api_view(["POST"])
+@api_view(["GET"])
 def signout(request):
-    if request.method == "POST":
+    if request.method == "GET":
         logout(request)
-        return Response("bye")
+    return Response("kdajhf")
 
 
-@api_view(["POST", "GET"])
+@api_view(["POST"])
 def signin(request):
     if request.method == "POST":
         username = request.data["username"]
@@ -35,10 +38,9 @@ def signin(request):
 
         if userinfo is not None:
             login(request, userinfo)
-            print("welcom")
-            return Response("welcome")
-        print("f")
-        return Response("f")
+            print(request.user.username)
+    print("swidojfjhsdiloj")
+    return Response()
 
 
 @api_view(["POST"])
@@ -58,7 +60,7 @@ def teacher_signup(request):
         if password!= password2:
             return Response("g")
         
-        userinfo = Userinfo.objects.create_user(username, password, email, fullname= fullname, skills = skills, is_teacher= True)
+        userinfo = Userinfo.objects.create_user(username, email, password= password, fullname= fullname, skills = skills, is_teacher= True)
 
         userinfo.save()
 
@@ -151,38 +153,44 @@ def create_admin(request):
 @api_view(["PUT","GET"])
 def edit_profile(request):
     if request.method == "PUT":
-        password = request.data["password"]
+        # password = request.data["password"]
         user = request.user
-        if password != request.user.password:
-            return Response("hacker")
+        # if password != request.user.password:
+        #     return Response("hacker")
         
         u = Userinfo.objects.get(id=user.id)
-        u.username = request.data["username"],
-        u.email = request.data["email"],
-        # u.skills = request.data["skills"],
-        u.phone = request.data["phone"],
-        u.dob = request.data["dob"],
+        if request.data["username"] != "":
+            u.username = request.data["username"],
+        if request.data["email"] != "":
+            u.email = request.data["email"],
+        if request.data["skills"] != "":
+            u.skills = request.data["skills"],
+        if request.data["phone"] != "":
+            u.phone = request.data["phone"],
+        if request.data["dob"] != "":
+            u.dob = request.data["dob"],
+        # if request.data["pic"] != "":
         # u.pic = request.data["pic"],
-        u.address = request.data["address"],
-        u.gender = request.data["gender"]
-
+        if request.data["address"] != "":
+            u.address = request.data["address"],
+        if request.data["gender"] != "":
+            u.gender = request.data["gender"]
         u.save()
-        return Response("success")
-    return Response(request)
+    return Response("")
 
 @api_view(["POST"])
 def changePass(request):
     if request.method == "POST":
         pass1 = request.data["pass1"]
-        pass2 = request.data["pass2"]
         username = request.user.pk
         user = User.objects.get(pk = username)
-
-        if pass1 != pass2:
-            return Response("g")
-
         user.set_password(pass1)
         user.save()
+
+@api_view(["GET"])
+def getUser(request):
+    print(request.user)
+    return Response(str(request.user.username))
 
 
 @api_view(["POST"])
@@ -207,20 +215,19 @@ def admin_pass(request):
 #                 break
         
 
-@api_view(["POST","GET"])
+@api_view(["GET"])
 def check_name(request, username):
-    user = Userinfo.objects.filter(username__contains = username)
-    if len(user) == 0:
-        return Response("nai")
-    else:
-        return Response("ase")
-    
-@api_view(["POST","GET"])
-def test(request, username):
     if len(username) == 1:
         return Response("nai")
     user = Userinfo.objects.filter(username = username[1:])
+    print(user)
     if len(user) == 0:
         return Response("nai")
     else:
         return Response("ase")
+
+
+@api_view(["GET"])
+def test(request):
+    print(request.session.csrf_token)
+    return Response("kjadfh")

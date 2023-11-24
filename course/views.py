@@ -6,7 +6,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from .serializers import CourseSerializer
 from django.http import HttpResponse, HttpRequest, JsonResponse
-from .models import Course, Fav, Fav_item
+from .models import *
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 # Create your views here.
@@ -77,8 +77,9 @@ def getCourse(request, course_id):
 
 
 @api_view(["GET"])
-def TeacherCourses(request, teacher_id):
+def TeacherCourses(request):
     if request.method == "GET":
+        teacher_id = request.user.id
         course = Course.objects.filter(teacher = teacher_id)
         serializer = CourseSerializer(course, many = True)
         return Response(serializer.data)
@@ -92,19 +93,35 @@ def RecentCourses(request, teacher_id):
         return Response(serializer.data)
 
 @api_view(["POST"])
-def deleteCourse(request, teacher_id):
+def deleteCourse(request):
     if request.method == "POST":
-        user = request.user
-        course_id = request.data("course_id")
+        course_id = request.data["index"]
         course = Course.objects.get(id = course_id)          
         course.delete()
         return Response("")
     
+
 @api_view(["GET"])
-def favCourses(request, teacher_id):
+def totalStd(request, course_id):
+    if request.method == "GET":
+        total = Bought_item.objects.filter(course = course_id)
+        print(len(total))
+        return Response(len(total))
+    
+
+@api_view(["GET"])
+def boughtCourses(request):
+    if request.method == "GET":
+        user = request.user
+        fav_course = Fav_item.objects.filter(student = user)
+        serializer = CourseSerializer(fav_course, many = True)
+        return Response(serializer.data)
+
+    
+@api_view(["GET"])
+def favCourses(request):
     user = request.user
-    fav  = Fav.objects.get(student = user)
-    fav_course = Fav_item.objects.filter(fav = fav)
+    fav_course = Fav_item.objects.filter(student = user)
     serializer = CourseSerializer(fav_course, many = True)
     return Response(serializer.data)
 
@@ -118,7 +135,3 @@ def removeCourse(request, teacher_id):
         course.delete()
         return Response("")
 
-
-@api_view(["GET"])
-def boughtCourses(request):
-    pass
