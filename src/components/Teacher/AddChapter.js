@@ -45,6 +45,7 @@ function AddChapter(){
         <div className="container mt-4">
             <div className="row">
                 <aside className="col-md-3">
+                    <TeacherSidebar/>
                 </aside>
                 <section className="col-md-9">
                 <div className="card">
@@ -69,7 +70,7 @@ function AddChapter(){
 
                         <div className="input-group mb-3">
                         <label className="input-group-text" htmlFor="inputGroupFile01">Upload Content video</label>
-                        <input type="text" className="form-control mb-3" id="textInput" value = {link} onChange={(e) => setLink(e.target.value)}/>
+                        <input type="text" className="form-control mb-3" id="textInput" value = {link} onChange={(e) => setLink(e.target.value)} placeholder="Pleace insert am embedded link"/>
                         </div>
 
                         <div className="mb-3">

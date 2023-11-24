@@ -11,15 +11,13 @@ function TeacherChangePassword(){
     const goHome = useNavigate()
     const [warning, passcheck] = useState(false)
 
-    console.log(Cookies.get())
 
     const handleSubmit = async () => {
         const credential = { pass1, pass2}
-        let res = await fetch("/auth/change_pass", {
+        fetch("/auth/change_pass", {
             method: "POST",
             headers: {"Content-Type": "application/json", 'X-CSRFToken': Cookies.get("csrftoken") },
             body: JSON.stringify(credential)})
-        let data = await res.json()
         goHome("/")
     }
 

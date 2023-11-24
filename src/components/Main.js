@@ -24,6 +24,8 @@ import TeacherChangePassword from "./Teacher/TeacherChangePassword";
 import TeacherProfileUpdate from "./Teacher/TeacherProfileUpdate";
 import AddCourse from "./Teacher/AddCourse";
 import AddChapter from "./Teacher/AddChapter";
+import CourseChapters from "./Teacher/CourseChapers";
+import CourseCategory from "./Teacher/CourseCategory";
 import Test from "./Teacher/test"
 import TeacherDetail from "./TeacherDetail";
 
@@ -64,6 +66,8 @@ function Main() {
         <Route path="/teacher-change-password" element={ <TeacherChangePassword /> } />
         <Route path="/teacher-profile-update" element={ <TeacherProfileUpdate /> } />
         <Route path="/add-courses" element={ <AddCourse /> } />
+        <Route path="/course-chapters/:chapter_id" element={ <CourseChapters /> } />
+        <Route path="/course-category" element={ <CourseCategory /> } />
         <Route path="/add-chapter/:course_id" element={ <AddChapter /> } />
         <Route path="/teacher-detail/:teacher_id" element={ <TeacherDetail /> } />
 

@@ -9,12 +9,13 @@ function AddCourse(){
 
     const [title, settitle] = useState("")
     const [description, setdescription] = useState("")
+    const [subscriptionAmount, setSubscriptionAmount] = useState("")
     const [techs, settechs] = useState("")
     const [warning, usercheck] = useState(false)
     const goHome = useNavigate()
 
     const handleSubmit = () => {
-        const credential = { title, description, techs}
+        const credential = { title, description, techs, subscriptionAmount}
         fetch("/course/addcourse", {
             method: "POST",
             headers: {"Content-Type": "application/json", "X-CSRFtoken" : Cookies.get("csrftoken")},
@@ -69,6 +70,12 @@ function AddCourse(){
 
                         <div className="mb-3">
                         <label htmlFor="exampleFormControlTextarea1" className="form-label">Technologies</label>
+                            <label for="exampleFormControlInput1" className="form-label">Course Subscription Amount</label>
+                            <input type="number" className="form-control" id="exampleFormControlInput1" placeholder="Enter amount" value={subscriptionAmount} onChange={(e) => setSubscriptionAmount(e.target.value)} />
+                        </div>
+
+                        <div className="mb-3">
+                        <label for="exampleFormControlTextarea1" className="form-label">Technologies</label>
                         <textarea className="form-control" id="exampleFormControlTextarea1"  placeholder="JavaScript,Python,PHP,HTML etc" rows="3" value = {techs} onChange={(e) => settechs(e.target.value)}></textarea>
                         </div>
 

@@ -6,10 +6,9 @@ import Cookies from "js-cookie";
 function TeacherCourses(){
 
     let [courses, setCourses] = useState([])
-    let [refresh, setRefresh] = useState(true)
 
     useEffect(
-        () => {getCourses()}, [refresh]
+        () => {getCourses()}, []
     )
 
     let getCourses = async () => {
@@ -48,12 +47,13 @@ function TeacherCourses(){
                             <thead>
                                 <tr>
                                     <th><center>Course Name</center></th>
-                                    <th><center>Created by</center></th>
+                                    <th><center>Date Created</center></th>
                                     <th><center>Action</center></th>
                                     <th><center>Action</center></th>
                                 </tr>
                             </thead>
                                 {/* <td><center>Learn ReactJs for begginers </center></td>    
+                                <td><center><Link to="/course-chapters">Learn ReactJs for begginers</Link></center></td>    
                                 <td><center><Link to="/">Farhan Sadik</Link></center></td>  
                                 <td>
                                 <center><button className="btn btn-danger text-dark">Remove</button></center> 

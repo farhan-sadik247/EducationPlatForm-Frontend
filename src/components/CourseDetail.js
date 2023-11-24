@@ -38,7 +38,6 @@ function CourseDetail(){
     let getTeacher = async () => {
         let response = await fetch(`/auth/getteacher/${course.teacher}`)
         let data = await response.json()
-        console.log(data)
         setTeacher(data)
         response = await fetch(`/course/${course.teacher}/totalstd`)
         data = await response.json()
@@ -49,7 +48,6 @@ function CourseDetail(){
     let getContent = async () => {
         let response = await fetch(`/course/${courseid}/getcontent`)
         let data = await response.json()
-        console.log(data)
         setContent(data)
     }
 
@@ -99,63 +97,35 @@ function CourseDetail(){
             <div className="card">
             <div className="card" >
                 <div className="fw-bold card-header">
-                    <h5 className="card-header">Course Contents</h5>
+                    <h5 className="card-header"><Link to = {`/course-chapters/${courseid}`}>Course Contents</Link></h5>
                 </div>
-                
+
                 <ul className="list-group list-group-flush">
-                    <li className="list-group-item">Introduction
-                    <span className="float-end">
-                    <button className="btn btn-sm btn-outline-danger float-end" data-bs-toggle="modal" data-bs-target="#videpModal1"><i className="bi bi-youtube"></i></button>
-                    </span>
-                    {/* start video modal */}
-                        <div className="modal fade" id="videpModal1" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div className="modal-dialog modal-xl">
-                            <div className="modal-content">
-                            <div className="modal-header">
-                                <h5 className="modal-title" id="exampleModalLabel">Introduction</h5>
-                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div className="modal-body">
-                            <div className="ratio ratio-16x9">
-                                <iframe src="https://www.youtube.com/embed/b_eYxsR8WLk?" title="YouTube video" allowFullScreen></iframe>
-                            </div>
-                            </div>
-                            </div>
+                {content.map((name, index) => 
+                (<li className="list-group-item"> {content[index].title}
+                <span className="float-end">
+                <button className="btn btn-sm btn-outline-danger float-end" data-bs-toggle="modal" data-bs-target="#videpModal1"><i className="bi bi-youtube"></i></button>
+                </span>
+                {/* start video modal */}
+                    <div className="modal fade" id="videpModal1" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div className="modal-dialog modal-xl">
+                        <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="exampleModalLabel">{content[index].title}</h5>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div className="modal-body">
+                        <div className="ratio ratio-16x9">
+                        <iframe allowFullScreen src={content[index].link} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
                         </div>
                         </div>
-                    {/* End video modal */}
-                    </li>
+                        </div>
+                    </div>
+                    </div>
+                {/* End video modal */}
+                </li>
+                ))}
                     <li className="list-group-item">Content--1
-                    <span className="float-end">
-                        <span className="me-5"> 1 Hour 10 Min 45 Sec</span>
-                        <button className="btn btn-sm btn-outline-danger float-end"><i className="bi bi-youtube"></i></button>
-                    </span>
-                    </li>
-                    <li className="list-group-item">Content--2
-                    <span className="float-end">
-                        <span className="me-5"> 1 Hour 10 Min 45 Sec</span>
-                        <button className="btn btn-sm btn-outline-danger float-end"><i className="bi bi-youtube"></i></button>
-                    </span>
-                    </li>
-                    <li className="list-group-item">Content--3
-                    <span className="float-end">
-                        <span className="me-5"> 1 Hour 10 Min 45 Sec</span>
-                        <button className="btn btn-sm btn-outline-danger float-end"><i className="bi bi-youtube"></i></button>
-                    </span>
-                    </li>
-                    <li className="list-group-item">Content--4
-                    <span className="float-end">
-                        <span className="me-5"> 1 Hour 10 Min 45 Sec</span>
-                        <button className="btn btn-sm btn-outline-danger float-end"><i className="bi bi-youtube"></i></button>
-                    </span>
-                    </li>
-                    <li className="list-group-item">Content--5
-                    <span className="float-end">
-                        <span className="me-5"> 1 Hour 10 Min 45 Sec</span>
-                        <button className="btn btn-sm btn-outline-danger float-end"><i className="bi bi-youtube"></i></button>
-                    </span>
-                    </li>
-                    <li className="list-group-item">Content--6
                     <span className="float-end">
                         <span className="me-5"> 1 Hour 10 Min 45 Sec</span>
                         <button className="btn btn-sm btn-outline-danger float-end"><i className="bi bi-youtube"></i></button>
