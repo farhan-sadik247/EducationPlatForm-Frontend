@@ -31,7 +31,9 @@ function TeacherCourses(){
     //     })
     //     window.location.reload()
     // }
-
+    useEffect (()=>{
+        document.title = 'My courses'
+    })
     return(
         <div className="container mt-4">
             <div className="row">

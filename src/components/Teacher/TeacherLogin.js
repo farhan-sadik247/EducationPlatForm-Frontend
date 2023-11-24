@@ -69,6 +69,10 @@ function TeacherLogin(){
             }
         }, [user]
     )
+
+    useEffect (()=>{
+      document.title = 'Teacher Login'
+  })
     return(
         <div className="container mt-4">
             <div className="row">

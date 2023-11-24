@@ -1,6 +1,7 @@
 import { Link, Navigate } from "react-router-dom";
 import TeacherSidebar from "./TeacherSidebar";
-import { useState } from "react";
+// import { useEffect ,useState } from "react";
+import { useEffect, useState } from "react";
 
 
 function AddCourse(){
@@ -31,9 +32,6 @@ function AddCourse(){
         })
 
     }
-
-
-
     return(
         <div className="container mt-4">
             <div className="row">

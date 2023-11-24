@@ -16,7 +16,9 @@ function AllCourses() {
         let data = await response.json()
         setCourses(data)
     }
-
+    useEffect (()=>{
+      document.title = 'All Latest Courses'
+  })
   return(
     <div className="container mt-4">
     {/* <> */}
