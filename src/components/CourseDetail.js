@@ -8,9 +8,10 @@ function CourseDetail(){
 
     
     let [course, setCourses] = useState([])
-    let [rating, setRating] = useState(0)
+    let [rating, setRating] = useState(1)
     let [teacher, setTeacher] = useState(0)
-    console.log(rating)
+    let [total, setTotal] = useState(0)
+    
     
     useEffect(
         () => {getCourses()}, []
@@ -19,6 +20,8 @@ function CourseDetail(){
     useEffect(
         () => {getTeacher()}, [course.teacher]
     )
+
+    console.log(total)
 
     let getCourses = async () => {
         let response = await fetch(`/course/${courseid}/getcourse`)
@@ -30,6 +33,10 @@ function CourseDetail(){
         let response = await fetch(`/auth/getteacher/${course.teacher}`)
         let data = await response.json()
         setTeacher(data)
+        response = await fetch(`/course/${course.teacher}/totalstd`)
+        data = await response.json()
+        setTotal(data)
+
     }
 
     const handleSubmit = async () => {
@@ -42,9 +49,6 @@ function CourseDetail(){
         let data = await response.json()
         setRating(data)
     }
-
-    // console.log(course)
-
 
 
     return (
@@ -59,7 +63,7 @@ function CourseDetail(){
                     <p>{course.details}</p>
                     <p className="fw-bold">Course By: <Link to="/teacher-detail/1">{teacher.fullname}</Link></p>
                     <p className="fw-bold">Duration: Doo</p>
-                    <p className="fw-bold">Total Enrolled Student: Do</p>
+                    <p className="fw-bold">Total Enrolled Student: {total}</p>
                     <p className="fw-bold">Rating:
                     <select id="rationSelect" name="quantity" onChange={(e) => setRating(e.target.value)}>
                         <option value="1" >1</option>

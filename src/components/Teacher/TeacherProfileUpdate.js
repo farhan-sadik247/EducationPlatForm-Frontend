@@ -1,6 +1,7 @@
-import { Link, Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import TeacherSidebar from "./TeacherSidebar";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Cookies from "js-cookie";
 
 
 function TeacherProfileUpdate(){
@@ -16,25 +17,27 @@ function TeacherProfileUpdate(){
     const [warning, usercheck] = useState(false)
     const [address, setadd] = useState(false)
     
-    const [home, goHome] = useState(false)
-
-    if (home){
-        return <Navigate to = "/"/>;
-    }
+    const navigate = useNavigate()
 
     const handleSubmit = () => {
         const credential = { username, email, password, dob, phone, pic, gender}
         fetch("/auth/signup", {
             method: "POST",
-            headers: {"Content-Type": "application/json"},
+            headers: {"Content-Type": "application/json", "X-CSRFtokes": Cookies.get("csrftoken")},
             body: JSON.stringify(credential)
         })
-        .then(res => {return res.json()})
-        .then(data => {
-            if (data === "hacker"){usercheck(true)}
-            else{usercheck(false)}
-            if (data === "success"){goHome(true)}
-})}
+        .then(navigate("/"))
+    }
+
+    useEffect (
+        () => {
+            fetch(`auth/1${username}`)
+            .then (response => response.json())
+            .then(data => data === "ase" ? usercheck(true) : usercheck(false) )
+
+        },
+        [username]
+    )
 
 
     return(
@@ -48,11 +51,12 @@ function TeacherProfileUpdate(){
                     <h5 className="card-header">Profile Update</h5>
                     <div className="card-body">
 
-
+                    <form onSubmit={handleSubmit}>
                         <div className="mb-3 row">
                             <label htmlFor="floatingUsername" className="col-sm-2 col-form-label">Username</label>
                             <div className="col-sm-10">
                             <input type="text" className="form-control" id="floatingUsername" value = {username} onChange={(e) => setUsername(e.target.value)}/>
+                            {warning && <div className="text-danger">Username already used</div>}
                             </div>
                         </div>
 
@@ -101,9 +105,11 @@ function TeacherProfileUpdate(){
                         </select>
                         </div>
                         <hr/>
-                        <button className="btn btn-primary" onClick={handleSubmit}>Update</button>
+                        {!warning && <button className="w-100 btn btn-lg btn-primary" type="submit">Register</button>}
+                        {warning && <button className="w-100 btn btn-lg btn-primary" disabled>Register</button>}
                         <div className="mb-3 row">        
-                        </div>        
+                        </div>    
+                        </form>    
                     </div>
                 </div>
                 </section>

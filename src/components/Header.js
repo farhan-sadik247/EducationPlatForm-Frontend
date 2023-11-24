@@ -1,10 +1,32 @@
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 function Header() {
+
+    const navigate = useNavigate()
+    const [user, setUser] = useState()
+  
+    const handlelogout = async () => {
+        await fetch("/auth/signout")
+        getUser()
+    }
+
+
+    const getUser = async () => {
+        let res = await fetch("/auth/getuser")
+        let data = await res.json()
+        setUser(data)
+    }
+    
+    useEffect(
+      () => {getUser()}, []
+    )
+
+
     return (
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container">
-          <Link className="navbar-brand" to="/"><i className="bi bi-mortarboard-fill"></i>Professor's Hideout</Link>
+          <Link className="navbar-brand" to="/"><i className="bi bi-mortarboard-fill"></i>Professor's Hideout {user}</Link>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
@@ -21,7 +43,7 @@ function Header() {
                     <li><Link className="dropdown-item" to="/teacher-register">Register</Link></li>
                     <li><hr className="dropdown-divider"/></li>
                     <li><Link className="dropdown-item" to="/teacher-dashboard"><i className="bi bi-speedometer2"></i>Dashboard</Link></li>
-                    <li><Link className="dropdown-item" to="teacher-signout"><i className="bi bi-box-arrow-right"></i>Sign out</Link></li>
+                    <li onClick={handlelogout}><Link className="dropdown-item"><i className="bi bi-box-arrow-right"></i>Sign out</Link></li>
                   </ul>
                 </li>
               <li className="nav-item dropdown">

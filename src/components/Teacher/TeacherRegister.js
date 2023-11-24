@@ -26,13 +26,12 @@ function TeacherRegister(){
                 headers: {"Content-Type" : "application/json"},
                 body: JSON.stringify(credential)
             })
-        setLoad(false)
         navigate("/")
     }
 
     useEffect (
         () => {
-            fetch(`auth/test/1${username}`)
+            fetch(`auth/1${username}`)
             .then (response => response.json())
             .then(data => data === "ase" ? usercheck(true) : usercheck(false) )
 

@@ -5,15 +5,18 @@ function Home() {
   
   let [course1, lateCourses] = useState([])
   let [course2, popCourses] = useState([])
-
+  let [teacher, setTeacher] = useState([])
+  
+  
   useEffect(
-      () => {getlateCourses()
-            getpopCourses()   
-      }, []
-  )
-
+    () => {getlateCourses()
+      getpopCourses()
+      getTeacher() 
+    }, []
+    )
+    
+    
   let getlateCourses = async () => {
-
       let response = await fetch(`/course/latecourse`)
       let data = await response.json()
       lateCourses(data)
@@ -25,11 +28,6 @@ function Home() {
       popCourses(data)
   }
 
-  let [teacher, setTeacher] = useState([])
-
-  useEffect(
-      () => {getTeacher()}, []
-  )
 
   let getTeacher = async () => {
 

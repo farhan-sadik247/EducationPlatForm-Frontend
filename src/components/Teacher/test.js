@@ -14,7 +14,7 @@ function Test(){
 
     useEffect (
         () => {
-            fetch(`auth/test/1${username}`)
+            fetch(`auth/test`)
             .then (response => response.json())
             .then(data => data === "ase" ? (true) : (false) )
 
@@ -52,7 +52,7 @@ function Test(){
         // </div>
 
         <div className="form-floating mb-3 mt-1">
-        <input required type="text" className="form-control mb-2" id="floatingUsername" placeholder="Username" value = {username} onChange={((e)=>(setusername(e.target.value)))}/>
+        <input required type="text" className="form-control mb-2" id="floatingUsername" placeholder="Username"/>
         <label htmlFor="floatingUsername">Username {username}</label>
         </div>
     );
