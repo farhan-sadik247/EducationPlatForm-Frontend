@@ -4,30 +4,73 @@ from rest_framework.decorators import api_view
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from .serializers import CourseSerializer
+from .serializers import CourseSerializer, ContentSerializer
 from django.http import HttpResponse, HttpRequest, JsonResponse
 from .models import *
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 # Create your views here.
 
-@api_view(["POST", "GET"])
+@api_view(["POST"])
 def addCourse(request):
     if request.method == "POST":
         title = request.data["title"]
         description = request.data["description"]
-        techs = request.data["it"]
+        techs = request.data["techs"]
+        teacher = request.user
+        price = request.data["subscriptionAmount"]
 
-
-        if Course.objects.filter(title=title):
-            return Response("cf")
         
-        courseinfo = Course.objects.create(title = title, description= description, techs = techs)
+        courseinfo = Course.objects.create(title = title, details= description, techs = techs, teacher = teacher, price = price)
 
         courseinfo.save()
 
-        return Response("cgg")
-    return Response("cDo")
+    return Response("")
+
+@api_view(["POST"])
+def addContent(request):
+    if request.method == "POST":
+        course_id = request.data["course_id"]
+        course = Course.objects.get(id = int(course_id))
+        title = request.data["title"]
+        description = request.data["description"]
+        remarks = request.data["remark"]
+        link = request.data["link"]
+        
+        courseinfo = Content.objects.create(title = title, description= description, remarks = remarks, link = link, course=course)
+
+        courseinfo.save()
+    return Response("")
+
+@api_view(["POST"])
+def addCatagory(request):
+    if request.method == "POST":
+        title = request.data["title"]
+        description = request.data["description"]
+        
+        catagory = Catagory.objects.create(title = title, description= description)
+
+        catagory.save()
+    return Response("")
+
+@api_view(["GET"])
+def cata_name(request, cataname):
+    if len(cataname) == 1:
+        return Response("nai")
+    cata = Catagory.objects.filter(title = cataname[1:])
+    if len(cata) == 0:
+        return Response("nai")
+    else:
+        return Response("ase")
+
+@api_view(["GET"])
+def getContent(request, course_id):
+    if course_id == "undefined":
+        return Response("None")
+    if request.method == "GET":
+        content = Content.objects.filter(course = course_id)
+        serializer = ContentSerializer(content, many = True)
+        return Response(serializer.data)
 
 @api_view(["GET"])
 def allCourse(request):
@@ -100,9 +143,18 @@ def deleteCourse(request):
         course.delete()
         return Response("")
     
+@api_view(["POST"])
+def deleteContent(request):
+    if request.method == "POST":
+        content_id = request.data["index"]
+        content = Content.objects.get(id = content_id)          
+        content.delete()
+        return Response("")
 
 @api_view(["GET"])
 def totalStd(request, course_id):
+    if course_id == "undefined":
+        return Response("None")
     if request.method == "GET":
         total = Bought_item.objects.filter(course = course_id)
         print(len(total))
@@ -135,3 +187,13 @@ def removeCourse(request, teacher_id):
         course.delete()
         return Response("")
 
+
+@api_view(["GET"])
+def check_name(request, coursename):
+    if len(coursename) == 1:
+        return Response("nai")
+    course = Course.objects.filter(title = coursename[1:])
+    if len(course) == 0:
+        return Response("nai")
+    else:
+        return Response("ase")

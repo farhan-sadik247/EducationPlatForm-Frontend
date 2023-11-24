@@ -45,5 +45,9 @@ class Content(models.Model):
     added = models.DateTimeField(auto_now_add=True)
     file = models.FileField(blank=True, null=True, upload_to="content/")
     link = models.TextField(blank=True, null=True, default = None)
+    description = models.TextField(blank = False, null = False, default = "")
+    title = models.CharField(max_length=200, blank=False, null = False, default = "")
+    remarks = models.TextField(blank=True, null=True, default = None)
+    
 
     course = models.ForeignKey(Course, on_delete = models.CASCADE)

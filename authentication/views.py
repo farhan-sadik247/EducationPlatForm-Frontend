@@ -189,7 +189,7 @@ def changePass(request):
 
 @api_view(["GET"])
 def getUser(request):
-    print(request.user)
+    print(request.user.username)
     return Response(str(request.user.username))
 
 
