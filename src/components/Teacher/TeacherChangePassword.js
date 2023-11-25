@@ -42,7 +42,7 @@ function TeacherChangePassword(){
                 <div className="card">
                     <h5 className="card-header">Change Password</h5>
                     <div className="card-body">
-                        <form>
+                        <form onSubmit={handleSubmit}>
                         <div className="mb-3 row">
                             <label htmlFor="inputPassword" className="col-sm-2 col-form-label">New Password </label>
                             <div className="col-sm-10">

@@ -11,16 +11,24 @@ function AddCourse(){
     const [description, setdescription] = useState("")
     const [subscriptionAmount, setSubscriptionAmount] = useState("")
     const [techs, settechs] = useState("")
+    const [catas, setCatas] = useState([])
+    const [cata, setCata] = useState("")
     const [warning, usercheck] = useState(false)
     const goHome = useNavigate()
 
     const handleSubmit = () => {
-        const credential = { title, description, techs, subscriptionAmount}
+        const credential = { title, description, techs, subscriptionAmount, cata}
         fetch("/course/addcourse", {
             method: "POST",
             headers: {"Content-Type": "application/json", "X-CSRFtoken" : Cookies.get("csrftoken")},
             body: JSON.stringify(credential)
         })
+    }
+
+    const getCatas = async() => {
+        let res = await fetch("course/getcata")
+        let data = await res.json()
+        setCatas(data)
     }
 
     useEffect (
@@ -30,6 +38,10 @@ function AddCourse(){
             .then(data => data === "ase" ? usercheck(true) : usercheck(false) )
         },
         [title]
+    )
+
+    useEffect(
+        () => {getCatas()},[]
     )
 
     return(
@@ -45,9 +57,11 @@ function AddCourse(){
                     <form onSubmit={handleSubmit}>
                     {/* Category */}
                     <div className="mb-3 row">
-                            <label htmlFor="title" className="form-label">Category</label> 
-                            <select name="category" className="form-control">
-                                
+                        <label htmlFor="title" className="form-label">Category</label> 
+                        <select name="category" className="form-control" onChange={(e)=> {setCata(e.target.value)}}>
+                            {catas.map((name, index) =>
+                                <option value={catas[index].id} >{catas[index].title}</option> )}
+                            
                             </select>                         
                         </div>
                     {/* Category end */}
@@ -70,12 +84,12 @@ function AddCourse(){
 
                         <div className="mb-3">
                         <label htmlFor="exampleFormControlTextarea1" className="form-label">Technologies</label>
-                            <label for="exampleFormControlInput1" className="form-label">Course Subscription Amount</label>
+                            <label htmlFor="exampleFormControlInput1" className="form-label">Course Subscription Amount</label>
                             <input type="number" className="form-control" id="exampleFormControlInput1" placeholder="Enter amount" value={subscriptionAmount} onChange={(e) => setSubscriptionAmount(e.target.value)} />
                         </div>
 
                         <div className="mb-3">
-                        <label for="exampleFormControlTextarea1" className="form-label">Technologies</label>
+                        <label htmlFor="exampleFormControlTextarea1" className="form-label">Technologies</label>
                         <textarea className="form-control" id="exampleFormControlTextarea1"  placeholder="JavaScript,Python,PHP,HTML etc" rows="3" value = {techs} onChange={(e) => settechs(e.target.value)}></textarea>
                         </div>
 

@@ -51,7 +51,7 @@ function Header() {
                   </Link>
                   <ul className="dropdown-menu" aria-labelledby="teachersDropdown">
                     <li><Link className="dropdown-item" to="/teacher-dashboard"><i className="bi bi-speedometer2"></i>Dashboard</Link></li>
-                    <li onClick={handlelogout}><Link className="dropdown-item" to="/teacher-login"><i className="bi bi-box-arrow-right"></i>Sign out</Link></li>
+                    <li onClick={handlelogout}><Link className="dropdown-item" to="/"><i className="bi bi-box-arrow-right"></i>Sign out</Link></li>
                   </ul>
                 </li>
                 <li className="nav-item dropdown">
