@@ -4,7 +4,7 @@ from rest_framework.decorators import api_view
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from .serializers import CourseSerializer, ContentSerializer
+from .serializers import CourseSerializer, ContentSerializer, CatagorySerializer
 from django.http import HttpResponse, HttpRequest, JsonResponse
 from .models import *
 from django.views.decorators.csrf import csrf_exempt
@@ -19,9 +19,11 @@ def addCourse(request):
         techs = request.data["techs"]
         teacher = request.user
         price = request.data["subscriptionAmount"]
+        cata_id = request.data["cata"]
+        catagory = Catagory.objects.get(id = int(cata_id))
 
         
-        courseinfo = Course.objects.create(title = title, details= description, techs = techs, teacher = teacher, price = price)
+        courseinfo = Course.objects.create(title = title, details= description, techs = techs, teacher = teacher, price = price, catagory = catagory)
 
         courseinfo.save()
 
@@ -70,6 +72,13 @@ def getContent(request, course_id):
     if request.method == "GET":
         content = Content.objects.filter(course = course_id)
         serializer = ContentSerializer(content, many = True)
+        return Response(serializer.data)
+    
+@api_view(["GET"])
+def getCata(request):
+    if request.method == "GET":
+        content = Catagory.objects.all()
+        serializer = CatagorySerializer(content, many = True)
         return Response(serializer.data)
 
 @api_view(["GET"])

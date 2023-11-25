@@ -21,4 +21,5 @@ urlpatterns = [
     path("cataname/<str:cataname>", views.cata_name, name = "cataname"),
     path("addcontent", views.addContent, name = "addcontent"),
     path("addcatagory", views.addCatagory, name = "addcatagory"),
+    path("getcata", views.getCata, name = "getcata"),
 ]
