@@ -31,7 +31,7 @@ function TeacherRegister(){
 
     useEffect (
         () => {
-            fetch(`auth/1${username}`)
+            fetch(`auth/checkname/1${username}`)
             .then (response => response.json())
             .then(data => data === "ase" ? usercheck(true) : usercheck(false) )
 

@@ -68,10 +68,13 @@ function AddChapter(){
                         <input type="file" className="form-control" id="inputGroupFile01" />
                         </div> */}
 
-                        <div className="input-group mb-3">
-                        <label className="input-group-text" htmlFor="inputGroupFile01">Upload Content video</label>
-                        <input type="text" className="form-control mb-3" id="textInput" value = {link} onChange={(e) => setLink(e.target.value)} placeholder="Pleace insert am embedded link"/>
+                        <div className="mb-3 row">
+                            <label htmlFor="textInput" className="col-sm-3 col-form-label">Upload Video Content</label> 
+                            <input type="text" className="form-control" id="textInput" value = {link} onChange={(e) => setLink(e.target.value)}/>
+                            <label id="textInput" className="col-sm col-form-label">E.g.: https://www.youtube.com/embed/pRybm9lXW2c?si=OueAUQgS08F2FtFx</label>
                         </div>
+
+
 
                         <div className="mb-3">
                         <label htmlFor="exampleFormControlTextarea1" className="form-label">Remarks</label>

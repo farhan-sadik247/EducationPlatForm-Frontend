@@ -104,7 +104,7 @@ function CourseDetail(){
                 {content.map((name, index) => 
                 (<li className="list-group-item"> {content[index].title}
                 <span className="float-end">
-                <button className="btn btn-sm btn-outline-danger float-end" data-bs-toggle="modal" data-bs-target="#videpModal1"><i className="bi bi-youtube"></i></button>
+                <button className="btn btn-sm btn-outline-danger float-end" data-bs-toggle="modal" data-bs-target="#videpModal1"><i class="fa-brands fa-youtube"></i></button>
                 </span>
                 {/* start video modal */}
                     <div className="modal fade" id="videpModal1" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -128,7 +128,7 @@ function CourseDetail(){
                     <li className="list-group-item">Content--1
                     <span className="float-end">
                         <span className="me-5"> 1 Hour 10 Min 45 Sec</span>
-                        <button className="btn btn-sm btn-outline-danger float-end"><i className="bi bi-youtube"></i></button>
+                        <button className="btn btn-sm btn-outline-danger float-end"><i class="fa-brands fa-youtube"></i></button>
                     </span>
                     </li>
                 </ul>

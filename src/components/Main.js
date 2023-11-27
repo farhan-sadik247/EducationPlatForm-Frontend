@@ -25,8 +25,10 @@ import TeacherCourses from "./Teacher/TeacherCourses";
 import TeacherChangePassword from "./Teacher/TeacherChangePassword";
 import TeacherProfileUpdate from "./Teacher/TeacherProfileUpdate";
 import AddCourse from "./Teacher/AddCourse";
+import EditCourse from "./Teacher/EditCourse";
 import AddChapter from "./Teacher/AddChapter";
 import CourseChapters from "./Teacher/CourseChapers";
+import EditChapter from "./Teacher/EditChapter";
 import CourseCategory from "./Teacher/CourseCategory";
 import Test from "./Teacher/test"
 import TeacherDetail from "./TeacherDetail";
@@ -36,6 +38,9 @@ import AllCourses from "./AllCourses";
 import PopularCourses from "./PopularCourses";
 import PopularTeachers from "./PopularTeachers";
 import CategoryCourses from "./CategoryCourses";
+
+
+
 
 
 
@@ -72,7 +77,9 @@ function Main() {
         <Route path="/teacher-change-password" element={ <TeacherChangePassword /> } />
         <Route path="/teacher-profile-update" element={ <TeacherProfileUpdate /> } />
         <Route path="/add-courses" element={ <AddCourse /> } />
+        <Route path="/edit-courses" element={ <EditCourse /> } />
         <Route path="/course-chapters/:chapter_id" element={ <CourseChapters /> } />
+        <Route path="/edit-chapters/:chapter_id" element={ <EditChapter /> } />
         <Route path="/course-category" element={ <CourseCategory /> } />
         <Route path="/add-chapter/:course_id" element={ <AddChapter /> } />
         <Route path="/teacher-detail/:teacher_id" element={ <TeacherDetail /> } />

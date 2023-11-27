@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 
 
-function AddCourse(){
+function EditCourse(){
 
 
     const [title, settitle] = useState("")
@@ -107,4 +107,4 @@ function AddCourse(){
     );
 }
 
-export default AddCourse;
+export default EditCourse;

@@ -20,6 +20,16 @@ function CourseChapters(){
         let data = await response.json()
         setContent(data)
     }
+    // const Swal = require('sweetalert2');  
+    // const handleEdit =()=>{
+    //     Swal.fire({
+    //         title: 'Confirm',
+    //         text: 'Do you want to edit it?',
+    //         icon: 'info',
+    //         confirmButtonText: 'Continue',
+    //         showCancelButton: true
+    //       });
+    // }   
 
     const handleDelete = async (index) =>{
         let credential = {index}
@@ -65,8 +75,8 @@ function CourseChapters(){
                                 <td>{content[index].remarks}</td>
                                 <td>
                                   <center>
-                                    <button className="btn btn-danger text-dark" onClick={()=>(handleDelete(content[index].id))}>Delete</button> 
-                                    <button className="btn btn-info text-dark ms-2">Edit</button> 
+                                    <Link to="/edit-chapters/1"><button className="btn btn-info text-dark ">Edit</button></Link> 
+                                    <button className="btn btn-danger text-dark ms-2" onClick={()=>(handleDelete(content[index].id))}>Delete</button> 
                                   </center>
                                 </td>  
                             </tr>))}
