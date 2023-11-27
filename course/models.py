@@ -8,6 +8,10 @@ class Catagory(models.Model):
     details = models.TextField(blank=True, null=True, default=None)
     added = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self) -> str:
+        return f"{self.title}"
+    
+
 class Course(models.Model):
     title = models.CharField(max_length=100,blank=False, default = None)
     details = models.TextField(blank=False, default = None)
@@ -23,6 +27,8 @@ class Course(models.Model):
 
     teacher = models.ForeignKey(Userinfo, on_delete= models.CASCADE, default = None)
 
+    def __str__(self) -> str:
+        return f'Course: {self.title}'
 
 class Fav_item(models.Model):
     course = models.ForeignKey(Course, on_delete = models.CASCADE)

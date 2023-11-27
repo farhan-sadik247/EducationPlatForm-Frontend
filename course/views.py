@@ -50,7 +50,7 @@ def addCatagory(request):
         title = request.data["title"]
         description = request.data["description"]
         
-        catagory = Catagory.objects.create(title = title, description= description)
+        catagory = Catagory.objects.create(title = title, details= description)
 
         catagory.save()
     return Response("")
