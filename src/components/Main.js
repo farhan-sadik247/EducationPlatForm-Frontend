@@ -4,6 +4,8 @@ import Home from './Home';
 import CourseDetail from "./CourseDetail";
 import About from './About';
 import Footer from './Footer';
+import SearchBox from "./SearchBox";
+import ProfilePicture from "./ProfilePicture";
 
 //Student Pannel
 import Login from './User/Login';
@@ -38,6 +40,8 @@ import CategoryCourses from "./CategoryCourses";
 
 
 
+
+
 function Main() {
   return (
     <div className="App">
@@ -47,6 +51,8 @@ function Main() {
         <Route path="/about" element={ <About /> } />
         <Route path="/details/:courseid" element={ <CourseDetail /> } />
         <Route path="/test" element={ <Test /> } />
+        <Route path="/searchbox" element={ <SearchBox /> } />
+        <Route path="/profile-picture" element={ <ProfilePicture /> } />
 
         {/* User or Student */}
         <Route path="/user-login" element={ <Login /> } />
