@@ -52,7 +52,7 @@ function EditCourse(){
                 </aside>
                 <section className="col-md-9">
                 <div className="card">
-                    <h5 className="card-header">Add Course</h5>
+                    <h5 className="card-header">Edit Course</h5>
                     <div className="card-body">
                     <form onSubmit={handleSubmit}>
                     {/* Category */}

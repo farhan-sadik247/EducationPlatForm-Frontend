@@ -20,17 +20,31 @@ function ProfilePicture() {
             </button>
             
                 <ul className="dropdown-menu">
-                    <li>
-                        <center><Link className="dropdown-item" to="#">
-                        <i className="fa-solid fa-heart text-primary"></i>Wishlist
-                        </Link></center>
-                    </li>
+                <li className="d-flex align-items-center">
+                    <div className="d-flex align-items-center px-1">
+                        <img
+                            id="userProfileImageDropdown"
+                            src="/logo001.png"
+                            alt="User Profile"
+                            className="rounded-circle border-0 object-fit-cover mr-2"
+                            style={{ width: '40px', height: '40px' }}
+                        />
+                        <div>
+                            <center>
+                            <span className="px-2">Farhan Sadik</span>
+                            <br/>
+                            <span className='px-2 fst-italic text-info'>md.farhan.sadik@g.bracu.ac.bd</span>
+                            </center>
+
+                        </div>
+                    </div>
+                </li>
                     <li>
                         <hr className="dropdown-divider" />
                     </li>
                     <li>
                         <center><Link className="dropdown-item" to="#">
-                        <i className="fa-solid fa-pen-nib text-info"></i>Update Profile
+                        <i className="fa-solid fa-heart text-primary"></i>Wishlist
                         </Link></center>
                     </li>
                     <li>
@@ -54,5 +68,3 @@ function ProfilePicture() {
 }
 
 export default ProfilePicture;
-
-

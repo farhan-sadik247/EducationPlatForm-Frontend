@@ -30,6 +30,7 @@ import AddChapter from "./Teacher/AddChapter";
 import CourseChapters from "./Teacher/CourseChapers";
 import EditChapter from "./Teacher/EditChapter";
 import CourseCategory from "./Teacher/CourseCategory";
+import TeacherSkillCourse from "./Teacher/TeacherSkillCourse";
 import Test from "./Teacher/test"
 import TeacherDetail from "./TeacherDetail";
 
@@ -38,6 +39,10 @@ import AllCourses from "./AllCourses";
 import PopularCourses from "./PopularCourses";
 import PopularTeachers from "./PopularTeachers";
 import CategoryCourses from "./CategoryCourses";
+import AfterSearchPage from "./AfterSearchPage";
+import SearchPageSidebar from "./SearchPageSidebar";
+
+
 
 
 
@@ -73,7 +78,7 @@ function Main() {
         <Route path="/teacher-login" element={ <TeacherLogin /> } />
         <Route path="/teacher-register" element={ <TeacherRegister /> } />
         <Route path="/teacher-dashboard" element={ <TeacherDashboard /> } />
-        <Route path="/:teacher_id/teacher-courses" element={ <TeacherCourses /> } />
+        <Route path="/teacher-courses" element={ <TeacherCourses /> } />
         <Route path="/teacher-change-password" element={ <TeacherChangePassword /> } />
         <Route path="/teacher-profile-update" element={ <TeacherProfileUpdate /> } />
         <Route path="/add-courses" element={ <AddCourse /> } />
@@ -81,6 +86,7 @@ function Main() {
         <Route path="/course-chapters/:chapter_id" element={ <CourseChapters /> } />
         <Route path="/edit-chapters/:chapter_id" element={ <EditChapter /> } />
         <Route path="/course-category" element={ <CourseCategory /> } />
+        <Route path="/teacher-skill_course/:skill_name/:teacher_id" element={ <TeacherSkillCourse /> } />
         <Route path="/add-chapter/:course_id" element={ <AddChapter /> } />
         <Route path="/teacher-detail/:teacher_id" element={ <TeacherDetail /> } />
 
@@ -89,6 +95,8 @@ function Main() {
         <Route path="/all-courses" element={ <AllCourses /> } />
         <Route path="/popular-courses" element={ <PopularCourses /> } />
         <Route path="/popular-teachers" element={ <PopularTeachers /> } />
+        <Route path="/aftersearchpage" element={ <AfterSearchPage /> } />
+        <Route path="/searchpage-sidebar" element={ <SearchPageSidebar /> } />
         <Route path="/category/:category_slug" element={ <CategoryCourses /> } />
         
       
