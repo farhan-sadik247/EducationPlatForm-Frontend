@@ -20,20 +20,30 @@ function CourseChapters(){
         let data = await response.json()
         setContent(data)
     }
-    // const Swal = require('sweetalert2');  
-    // const handleEdit =()=>{
-    //     Swal.fire({
-    //         title: 'Confirm',
-    //         text: 'Do you want to edit it?',
-    //         icon: 'info',
-    //         confirmButtonText: 'Continue',
-    //         showCancelButton: true
-    //       });
-    // }   
+    const Swal = require('sweetalert2');  
+    const handleDelete =(index)=>{
+        Swal.fire({
+            title: 'Confirm',
+            text: 'Do you want to edit it?',
+            icon: 'error',
+            confirmButtonText: 'Continue',
+            showCancelButton: true
+          }).then(result =>{
+            if (result.isConfirmed) {
+                doDelete(index)
+                Swal.fire({
+                  title: "Deleted!",
+                  text: "Your file has been deleted.",
+                  icon: "success"
+                });
+              }
+          })
+    }   
 
-    const handleDelete = async (index) =>{
+    const doDelete = async (index) =>{
         let credential = {index}
-        fetch(`/course/delelteCourse`, {
+        console.log(credential)
+        fetch(`/course/deleltecontent`, {
             method: "POST",
             headers: {"Content-Type": "application/json", "X-CSRFtoken": Cookies.get("csrftoken")},
             body: JSON.stringify(credential)
