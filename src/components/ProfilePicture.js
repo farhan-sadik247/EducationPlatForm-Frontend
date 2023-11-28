@@ -35,7 +35,7 @@ function ProfilePicture() {
                     </li>
                     <li>
                         <center><Link className="dropdown-item" to="#">
-                        <i class="fa-solid fa-gauge"></i>Dashboard
+                        <i className="fa-solid fa-gauge"></i>Dashboard
                         </Link></center>
                     </li>
                     <li>
