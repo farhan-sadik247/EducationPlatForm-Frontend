@@ -2,6 +2,7 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 import TeacherSidebar from "./TeacherSidebar";
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
+
 function EditChapter(){
     const [course, setCourse] = useState("")
     const [description, setdescription] = useState("")
@@ -9,16 +10,17 @@ function EditChapter(){
     const [remark, setRemark] = useState("")
     const [link, setLink] = useState("")
     const goHome = useNavigate()
-    const {course_id} = useParams()
+    const {content_id} = useParams()
+
 
     const getCourse = async() => {
-        let res = await fetch(`/course/${course_id}/getcourse`)
+        let res = await fetch(`/course/${content_id}/getcourse`)
         let data = await res.json()
         setCourse(data)
     }
 
     const handleSubmit = async (e) => {
-        const credential = { course_id, description, title, remark, link}
+        const credential = { content_id, description, title, remark, link}
         fetch(
             "/course/addcontent", 
             {

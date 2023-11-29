@@ -38,6 +38,7 @@ import AllCourses from "./AllCourses";
 import PopularCourses from "./PopularCourses";
 import PopularTeachers from "./PopularTeachers";
 import CategoryCourses from "./CategoryCourses";
+import { useState, useEffect } from "react";
 
 
 
@@ -48,9 +49,12 @@ import CategoryCourses from "./CategoryCourses";
 
 
 function Main() {
+
+  const [username, setUsername] = useState("")
+
   return (
     <div className="App">
-      <Header />
+      <Header user = {username}/>
       <Switch>
         <Route path="/" element={ <Home /> } />
         <Route path="/about" element={ <About /> } />
@@ -70,10 +74,10 @@ function Main() {
         <Route path="/change-password" element={ <ChangePassword /> } />
 
         {/* Teacher */}
-        <Route path="/teacher-login" element={ <TeacherLogin /> } />
+        <Route path="/teacher-login" element={ <TeacherLogin user ={setUsername}/> } />
         <Route path="/teacher-register" element={ <TeacherRegister /> } />
         <Route path="/teacher-dashboard" element={ <TeacherDashboard /> } />
-        <Route path="/:teacher_id/teacher-courses" element={ <TeacherCourses /> } />
+        <Route path="/teacher-courses" element={ <TeacherCourses /> } />
         <Route path="/teacher-change-password" element={ <TeacherChangePassword /> } />
         <Route path="/teacher-profile-update" element={ <TeacherProfileUpdate /> } />
         <Route path="/add-courses" element={ <AddCourse /> } />

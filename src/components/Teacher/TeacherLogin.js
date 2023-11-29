@@ -2,13 +2,12 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Header from "../Header";
 
-function TeacherLogin(){
+function TeacherLogin(props){
     const [username, setUsername] = useState("")
     const [user, setUser] = useState("1")
     const [password, setPassowrd] = useState("")
     const [warning, setWarning] = useState(false)
     const goHome = useNavigate()
-
 
     // const handleSubmit = async (e) => {
     //     e.preventDefault()
@@ -56,6 +55,7 @@ function TeacherLogin(){
             if (user === "")(setWarning(true))
             else{if (user === "1")(setWarning(false))
             else{
+                props.user(username)
                 goHome("/")
             }}
         }, [user]

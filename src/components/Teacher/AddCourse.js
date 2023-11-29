@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import TeacherSidebar from "./TeacherSidebar";
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
@@ -22,7 +22,7 @@ function AddCourse(){
             method: "POST",
             headers: {"Content-Type": "application/json", "X-CSRFtoken" : Cookies.get("csrftoken")},
             body: JSON.stringify(credential)
-        })
+        }).then(goHome("/teacher-courses"))
     }
 
     const getCatas = async() => {

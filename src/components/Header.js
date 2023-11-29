@@ -4,8 +4,8 @@ import './Header.css';
 import SearchBox from './SearchBox';
 import ProfilePicture from "./ProfilePicture";
 
-function Header() {
-  const navigate = useNavigate();
+function Header(props) {
+  // const navigate = useNavigate();
   const [user, setUser] = useState();
 
   const handlelogout = async () => {
@@ -29,7 +29,7 @@ function Header() {
       <div className="container">
 
         <Link className="navbar-brand" to="/">
-          <i className="bi bi-mortarboard-fill"></i>Professor's Hideout {user}
+          <i className="bi bi-mortarboard-fill"></i>Professor's Hideout {props.user}
         </Link>
         
         <button
