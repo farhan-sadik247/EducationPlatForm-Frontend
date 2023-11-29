@@ -4,9 +4,10 @@ import './Header.css';
 import SearchBox from './SearchBox';
 import ProfilePicture from "./ProfilePicture";
 
-function Header() {
-  const navigate = useNavigate();
+function Header(props) {
+  // const navigate = useNavigate();
   const [user, setUser] = useState();
+  
 
   const handlelogout = async () => {
     await fetch("/auth/signout");
@@ -29,7 +30,7 @@ function Header() {
       <div className="container">
 
         <Link className="navbar-brand" to="/">
-          <i className="bi bi-mortarboard-fill"></i>Professor's Hideout {user}
+          <i className="bi bi-mortarboard-fill"></i>Professor's Hideout {props.user}
         </Link>
         
         <button
@@ -48,7 +49,7 @@ function Header() {
 
           <div className="navbar-nav   ms-auto">
 
-            <SearchBox />
+            <SearchBox search = {props.search} setSearch={props.setSearch}/>
 
             <Link className="nav-link btn-outline-success" aria-current="page" to="/">
             <i className="fa-solid fa-house"></i>Home

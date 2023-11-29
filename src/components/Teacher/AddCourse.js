@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import TeacherSidebar from "./TeacherSidebar";
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";

@@ -1,4 +1,5 @@
 import { Routes as Switch, Route } from "react-router-dom";
+import { useState } from "react";
 import Header from './Header';
 import Home from './Home';
 import CourseDetail from "./CourseDetail";
@@ -53,9 +54,13 @@ import SearchPageSidebar from "./SearchPageSidebar";
 
 
 function Main() {
+
+  const [username, setUsername] = useState("")
+  const [search, setSearch] = useState("")
+
   return (
     <div className="App">
-      <Header />
+      <Header user = {username} search = {search} setSearch= {setSearch}/>
       <Switch>
         <Route path="/" element={ <Home /> } />
         <Route path="/about" element={ <About /> } />
@@ -75,7 +80,7 @@ function Main() {
         <Route path="/change-password" element={ <ChangePassword /> } />
 
         {/* Teacher */}
-        <Route path="/teacher-login" element={ <TeacherLogin /> } />
+        <Route path="/teacher-login" element={ <TeacherLogin user ={setUsername}/> } />
         <Route path="/teacher-register" element={ <TeacherRegister /> } />
         <Route path="/teacher-dashboard" element={ <TeacherDashboard /> } />
         <Route path="/teacher-courses" element={ <TeacherCourses /> } />
@@ -95,8 +100,8 @@ function Main() {
         <Route path="/all-courses" element={ <AllCourses /> } />
         <Route path="/popular-courses" element={ <PopularCourses /> } />
         <Route path="/popular-teachers" element={ <PopularTeachers /> } />
-        <Route path="/aftersearchpage" element={ <AfterSearchPage /> } />
-        <Route path="/searchpage-sidebar" element={ <SearchPageSidebar /> } />
+        <Route path="/aftersearchpage" element={ <AfterSearchPage search = {search}/> } />
+        <Route path="/searchpage-sidebar" element={ <SearchPageSidebar/> } />
         <Route path="/category/:category_slug" element={ <CategoryCourses /> } />
         
       
