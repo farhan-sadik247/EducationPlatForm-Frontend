@@ -5,24 +5,7 @@ import SearchBox from './SearchBox';
 import ProfilePicture from "./ProfilePicture";
 
 function Header(props) {
-  // const navigate = useNavigate();
-  const [user, setUser] = useState();
-  
 
-  const handlelogout = async () => {
-    await fetch("/auth/signout");
-    getUser();
-  };
-
-  const getUser = async () => {
-    let res = await fetch("/auth/getuser");
-    let data = await res.json();
-    setUser(data);
-  };
-
-  useEffect(() => {
-    getUser();
-  }, []);
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -30,7 +13,7 @@ function Header(props) {
       <div className="container">
 
         <Link className="navbar-brand" to="/">
-          <i className="bi bi-mortarboard-fill"></i>Professor's Hideout {props.user}
+          <i className="bi bi-mortarboard-fill"></i>Professor's Hideout
         </Link>
         
         <button
@@ -57,9 +40,7 @@ function Header(props) {
 
             <Link className="nav-link btn-outline-success" to="/all-courses">Courses</Link>
 
-            {user ? (
-              <>
-                <li className="nav-item dropdown">
+                {/* <li className="nav-item dropdown">
                   <Link className="nav-link dropdown-toggle" to="#" id="teachersDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   <i className="fa-solid fa-chalkboard-user"></i>
                   </Link>
@@ -84,10 +65,10 @@ function Header(props) {
                     <center><li><Link className="dropdown-item" to="/user-dashboard"><i className="bi bi-speedometer2"></i>Dashboard</Link></li></center>
                     <center><li><Link className="dropdown-item" to="/user-login"><i className="bi bi-box-arrow-right"></i>Sign out</Link></li></center>
                   </ul>
-                </li>
-              </>
-            ) : (
-              <>
+                </li> */}
+
+                {props.user === "" ? (
+                  <>
                 <li className="nav-item dropdown">
                   <Link className="nav-link dropdown-toggle" to="#" id="teachersDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   <i className="fa-solid fa-chalkboard-user"></i>
@@ -114,9 +95,9 @@ function Header(props) {
                     <center><li><Link className="dropdown-item" to="/user-register">Register</Link></li></center>
                   </ul>
                 </li>
-              </>
-            )}
-          < ProfilePicture />
+                </>)
+                :
+            (< ProfilePicture user={props.user} setUser = {props.setUser}/>)}
           </div>
         </div>
 

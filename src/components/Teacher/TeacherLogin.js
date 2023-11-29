@@ -9,6 +9,8 @@ function TeacherLogin(props){
     const [warning, setWarning] = useState(false)
     const goHome = useNavigate()
 
+    console.log(user)
+
     // const handleSubmit = async (e) => {
     //     e.preventDefault()
     //     const credential = { username, password}
@@ -55,8 +57,8 @@ function TeacherLogin(props){
             if (user === "")(setWarning(true))
             else{if (user === "1")(setWarning(false))
             else{
-                props.user(username)
-                // goHome("/")
+                props.user(user)
+                goHome("/")
             }}
         }, [user]
     )
