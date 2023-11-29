@@ -56,10 +56,11 @@ import SearchPageSidebar from "./SearchPageSidebar";
 function Main() {
 
   const [username, setUsername] = useState("")
+  const [search, setSearch] = useState("")
 
   return (
     <div className="App">
-      <Header user = {username}/>
+      <Header user = {username} search = {search} setSearch= {setSearch}/>
       <Switch>
         <Route path="/" element={ <Home /> } />
         <Route path="/about" element={ <About /> } />
@@ -99,8 +100,8 @@ function Main() {
         <Route path="/all-courses" element={ <AllCourses /> } />
         <Route path="/popular-courses" element={ <PopularCourses /> } />
         <Route path="/popular-teachers" element={ <PopularTeachers /> } />
-        <Route path="/aftersearchpage" element={ <AfterSearchPage /> } />
-        <Route path="/searchpage-sidebar" element={ <SearchPageSidebar /> } />
+        <Route path="/aftersearchpage" element={ <AfterSearchPage search = {search}/> } />
+        <Route path="/searchpage-sidebar" element={ <SearchPageSidebar/> } />
         <Route path="/category/:category_slug" element={ <CategoryCourses /> } />
         
       

@@ -7,6 +7,7 @@ import ProfilePicture from "./ProfilePicture";
 function Header(props) {
   // const navigate = useNavigate();
   const [user, setUser] = useState();
+  
 
   const handlelogout = async () => {
     await fetch("/auth/signout");
@@ -48,7 +49,7 @@ function Header(props) {
 
           <div className="navbar-nav   ms-auto">
 
-            <SearchBox />
+            <SearchBox search = {props.search} setSearch={props.setSearch}/>
 
             <Link className="nav-link btn-outline-success" aria-current="page" to="/">
             <i className="fa-solid fa-house"></i>Home

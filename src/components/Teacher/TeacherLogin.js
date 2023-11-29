@@ -56,7 +56,7 @@ function TeacherLogin(props){
             else{if (user === "1")(setWarning(false))
             else{
                 props.user(username)
-                goHome("/")
+                // goHome("/")
             }}
         }, [user]
     )
