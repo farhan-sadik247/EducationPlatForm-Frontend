@@ -83,6 +83,14 @@ def getCata(request):
         return Response(serializer.data)
 
 @api_view(["GET"])
+def getCata_id(request, cata_id):
+    if request.method == "GET":
+        if cata_id != "undefined":
+            content = Catagory.objects.get(id = cata_id)
+            serializer = CatagorySerializer(content, many = False)
+            return Response(serializer.data)
+    return Response(" ")
+@api_view(["GET"])
 def allCourse(request):
     if request.method == "GET":
         course = Course.objects.all()
@@ -130,19 +138,22 @@ def getCourse(request, course_id):
 
 
 @api_view(["GET"])
-def TeacherCourses(request):
+def TeacherCourses(request, teacher_id):
     if request.method == "GET":
-        teacher_id = request.user.id
-        course = Course.objects.filter(teacher = teacher_id)
-        serializer = CourseSerializer(course, many = True)
-        return Response(serializer.data)
+        if teacher_id != "undefined":
+            teacher = Userinfo.objects.get(id= teacher_id)
+            course = Course.objects.filter(teacher = teacher)
+            serializer = CourseSerializer(course, many = True)
+            return Response(serializer.data)
+    return Response([])
     
 @api_view(["GET"])
 def RecentCourses(request, teacher_id):
     if request.method == "GET":
-        course = Course.objects.filter(teacher = teacher_id).order_by("-created_at")[0]
+        course = Course.objects.filter(teacher = teacher_id).order_by("-created_at")
+        if len(course)>0:
+            course = course[0]
         serializer = CourseSerializer(course, many = False)
-        print(serializer.data)
         return Response(serializer.data)
 
 @api_view(["POST"])

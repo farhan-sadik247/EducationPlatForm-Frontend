@@ -189,7 +189,13 @@ def changePass(request):
 
 @api_view(["GET"])
 def getUser(request):
-    print(request.user.username)
+    user_id = request.user.id
+    user = Userinfo.objects.filter(id = user_id)
+    if len(user) > 0:
+        user = user[0]
+        print(user.email)
+        serializer = UserinfoSerializer(user, many = False)
+        return Response(serializer.data)
     return Response(str(request.user.username))
 
 

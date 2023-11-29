@@ -11,7 +11,7 @@ urlpatterns = [
     path("<str:course_id>/getcontent", views.getContent, name = "getconten"),
     path("<str:content_id>/editcontent", views.editContent, name = "editconten"),
     path("<str:course_id>/totalstd", views.totalStd, name = "totalstd"),
-    path("teachercourses", views.TeacherCourses, name = "teachercourses"),
+    path("<str:teacher_id>/teachercourses", views.TeacherCourses, name = "teachercourses"),
     path("<int:teacher_id>/recentcourse", views.RecentCourses, name = "recentcourses"),
     path("delelteCourse", views.deleteCourse, name = "deletecourses"),
     path("deleltecontent", views.deleteContent, name = "deletecontent"),
@@ -23,5 +23,6 @@ urlpatterns = [
     path("addcontent", views.addContent, name = "addcontent"),
     path("addcatagory", views.addCatagory, name = "addcatagory"),
     path("getcata", views.getCata, name = "getcata"),
+    path("<str:cata_id>/getcata", views.getCata_id, name = "getcata"),
     path("<str:cata_id>/coursesearch", views.courseSearch, name = "coursesearch"),
 ]
