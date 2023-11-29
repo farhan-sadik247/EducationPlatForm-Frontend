@@ -2,7 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import { useEffect, useState } from "react";
 
-function MyCourses(){
+function UserAssignment(){
 
     const { student_id } = useParams()
 
@@ -29,24 +29,23 @@ function MyCourses(){
                 </aside>
                 <section className="col-md-9">
                 <div className="card">
-                    <h5 className="card-header">My Courses</h5>
+                    <h5 className="card-header">My Assignments</h5>
                     <div className="card-body">
                         <table className="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th><center>Course Name</center></th>
+                                    <th><center>Assignment Title</center></th>
+                                    <th><center>Assignment Link</center></th>
+                                    <th><center>Submission Link</center></th>
                                     <th><center>Created by</center></th>
-                                    <th><center>Action</center></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <td>{courses.map((coursetitle, student, index) => (
-                                    <>
-                                    <td><center><Link to="/">{coursetitle}</Link></center></td>
-                                    <td><center><Link to="/">{student}</Link> </center></td>
-                                    <td><center><button className="btn btn-danger text-dark">Remove</button></center></td>
-                                    </>
-                                ))}</td>  
+                                    <td><center><Link to="">Assignment-1</Link></center></td>
+                                    <td><center><Link to=""> Post assignment link </Link> </center></td>
+                                    <td><center><Link to=""> Post submission link </Link> </center></td>
+                                    <td><center>Teacher Name</center></td>
+                                    
                             </tbody>
                         </table>
                     </div>
@@ -57,7 +56,7 @@ function MyCourses(){
     );
 }
 
-export default MyCourses;
+export default UserAssignment;
 
 
 

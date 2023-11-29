@@ -51,7 +51,7 @@ function TeacherDetail() {
 
     let getCourses = async () => {
 
-        let response = await fetch(`/course/${teacher_id}/teachercourses`)
+        let response = await fetch(`/course/teachercourses`)
         let data = await response.json()
         setCourses(data)
         console.log(data)
@@ -68,7 +68,7 @@ function TeacherDetail() {
                     <p>Teacher Description</p>
 
 
-                    <p className="fw-bold">Skills: <Link to="/category/python">Python</Link>,<Link to="/category/django">Django</Link>,<Link to="/category/reactjs">ReactJS</Link>,<Link to="/category/js">JavaScript</Link></p>
+                    <p className="fw-bold">Skills: {teacher.skills} </p>
                     <p className="fw-bold">Recent Course: <Link to={`/details/${course.id}`}>{course.title}</Link></p>
                     <p className="fw-bold">Rating:
                     <select id="rationSelect" name="quantity" onChange= {(e) => (setRating(e))}>

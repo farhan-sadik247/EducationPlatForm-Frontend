@@ -5,7 +5,7 @@ import Cookies from "js-cookie";
 // import Swal from 'sweetalert2'
 
 
-function TeacherCourses(){
+function ShowAssignments(){
 
     let [courses, setCourses] = useState([])
 
@@ -45,41 +45,31 @@ function TeacherCourses(){
                 </aside>
                 <section className="col-md-9">
                 <div className="card">
-                    <h5 className="card-header">My Courses</h5>
+                    <h5 className="card-header">Assignments <Link className="btn btn-success float-end" to="/add-assignment/1/3">Add Assignment</Link></h5> <h5></h5>
                     <div className="card-body">
                         <table className="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th><center>Course Name</center></th>
-                                    <th><center>Date Created</center></th>
-                                    <th><center>Total Enrolled Students</center></th>
-                                    <th><center>Action</center></th>
+                                    <th><center>Assignment Title</center></th>
+                                    <th><center>Assignment Link</center></th>
+                                    <th><center>Submission Link</center></th>
                                     <th><center>Action</center></th>
                                 </tr>
                             </thead>
-                                {/* <td><center>Learn ReactJs for begginers </center></td>    
-                                <td><center><Link to="/course-chapters">Learn ReactJs for begginers</Link></center></td>    
-                                <td><center><Link to="/">Farhan Sadik</Link></center></td>  
-                                <td>
-                                <center><button className="btn btn-danger text-dark">Remove</button></center> 
-                                </td>  
-                                <td><center><Link className="btn btn-primary text-dark" to="/add-chapter/2">Add chapter</Link></center> </td> */}
                                 
-                                {courses.map((coursetitle, index) => (
+                                
                                     <tbody>
-                                    <td><center><Link to={`/details/${courses[index].id}`}>{courses[index].title}</Link></center></td>
-                                    <td><center>{courses[index].created_at.slice(0,10)} </center></td>
-                                    <td><center><Link to="/enrolled-student">Total Student Count</Link></center></td>
-                                    <td><center><Link to={`/add-chapter/${courses[index].id}`} className="btn btn-primary text-dark">Add chapter</Link></center> </td>
+                                    <td><center><Link>Assignment-1</Link></center></td>
+                                    <td><center><Link>Assignment Link</Link> </center></td>
+                                    <td><center><Link>Submission Link</Link></center></td>
                                     <td>
                                         <center>
-                                            <Link to="/edit-courses"><button className="btn btn-info text-dark">Edit</button></Link>
-                                            <button className="btn btn-danger text-dark ms-2" onClick={()=>{handleDelete(courses[index].id)}}>Remove</button>
+                                            <Link to="/edit-assignment/1/2"><button className="btn btn-info text-dark">Edit</button></Link>
+                                            <button className="btn btn-danger text-dark ms-2">Remove</button>
                                         </center>
                                     </td>
                                     
                                     </tbody>
-                                ))}
                         </table>
                     </div>
                 </div>
@@ -89,7 +79,7 @@ function TeacherCourses(){
     );
 }
 
-export default TeacherCourses;
+export default ShowAssignments;
 
 
 
