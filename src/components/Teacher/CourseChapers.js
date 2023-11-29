@@ -23,10 +23,12 @@ function CourseChapters(){
     const Swal = require('sweetalert2');  
     const handleDelete =(index)=>{
         Swal.fire({
-            title: 'Confirm',
-            text: 'Do you want to edit it?',
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
             icon: 'error',
-            confirmButtonText: 'Continue',
+            confirmButtonText: 'Yes, delete it!',
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
             showCancelButton: true
           }).then(result =>{
             if (result.isConfirmed) {
@@ -59,7 +61,7 @@ function CourseChapters(){
             </aside>
             <section className="col-md-9">
             <div className="card">
-                <h5 className="card-header">Chapter List</h5>
+                <h5 className="card-header">Chapter List <Link className="btn btn-success float-end" to="/add-chapter/:course_id">Add Chapter</Link></h5>
                 <div className="card-body">
                     <table className="table table-bordered">
                         <thead>

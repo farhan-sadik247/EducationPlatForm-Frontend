@@ -7,7 +7,7 @@ function SearchBox() {
         <div className="searchbar">
             <input className="search_input" type="text" name="" placeholder="Search..." />
             
-            <Link to="#" className="search_icon"><i className="fas fa-search"></i></Link>
+            <Link to="/aftersearchpage" className="search_icon"><i className="fas fa-search"></i></Link>
         </div>
     );
 }
