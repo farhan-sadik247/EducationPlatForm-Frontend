@@ -9,6 +9,7 @@ from django.http import HttpResponse, HttpRequest, JsonResponse
 from .models import *
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
+from django.db.models import Q
 # Create your views here.
 
 @api_view(["POST"])
@@ -206,3 +207,73 @@ def check_name(request, coursename):
         return Response("nai")
     else:
         return Response("ase")
+    
+@api_view(["POST"])
+def editContent(request, content_id):
+
+    if request.method == "POST":
+        u = Content.objects.get(id=content_id)
+        if request.data["title"] != "":
+            u.title = request.data["title"],
+        if request.data["link"] != "":
+            u.link = request.data["link"],
+        if request.data["description"] != "":
+            u.description = request.data["description"],
+        if request.data["remark"] != "":
+            u.remarks = request.data["reamrk"],
+        u.save()
+    return Response("")
+
+@api_view(["GET"])
+def courseSearch(request, cata_id):
+    if request.method == "GET":
+        if len(cata_id) == 3:
+            if cata_id[0:2] == "ff" or cata_id[0:2] == "tt":
+                if cata_id[2] == "0":
+                    course = Course.objects.all()
+                else:
+                    cata = Catagory.objects.get(id = cata_id[2])
+                    course = Course.objects.filter(catagory= cata)
+            elif cata_id[:2] == "tf":
+                if cata_id[2] == "0":
+                    print(1)
+                    course = Course.objects.filter(price=0)
+                else:
+                    print(2)
+                    cata = Catagory.objects.get(id = cata_id[2])
+                    course = Course.objects.filter(Q(catagory= cata) & Q(price=0))
+            else:
+                if cata_id[2] == "0":
+                    print(3)
+                    course = Course.objects.filter(~Q(price=0))
+                else:
+                    print(4)
+                    cata = Catagory.objects.get(id = cata_id[2])
+                    course = Course.objects.filter(catagory = cata).exclude(price=0)
+            serializer = CourseSerializer(course, many = True)
+            return Response(serializer.data)
+        else:
+            if cata_id[0:2] == "ff" or cata_id[0:2] == "tt":
+                if cata_id[2] == "0":
+                    course = Course.objects.filter(title__contains = cata_id[3:])
+                else:
+                    cata = Catagory.objects.get(id = cata_id[2])
+                    course = Course.objects.filter(Q(catagory= cata) & Q(title__contains = cata_id[3:]))
+            elif cata_id[:2] == "tf":
+                if cata_id[2] == "0":
+                    print(1)
+                    course = Course.objects.filter(Q(price=0) & Q(title__contains = cata_id[3:]))
+                else:
+                    print(2)
+                    cata = Catagory.objects.get(id = cata_id[2])
+                    course = Course.objects.filter(Q(catagory= cata) & Q(price=0) & Q(title__contains = cata_id[3:]))
+            else:
+                if cata_id[2] == "0":
+                    print(3)
+                    course = Course.objects.filter(Q(title__contains = cata_id[3:]) & ~Q(price=0))
+                else:
+                    print(4)
+                    cata = Catagory.objects.get(id = cata_id[2])
+                    course = Course.objects.filter(Q(catagory = cata) & Q(title__contains = cata_id[3:])).exclude(price=0)
+            serializer = CourseSerializer(course, many = True)
+            return Response(serializer.data)
