@@ -21,13 +21,15 @@ function AfterSearchPage(props){
                     /> */}
 
                     <div className="container-fluid">
-                        <table className="table">
+                        
+                    <div className="card-body">
+                    <table className="table">
                         <thead>
                             <tr>
-                            <th>Picture</th>
-                            <th>Course Details</th>
-                            <th>Price</th>
-                            <th>Action</th>
+                            <th><h5>Picture</h5></th>
+                            <th><h5>Course Details</h5></th>
+                            <th><h5>Price</h5></th>
+                            <th><h5>Action</h5></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -76,6 +78,7 @@ function AfterSearchPage(props){
                             </tr>
                         </tbody>
                         </table>
+                    </div>
                     </div>
                     </div>
                     </section>

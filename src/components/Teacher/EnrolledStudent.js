@@ -23,7 +23,6 @@ function EnrolledStudent(){
                                     <th><center>Email</center></th>
                                     <th><center>username</center></th>
                                     <th><center>Action</center></th>
-                                    <th><center>Assignments</center></th>
                                 </tr>
                             </thead>
                                     <tbody>
@@ -31,9 +30,6 @@ function EnrolledStudent(){
                                     <td><center>Email ID </center></td>
                                     <td><center> Username </center></td>
                                     <td><center><Link to="/user-details" className="btn btn-primary text-dark">View Details</Link></center> </td>  
-                                    <td><center><Link to="/show-assignment/1/3" className="btn btn-warning text-dark">Assignments</Link>   
-                                    <Link to="/add-assignment/1/2" className="btn btn-info text-dark ms-2">Add Assignments</Link></center>
-                                    </td>
                                     </tbody>
                         </table>
                     </div>
