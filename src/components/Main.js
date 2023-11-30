@@ -33,6 +33,7 @@ import AddChapter from "./Teacher/AddChapter";
 import CourseChapters from "./Teacher/CourseChapers";
 import EditChapter from "./Teacher/EditChapter";
 import CourseCategory from "./Teacher/CourseCategory";
+import CategoryDetails from "./Teacher/CategoryDetails";
 import TeacherSkillCourse from "./Teacher/TeacherSkillCourse";
 import Test from "./Teacher/test"
 import TeacherDetail from "./TeacherDetail";
@@ -47,18 +48,9 @@ import ShowAssignments from "./Teacher/ShowAssignments";
 import AllCourses from "./AllCourses";
 import PopularCourses from "./PopularCourses";
 import PopularTeachers from "./PopularTeachers";
-import CategoryCourses from "./CategoryCourses";
+// import CategoryCourses from "./CategoryCourses";
 import AfterSearchPage from "./AfterSearchPage";
 import SearchPageSidebar from "./SearchPageSidebar";
-
-
-
-
-
-
-
-
-
 
 
 
@@ -108,6 +100,7 @@ function Main() {
         <Route path="/course-chapters/:chapter_id" element={ <CourseChapters /> } />
         <Route path="/edit-chapters/:chapter_id" element={ <EditChapter /> } />
         <Route path="/course-category" element={ <CourseCategory /> } />
+        <Route path="/category-details/:category_id" element={ <CategoryDetails /> } />
         <Route path="/teacher-skill_course/:skill_name/:teacher_id" element={ <TeacherSkillCourse /> } />
         <Route path="/add-chapter/:course_id" element={ <AddChapter /> } />
         <Route path="/teacher-detail/:teacher_id" element={ <TeacherDetail /> } />
@@ -123,7 +116,7 @@ function Main() {
         <Route path="/popular-teachers" element={ <PopularTeachers /> } />
         <Route path="/aftersearchpage" element={ <AfterSearchPage search = {search}/> } />
         <Route path="/searchpage-sidebar" element={ <SearchPageSidebar/> } />
-        <Route path="/category/:category_slug" element={ <CategoryCourses /> } />
+        {/* <Route path="/category/:category_slug" element={ <CategoryCourses /> } /> */}
         
       
 

@@ -39,7 +39,7 @@ function CourseCategory(){
                 </aside>
                 <section className="col-md-9">
                 <div className="card">
-                    <h5 className="card-header">Course Category</h5>
+                    <h5 className="card-header">Create Course Category</h5>
                     <form onSubmit={handleSubmit}>
                     <div className="card-body">
                         <div className="mb-3 row">

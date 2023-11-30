@@ -82,7 +82,7 @@ function CourseDetail(props){
                     <h3>{course.title}</h3>
                     <p>{course.details}</p>
                     <p className="fw-bold">Course By: <Link to={`/teacher-detail/${teacher.id}`}>{teacher.fullname}</Link></p>
-                    <p className="fw-bold">Category: {cata.title}</p>
+                    <p className="fw-bold">Category: <Link to="/category-details/1">{cata.title}</Link></p>
                     {/* <p className="fw-bold">Technologies used: Doo</p> */}
                     <p className="fw-bold">Total Enrolled Student: {total}</p>
                     <p className="fw-bold">Rating:
