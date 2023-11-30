@@ -10,6 +10,8 @@ from .models import Userinfo
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt, ensure_csrf_cookie
 from django.utils.decorators import method_decorator
+from course.models import Course
+from course.serializers import CourseSerializer
 User = get_user_model()
 
 # Create your views here.
@@ -193,7 +195,6 @@ def getUser(request):
     user = Userinfo.objects.filter(id = user_id)
     if len(user) > 0:
         user = user[0]
-        print(user.email)
         serializer = UserinfoSerializer(user, many = False)
         return Response(serializer.data)
     return Response(str(request.user.username))
@@ -235,5 +236,8 @@ def check_name(request, username):
 
 @api_view(["GET"])
 def test(request):
-    print(request.session.csrf_token)
-    return Response("kjadfh")
+    user = Userinfo.objects.get(username = "user2")
+    course = Course.objects.get(title = "course a")
+    # ser = CourseSerializer(course, many = True)
+
+    return Response(course.teacher)

@@ -10,6 +10,7 @@ from .models import *
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 from django.db.models import Q
+from authentication.serializers import UserinfoSerializer
 # Create your views here.
 
 @api_view(["POST"])
@@ -37,10 +38,14 @@ def addContent(request):
         course = Course.objects.get(id = int(course_id))
         title = request.data["title"]
         description = request.data["description"]
-        remarks = request.data["remark"]
         link = request.data["link"]
-        
-        courseinfo = Content.objects.create(title = title, description= description, remarks = remarks, link = link, course=course)
+            
+        if request.data["type"] == "chapter":
+            remarks = request.data["remark"]
+            courseinfo = Content.objects.create(title = title, description= description, remarks = remarks, link = link, course=course)
+        if request.data["type"] == "assignment":
+            sub_link = request.data["sub_link"]
+            courseinfo = Content.objects.create(title = title, description= description, sub_link=sub_link, link = link, course=course)
 
         courseinfo.save()
     return Response("")
@@ -140,6 +145,12 @@ def getCourse(request, course_id):
 @api_view(["GET"])
 def TeacherCourses(request, teacher_id):
     if request.method == "GET":
+        if teacher_id == "$":
+            teacher_id = request.user.id
+            teacher = Userinfo.objects.get(id= teacher_id)
+            course = Course.objects.filter(teacher = teacher)
+            serializer = CourseSerializer(course, many = True)
+            return Response(serializer.data)
         if teacher_id != "undefined":
             teacher = Userinfo.objects.get(id= teacher_id)
             course = Course.objects.filter(teacher = teacher)
@@ -176,9 +187,20 @@ def deleteContent(request):
 def totalStd(request, course_id):
     if course_id == "undefined":
         return Response("None")
+    if course_id == "$":
+        teacher_id = request.user.id
+        teacher = Userinfo.objects.get(id = teacher_id)
+        courses = Course.objects.filter(teacher = teacher)
+        total = 0
+        for course in courses:
+            total += len(Bought_item.objects.filter(course = course))
+        res = {
+            "std" : total,
+            "course" : len(courses)
+        }
+        return Response(res)
     if request.method == "GET":
         total = Bought_item.objects.filter(course = course_id)
-        print(len(total))
         return Response(len(total))
     
 
@@ -238,6 +260,8 @@ def editContent(request, content_id):
 @api_view(["GET"])
 def courseSearch(request, cata_id):
     if request.method == "GET":
+        if cata_id[2:] == "undefined":
+            return Response([])
         if len(cata_id) == 3:
             if cata_id[0:2] == "ff" or cata_id[0:2] == "tt":
                 if cata_id[2] == "0":
@@ -288,3 +312,21 @@ def courseSearch(request, cata_id):
                     course = Course.objects.filter(Q(catagory = cata) & Q(title__contains = cata_id[3:])).exclude(price=0)
             serializer = CourseSerializer(course, many = True)
             return Response(serializer.data)
+        
+
+@api_view(["GET"])
+def getStd(request):
+    if request.method == "GET":
+        std_list = []
+        user_id = request.user.id
+        teacher = Userinfo.objects.get(id = user_id)
+        courses = Course.objects.filter(teacher= teacher)
+        for course in courses:
+            bought_items = Bought_item.objects.filter(course = course)
+            for bought_item in bought_items:
+                std = bought_item.student
+                std_list.append(std.id)
+        std = Userinfo.objects.filter(id__in=std_list)
+        ser = UserinfoSerializer(std, many = True)
+        return Response(ser.data)
+

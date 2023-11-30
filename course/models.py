@@ -42,6 +42,7 @@ class Fav_item(models.Model):
 class Bought_item(models.Model):
     student = models.ForeignKey(Userinfo, on_delete = models.CASCADE)
     course = models.ForeignKey(Course, on_delete = models.CASCADE)
+    rating = models.BooleanField(default=False, blank=True, null=True)
 
     def __str__(self) -> str:
         return f'Course: {self.course.title} for {self.student.username}'
@@ -54,6 +55,7 @@ class Content(models.Model):
     description = models.TextField(blank = False, null = False, default = "")
     title = models.CharField(max_length=200, blank=False, null = False, default = "")
     remarks = models.TextField(blank=True, null=True, default = None)
+    sub_link = models.TextField(blank=True, null=True, default = None)
     
 
     course = models.ForeignKey(Course, on_delete = models.CASCADE)

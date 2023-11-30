@@ -25,4 +25,5 @@ urlpatterns = [
     path("getcata", views.getCata, name = "getcata"),
     path("<str:cata_id>/getcata", views.getCata_id, name = "getcata"),
     path("<str:cata_id>/coursesearch", views.courseSearch, name = "coursesearch"),
+    path("getstd", views.getStd, name = "getstd"),
 ]
