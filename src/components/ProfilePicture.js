@@ -1,7 +1,15 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-function ProfilePicture() {
+function ProfilePicture(props) {
+
+    console.log(props.user)
+
+    const handlelogout = async () => {
+        await fetch("/auth/signout");
+        props.setUser("")
+      };
+
     return (
         <div className="dropdown">
             <button
@@ -31,9 +39,9 @@ function ProfilePicture() {
                         />
                         <div>
                             <center>
-                            <span className="px-2">Farhan Sadik</span>
+                            <span className="px-2">{props.user.username}</span>
                             <br/>
-                            <span className='px-2 fst-italic text-info'>md.farhan.sadik@g.bracu.ac.bd</span>
+                            <span className='px-2 fst-italic text-info'>{props.user.email}</span>
                             </center>
 
                         </div>
@@ -48,16 +56,16 @@ function ProfilePicture() {
                         </Link></center>
                     </li>
                     <li>
-                        <center><Link className="dropdown-item" to="#">
+                        <center><Link className="dropdown-item" to="/teacher-dashboard">
                         <i className="fa-solid fa-gauge"></i>Dashboard
                         </Link></center>
                     </li>
                     <li>
                         <center><Link
                             className="dropdown-item"
-                            data-bs-toggle="modal"
-                            data-bs-target="#logoutModal"
-                            to="#"
+                            // data-bs-toggle="modal"
+                            // data-bs-target="#logoutModal"
+                            to="/" onClick={handlelogout}
                         >
                            <i className="fa-solid fa-right-from-bracket text-danger"></i> Sign-out
                         </Link></center>

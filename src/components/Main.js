@@ -1,5 +1,5 @@
 import { Routes as Switch, Route } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Header from './Header';
 import Home from './Home';
 import CourseDetail from "./CourseDetail";
@@ -69,16 +69,17 @@ import SearchPageSidebar from "./SearchPageSidebar";
 
 function Main() {
 
-  const [username, setUsername] = useState("")
+  const [user, setUser] = useState("")
   const [search, setSearch] = useState("")
+  console.log(user)
 
   return (
     <div className="App">
-      <Header user = {username} search = {search} setSearch= {setSearch}/>
+      <Header user={user} setUser = {setUser} search = {search} setSearch= {setSearch}/>
       <Switch>
         <Route path="/" element={ <Home /> } />
         <Route path="/about" element={ <About /> } />
-        <Route path="/details/:courseid" element={ <CourseDetail /> } />
+        <Route path="/details/:courseid" element={ <CourseDetail user = {user}/> } />
         <Route path="/test" element={ <Test /> } />
         <Route path="/searchbox" element={ <SearchBox /> } />
         <Route path="/profile-picture" element={ <ProfilePicture /> } />
@@ -96,7 +97,7 @@ function Main() {
         <Route path="/user-assignment/:student_id" element={ <UserAssignment /> } />
 
         {/* Teacher */}
-        <Route path="/teacher-login" element={ <TeacherLogin user ={setUsername}/> } />
+        <Route path="/teacher-login" element={ <TeacherLogin user ={setUser}/> } />
         <Route path="/teacher-register" element={ <TeacherRegister /> } />
         <Route path="/teacher-dashboard" element={ <TeacherDashboard /> } />
         <Route path="/teacher-courses" element={ <TeacherCourses /> } />

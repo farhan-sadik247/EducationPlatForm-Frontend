@@ -3,22 +3,23 @@ import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 
-function CourseDetail(){
+function CourseDetail(props){
 
 
     const {courseid}=useParams();
 
     
     let [course, setCourses] = useState([])
+    let [cata, setCata] = useState([])
     let [content, setContent] = useState([])
     let [rating, setRating] = useState(1)
     let [teacher, setTeacher] = useState(0)
     let [total, setTotal] = useState(0)
     let [submit, setSubmit] = useState(false)
     
-    
+
     useEffect(
-        () => {getCourses()}, []
+        () => {getCourses()}, [submit]
     )
 
     useEffect(
@@ -27,6 +28,10 @@ function CourseDetail(){
     
     useEffect(
         () => {getContent()},[]
+    )
+
+    useEffect(
+        () => {getCata()},[course]
     )
 
     let getCourses = async () => {
@@ -51,6 +56,12 @@ function CourseDetail(){
         setContent(data)
     }
 
+    let getCata = async () => {
+        let response = await fetch(`/course/${course.catagory}/getcata`)
+        let data = await response.json()
+        setCata(data)
+    }
+
     const handleSubmit = async () => {
         let cred = { rating}
         fetch(`/course/${courseid}/getcourse`, {
@@ -60,7 +71,6 @@ function CourseDetail(){
         })
         setSubmit(true)
     }
-
 
     return (
         <div className="container mt-3">
@@ -72,9 +82,9 @@ function CourseDetail(){
                     <h3>{course.title}</h3>
                     <p>{course.details}</p>
                     <p className="fw-bold">Course By: <Link to={`/teacher-detail/${teacher.id}`}>{teacher.fullname}</Link></p>
-                    <p className="fw-bold">Category: {course.catagory}</p>
+                    <p className="fw-bold">Category: {cata.title}</p>
                     {/* <p className="fw-bold">Technologies used: Doo</p> */}
-                    <p className="fw-bold">Total Enrolled Student: {total} Student</p>
+                    <p className="fw-bold">Total Enrolled Student: {total}</p>
                     <p className="fw-bold">Rating:
                     {submit && course.rating}
                     {!submit && <select id="rationSelect" name="quantity" onChange={(e) => setRating(e.target.value)}>
@@ -101,7 +111,8 @@ function CourseDetail(){
             <div className="card">
             <div className="card" >
                 <div className="fw-bold card-header">
-                    <h5 className="card-header"><Link to = {`/course-chapters/${courseid}`}>Course Contents</Link></h5>
+                    {props.user.id === teacher.id ? (<h5 className="card-header"><Link to = {`/course-chapters/${courseid}`}>Course Contents</Link></h5>)
+                    :(<h5 className="card-header">Course Contents</h5>)}
                 </div>
 
                 <ul className="list-group list-group-flush">
