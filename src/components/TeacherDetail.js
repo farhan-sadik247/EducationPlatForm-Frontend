@@ -52,7 +52,7 @@ function TeacherDetail() {
 
     let getCourses = async () => {
 
-        let response = await fetch(`/course/${teacher_id}/teachercourses`)
+        let response = await fetch(`/course/teachercourses`)
         let data = await response.json()
         setCourses(data)
     }

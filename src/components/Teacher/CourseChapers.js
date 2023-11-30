@@ -61,7 +61,20 @@ function CourseChapters(){
             </aside>
             <section className="col-md-9">
             <div className="card">
-                <h5 className="card-header">Chapter List <Link className="btn btn-success float-end" to="/add-chapter/:course_id">Add Chapter</Link></h5>
+                <h5 className="card-header">Chapter List 
+                    <div className="btn-group float-end">
+                    <button type="button" className="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    Add Content
+                    </button>
+                    <ul className="dropdown-menu">
+                        <center><li><Link className="dropdown-item" to="/add-chapter/1">Add Chapter</Link></li></center>
+                        <li><hr className="dropdown-divider"/></li>
+                        <center><li><Link className="dropdown-item" to="/add-assignment/1/2">Add Assignment</Link></li></center>
+                        
+                        
+                    </ul>
+                    </div>
+                </h5>
                 <div className="card-body">
                     <table className="table table-bordered">
                         <thead>

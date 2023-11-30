@@ -57,7 +57,7 @@ function SearchPageSidebar(props) {
             </div>
 
             {/* Category */}
-            <div className="mt-1 ">
+            <div className="mt-2 ">
             <label htmlFor="title" className="form-label px-2"><h5>Category</h5></label> 
             <select name="category" className="form-control"  onChange={(e)=> {setCataid(e.target.value)}}>
                 <option value={0} >All</option>

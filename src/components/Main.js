@@ -17,6 +17,8 @@ import FavouriteCourses from './User/FavouriteCourses';
 import RecommendedCourses from './User/RecommendedCourses';
 import ProfileUpdate from "./User/ProfileUpdate";
 import ChangePassword from "./User/ChangePassword";
+import StudentDetails from "./StudentDetails";
+import UserAssignment from "./User/UserAssignment";
 
 //Teacher Pannel
 import TeacherLogin from './Teacher/TeacherLogin';
@@ -34,6 +36,12 @@ import CourseCategory from "./Teacher/CourseCategory";
 import TeacherSkillCourse from "./Teacher/TeacherSkillCourse";
 import Test from "./Teacher/test"
 import TeacherDetail from "./TeacherDetail";
+import EnrolledStudent from "./Teacher/EnrolledStudent";
+import AddAssignment from "./Teacher/AddAssignment";
+import EditAssignment from "./Teacher/EditAssignment";
+import ShowAssignments from "./Teacher/ShowAssignments";
+
+
 
 //list Pages
 import AllCourses from "./AllCourses";
@@ -42,6 +50,12 @@ import PopularTeachers from "./PopularTeachers";
 import CategoryCourses from "./CategoryCourses";
 import AfterSearchPage from "./AfterSearchPage";
 import SearchPageSidebar from "./SearchPageSidebar";
+
+
+
+
+
+
 
 
 
@@ -93,6 +107,8 @@ function Main() {
         <Route path="/recommended-courses" element={ <RecommendedCourses /> } />
         <Route path="/profile-update" element={ <ProfileUpdate /> } />
         <Route path="/change-password" element={ <ChangePassword /> } />
+        <Route path="/user-details" element={ <StudentDetails /> } />
+        <Route path="/user-assignment/:student_id" element={ <UserAssignment /> } />
 
         {/* Teacher */}
         <Route path="/teacher-login" element={ <TeacherLogin user ={setUser}/> } />
@@ -109,6 +125,10 @@ function Main() {
         <Route path="/teacher-skill_course/:skill_name/:teacher_id" element={ <TeacherSkillCourse /> } />
         <Route path="/add-chapter/:course_id" element={ <AddChapter /> } />
         <Route path="/teacher-detail/:teacher_id" element={ <TeacherDetail /> } />
+        <Route path="/enrolled-student" element={ <EnrolledStudent/> } />
+        <Route path="/add-assignment/:user_id/:teacher_id" element={ <AddAssignment/> } />
+        <Route path="/edit-assignment/:user_id/:teacher_id" element={ <EditAssignment/> } />
+        <Route path="/show-assignment/:user_id/:teacher_id" element={ <ShowAssignments/> } />
 
 
         {/* List Pages */}

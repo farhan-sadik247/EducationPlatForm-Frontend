@@ -83,7 +83,7 @@ function CourseDetail(props){
                     <p>{course.details}</p>
                     <p className="fw-bold">Course By: <Link to={`/teacher-detail/${teacher.id}`}>{teacher.fullname}</Link></p>
                     <p className="fw-bold">Category: {cata.title}</p>
-                    <p className="fw-bold">Technologies used: Doo</p>
+                    {/* <p className="fw-bold">Technologies used: Doo</p> */}
                     <p className="fw-bold">Total Enrolled Student: {total}</p>
                     <p className="fw-bold">Rating:
                     {submit && course.rating}
@@ -100,6 +100,9 @@ function CourseDetail(props){
                     </select>}
                     /5 {!submit && <button className=" btn btn-success" type="submit" onClick={handleSubmit}>Submit</button>}
                     
+                    </p>
+                    <p><Link className="btn btn-success" to="/my-courses">Enroll Now</Link>
+                    <Link className="ms-2 btn btn-outline-info border border-primary" to="/favourite-courses"><i class="fa-solid fa-heart btn-outline-danger"></i>  Add to Wishlist</Link>
                     </p>
 
                 </div>
