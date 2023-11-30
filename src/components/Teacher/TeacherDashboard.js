@@ -3,9 +3,25 @@ import Sidebar from "./TeacherSidebar";
 import TeacherSidebar from "./TeacherSidebar";
 import { useEffect, useState } from "react";
 function TeacherDashboard(){
+    
+    let [totalstd, setTotalstd] = useState(0)
+    let [totalcourse, setTotalcourse] = useState(0)
+    
+    const getTotal = async () => {
+        let res = await fetch(`course/$/totalstd`)
+        let data = await res.json()
+        setTotalstd(data.std)
+        setTotalcourse(data.course)
+    }
+
+    useEffect (()=>{
+        getTotal()
+    }, [])
+
     useEffect (()=>{
         document.title = 'Teacher Dashboard'
-    })
+    }, [])
+    
     return(
         <div class="container mt-4">
         <div class="row">
@@ -18,7 +34,7 @@ function TeacherDashboard(){
                 <div class="card border border-primary">
                     <center><div class="card-header bg-info fw-bolder">Total Enrolled Students</div></center>
                     <div class="card-body">
-                    <Link to="/enrolled-student">totalStudents</Link>
+                    <Link to="/enrolled-student">{totalstd}</Link>
                     </div>
                 </div>
                 </div>
@@ -26,7 +42,7 @@ function TeacherDashboard(){
                 <div class="card border border-primary">
                     <center><div class="card-header bg-primary text-white fw-bolder">Total Courses</div></center>
                     <div class="card-body">
-                        <Link to="/teacher-courses">totalCourses</Link>
+                        <Link to="/teacher-courses">{totalcourse}</Link>
                     </div>
                 </div>
                 </div>

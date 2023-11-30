@@ -11,16 +11,6 @@ function TeacherLogin(props){
 
     console.log(user)
 
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault()
-    //     const credential = { username, password}
-    //     fetch("/auth/signin", {
-    //         method: "POST",
-    //         headers: {"Content-Type": "application/json"},
-    //         body: JSON.stringify(credential)})
-    //     getUser()
-        
-    // }
     const handleSubmit = async (e) => {
         e.preventDefault();
         const credential = { username, password };
@@ -35,11 +25,6 @@ function TeacherLogin(props){
           });
       };
 
-    // const getUser = async () =>{
-    //     let res = await fetch("/auth/getuser")
-    //     let data = await res.json()
-    //     setUser(data)
-    // }
 
     const getUser = async () => {
         try {

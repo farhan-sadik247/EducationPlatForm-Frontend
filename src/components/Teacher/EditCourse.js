@@ -23,6 +23,7 @@ function EditCourse(){
             headers: {"Content-Type": "application/json", "X-CSRFtoken" : Cookies.get("csrftoken")},
             body: JSON.stringify(credential)
         })
+        goHome(`/details/`)
     }
 
     const getCatas = async() => {

@@ -71,6 +71,7 @@ function Main() {
 
   const [user, setUser] = useState("")
   const [search, setSearch] = useState("")
+  const [type, getType] = useState(false)
   console.log(user)
 
   const getUser = async () => {

@@ -11,7 +11,6 @@ function TeacherDetail() {
     let [rating, setRating] = useState(0)
     let [courses, setCourses] = useState([])
 
-    console.log(courses)
     useEffect(
         () => {getTeacher()}, []
     )
@@ -52,7 +51,7 @@ function TeacherDetail() {
 
     let getCourses = async () => {
 
-        let response = await fetch(`/course/teachercourses`)
+        let response = await fetch(`/course/${teacher_id}/teachercourses`)
         let data = await response.json()
         setCourses(data)
     }

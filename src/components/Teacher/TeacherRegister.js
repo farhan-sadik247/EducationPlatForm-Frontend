@@ -14,9 +14,10 @@ function TeacherRegister(){
     const [warning, usercheck] = useState(false)
     const [warning2, passcheck] = useState(false)
     const navigate = useNavigate()
+    const type = true
 
     const handleSubmit = async (e) => {
-        const credential = { username, fullname, email, password, cpass, skills}
+        const credential = { username, fullname, email, password, cpass, skills, type}
         console.log("disable")
         setLoad(true)
         fetch(
