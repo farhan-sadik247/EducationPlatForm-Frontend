@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 function ProfilePicture(props) {
 
+    console.log(props)
     const handlelogout = async () => {
         await fetch("/auth/signout");
         props.setUser("")

@@ -19,6 +19,7 @@ import ProfileUpdate from "./User/ProfileUpdate";
 import ChangePassword from "./User/ChangePassword";
 import StudentDetails from "./StudentDetails";
 import UserAssignment from "./User/UserAssignment";
+import StdCourseChapters from "./User/StdCourseChapers";
 
 //Teacher Pannel
 import TeacherLogin from './Teacher/TeacherLogin';
@@ -110,6 +111,7 @@ function Main() {
         <Route path="/change-password" element={ <ChangePassword /> } />
         <Route path="/user-details" element={ <StudentDetails /> } />
         <Route path="/user-assignment/:student_id" element={ <UserAssignment /> } />
+        <Route path="/std-course-chapters/:chapter_id" element={ <StdCourseChapters /> } />
 
         {/* Teacher */}
         <Route path="/teacher-login" element={ <TeacherLogin user ={setUser}/> } />

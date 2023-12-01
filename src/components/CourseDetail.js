@@ -170,16 +170,18 @@ function CourseDetail(props){
             <div className="card">
             <div className="card" >
                 <div className="fw-bold card-header">
-                    {props.user.id === teacher.id ? (<h5 className="card-header"><Link to = {`/course-chapters/${courseid}`}>Course Contents</Link></h5>)
-                    :(<h5 className="card-header">Course Contents</h5>)}
+                    {props.user.id === teacher.id && <h5 className="card-header"><Link to = {`/course-chapters/${courseid}`}>Course Contents</Link></h5>}
+                    {bought && <h5 className="card-header"><Link to = {`/std-course-chapters/${courseid}`}>Course Contents</Link></h5>}
+                    {!(props.user.id === teacher.id | bought) && <h5 className="card-header">Course Contents</h5>}
                 </div>
 
                 <ul className="list-group list-group-flush">
                 {content.map((name, index) => 
-                (<li className="list-group-item"> {content[index].title}
-                <span className="float-end">
+                (<li className="list-group-item"> {content[index].type !== "assignment" && bought && <Link>{content[index].title}</Link>}
+                {!(content[index].type !== "assignment" && bought) && <>{content[index].title}</>}
+                {content[index].type !== "assignment" && (<span className="float-end">
                 <button className="btn btn-sm btn-outline-danger float-end" data-bs-toggle="modal" data-bs-target="#videpModal1"><i className="fa-brands fa-youtube"></i></button>
-                </span>
+                </span>)}
                 {/* start video modal */}
                     <div className="modal fade" id="videpModal1" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div className="modal-dialog modal-xl">

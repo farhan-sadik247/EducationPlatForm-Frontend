@@ -4,20 +4,30 @@ import { useEffect, useState } from "react";
 
 function UserAssignment(){
 
-    const { student_id } = useParams()
+    let [contents, setContents] = useState([])
+    let [teacher, setTeacher] = useState([])
 
-
-    let [courses, setCourses] = useState([])
 
     useEffect(
-        () => {getCourses()}, []
+        () => {getContents()}, []
     )
 
-    let getCourses = async () => {
 
-        let response = await fetch(`/course/${student_id}/boughtcourses`)
+    useEffect(() => {
+        contents.map((name, index) =>{
+            fetch(`/course/${contents[index].id}/contentteacher`)
+            .then(res => res.json())
+            .then(data => teacher[index] = data.fullname)
+            .then(() => console.log(teacher))
+        })
+    }, [contents]
+    )
+    
+    let getContents = async () => {
+
+        let response = await fetch(`/course/$/getcontent`)
         let data = await response.json()
-        setCourses(data)
+        setContents(data)
     }
 
 
@@ -40,13 +50,14 @@ function UserAssignment(){
                                     <th><center>Created by</center></th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                    <td><center><Link to="">Assignment-1</Link></center></td>
-                                    <td><center><Link to=""> Post assignment link </Link> </center></td>
-                                    <td><center><Link to=""> Post submission link </Link> </center></td>
-                                    <td><center>Teacher Name</center></td>
+                            {contents.map((name, index) =>
+                            (<tbody>
+                                    <td><center><Link to="">{contents[index].title}</Link></center></td>
+                                    <td><center><Link to={contents[index].link}> {contents[index].link} </Link> </center></td>
+                                    <td><center><Link to={contents[index].sub_link}> {contents[index].sub_link} </Link> </center></td>
+                                    <td><center>{teacher[index]}</center></td>
                                     
-                            </tbody>
+                            </tbody>))}
                         </table>
                     </div>
                 </div>
