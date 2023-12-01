@@ -6,7 +6,7 @@ const CartItem = ({ item, onSelect }) => (
       <input type="checkbox" onChange={onSelect} />
     </td>
     <td>
-      <img src={item.image} alt={item.name} style={{ width: '80px', height: '80px' }}/>
+      <img src={item.image} alt={item.name} style={{ width: '100px', height: '100px' }}/>
     </td>
     <td>{item.name}</td>
     <td>{item.details}</td>
@@ -21,7 +21,7 @@ const AddToCart = () => {
       image: '/logo001.png',
       name: 'Product 1',
       details: 'This is a description of product 1.',
-      price: 19.99,
+      price: 0,
     },
     {
       id: 2,

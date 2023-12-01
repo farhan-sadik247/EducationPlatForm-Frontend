@@ -50,11 +50,6 @@ function FavouriteCourses(){
                                 </tr>
                             </thead>
                             <tbody>
-                                {/* <td><center>Learn ReactJs for begginers </center></td>    
-                                <td><center><Link to="/">Farhan Sadik</Link></center></td>  
-                                <td>
-                                <center><button className="btn btn-danger text-dark">Remove</button></center>  
-                                </td>   */}
                                 <td>{courses.map((coursetitle, student, index) => (
                                     <>
                                     <td><center><Link to="/">{coursetitle}</Link></center></td>
