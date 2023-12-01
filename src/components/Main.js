@@ -51,6 +51,7 @@ import PopularTeachers from "./PopularTeachers";
 // import CategoryCourses from "./CategoryCourses";
 import AfterSearchPage from "./AfterSearchPage";
 import SearchPageSidebar from "./SearchPageSidebar";
+import AddToCart from "./AddToCart";
 
 
 
@@ -131,6 +132,7 @@ function Main() {
         <Route path="/popular-teachers" element={ <PopularTeachers /> } />
         <Route path="/aftersearchpage" element={ <AfterSearchPage search = {search}/> } />
         <Route path="/searchpage-sidebar" element={ <SearchPageSidebar/> } />
+        <Route path="/add-to-cart" element={ <AddToCart/> } />
         {/* <Route path="/category/:category_slug" element={ <CategoryCourses /> } /> */}
         
       

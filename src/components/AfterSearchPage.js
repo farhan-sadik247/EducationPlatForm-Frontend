@@ -1,5 +1,6 @@
 import { useState } from "react";
 import SearchPageSidebar from "./SearchPageSidebar";
+import { Link } from "react-router-dom";
 
 function AfterSearchPage(props){
 
@@ -53,6 +54,8 @@ function AfterSearchPage(props){
                             </td>
                             <td>
                             <button className="btn btn-primary">Enroll Now</button>
+                            <Link to="/add-to-cart"><button className="btn btn-success ms-2"><i class="fa-solid fa-cart-plus"></i></button></Link>
+                            <Link to="/my-courses"><button className="btn btn-success ms-2"><i class="fa-solid fa-heart"></i></button></Link>
                             </td>
                             </tr>))}
                             <tr>
@@ -73,7 +76,10 @@ function AfterSearchPage(props){
                                 </div>
                             </td>
                             <td>
-                            <button className="btn btn-primary">Enroll Now</button>
+                            <button className="btn btn-primary ">Enroll Now</button>
+                            <Link><button className="btn btn-success ms-2"><i class="fa-solid fa-cart-plus"></i></button></Link>
+                            <Link ><button className="btn btn-success ms-2"><i class="fa-solid fa-heart"></i></button></Link>
+                            
                             </td>
                             </tr>
                         </tbody>
