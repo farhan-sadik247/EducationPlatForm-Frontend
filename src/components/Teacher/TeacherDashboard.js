@@ -46,14 +46,6 @@ function TeacherDashboard(){
                     </div>
                 </div>
                 </div>
-                {/* <div class="col-md-4">
-                <div class="card">
-                    <div class="card-header">Total Chapters</div>
-                    <div class="card-body">
-                    totalChapters 
-                    </div>
-                </div>
-                </div> */}
             </div>
             </section>
         </div>

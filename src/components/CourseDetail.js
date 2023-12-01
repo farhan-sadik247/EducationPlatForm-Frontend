@@ -122,7 +122,7 @@ function CourseDetail(props){
                     </p>
                     {bought && <p><Link className="btn btn-success" to="/my-courses">You are Enrolled!</Link>
                     </p>}
-                    {!bought && <p><Link className="btn btn-success" to="/my-courses">Enroll Now</Link>
+                    {!bought && <p><button className="btn btn-success" to="/my-courses">Enroll Now</button>
                     <Link className="ms-2 btn btn-outline-info border border-primary" to="/favourite-courses"><i class="fa-solid fa-heart btn-outline-danger"></i>  Add to Wishlist</Link>
                     </p>}
 
