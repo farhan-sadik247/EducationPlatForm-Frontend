@@ -1,6 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import { useEffect, useState } from "react";
+import Cookies from "js-cookie";
 
 function MyCourses(){
 
@@ -20,6 +21,19 @@ function MyCourses(){
         setCourses(data)
     }
 
+    const handleDelete = async (index) =>{
+        let credential = {index}
+        console.log(credential)
+        fetch(`/course/removebought`, {
+            method: "POST",
+            headers: {"Content-Type": "application/json", "X-CSRFtoken": Cookies.get("csrftoken")},
+            body: JSON.stringify(credential)
+        })
+        window.location.reload()
+    }
+    useEffect (()=>{
+        document.title = 'My courses'
+    })
 
     return(
         <div className="container mt-4">
@@ -39,15 +53,12 @@ function MyCourses(){
                                     <th><center>Action</center></th>
                                 </tr>
                             </thead>
-                            <tbody>
                                 {courses.map((student, index) => (
-                                    <td>
+                                <tbody>
                                     <td><center><Link to="/">{courses[index].title}</Link></center></td>
                                     <td><center><Link to="/">{courses[index].teacher}</Link> </center></td>
-                                    <td><center><button className="btn btn-danger text-dark">Remove</button></center></td>
-                                    </td>
-                                ))} 
-                            </tbody>
+                                    <td><center><button className="btn btn-danger text-dark" onClick={()=>{handleDelete(courses[index].id)}}>Remove</button></center></td>
+                                </tbody>))} 
                         </table>
                     </div>
                 </div>

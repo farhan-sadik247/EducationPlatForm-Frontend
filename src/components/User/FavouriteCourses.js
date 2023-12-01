@@ -1,6 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import { useEffect, useState } from "react";
+import Cookies from "js-cookie";
 
 
 function FavouriteCourses(){
@@ -15,21 +16,25 @@ function FavouriteCourses(){
 
     let getCourses = async () => {
 
-        let response = await fetch(`/course/${student_id}/favCourses`)
+        let response = await fetch(`/course/favCourses`)
         let data = await response.json()
         setCourses(data)
     }
 
-    
-    const handleDelete = (index) =>{
+    const handleDelete = async (index) =>{
         let credential = {index}
-        fetch(`/course/${student_id}/removeCourse`, {
+        console.log(credential)
+        fetch(`/course/removefav`, {
             method: "POST",
-            headers: {"Content-Type": "application/json"},
+            headers: {"Content-Type": "application/json", "X-CSRFtoken": Cookies.get("csrftoken")},
             body: JSON.stringify(credential)
         })
-        .then( getCourses())
+        window.location.reload()
     }
+    useEffect (()=>{
+        document.title = 'My courses'
+    })
+
 
     return(
         <div className="container mt-4">
@@ -49,15 +54,12 @@ function FavouriteCourses(){
                                     <th><center>Action</center></th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <td>{courses.map((coursetitle, student, index) => (
-                                    <>
-                                    <td><center><Link to="/">{coursetitle}</Link></center></td>
-                                    <td><center><Link to="/">{student}</Link> </center></td>
-                                    <td><center><button className="btn btn-danger text-dark" onClick={()=>{handleDelete(index)}}>Remove</button></center></td>
-                                    </>
-                                ))}</td>  
-                            </tbody>
+                            {courses.map((student, index) => (
+                                <tbody>
+                                    <td><center><Link to="/">{courses[index].title}</Link></center></td>
+                                    <td><center><Link to="/">{courses[index].teacher}</Link> </center></td>
+                                    <td><center><button className="btn btn-danger text-dark">Remove</button></center></td>
+                                </tbody>))} 
                         </table>
                     </div>
                 </div>
