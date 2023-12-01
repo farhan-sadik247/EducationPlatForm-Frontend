@@ -7,7 +7,7 @@ function CourseDetail(props){
 
 
     const {courseid}=useParams();
-
+    // console.log(props.user.id)
     
     let [course, setCourse] = useState([])
     let [cata, setCata] = useState([])
@@ -17,6 +17,7 @@ function CourseDetail(props){
     let [total, setTotal] = useState(0)
     let [submit, setSubmit] = useState(false)
     let [courses, setCourses] = useState([])
+    let [bought, setBought] = useState(false)
     
 
     useEffect(
@@ -34,6 +35,9 @@ function CourseDetail(props){
     
     useEffect(
         () => {getContent()},[]
+    )
+    useEffect(
+        () => {getBought()},[]
     )
 
     let getCourse = async () => {
@@ -69,6 +73,14 @@ function CourseDetail(props){
         let data = await response.json()
         setCata(data)
     }
+    let getBought = async () => {
+        let response = await fetch(`/course/$/boughtCourses`)
+        let data = await response.json()
+        console.log(data)
+        data.map((name, index)=> 
+            (data[index].id === Number(courseid) ? (setBought(true)) :(false))
+        )
+    }
 
     const handleSubmit = async () => {
         let cred = { rating}
@@ -79,7 +91,6 @@ function CourseDetail(props){
         })
         setSubmit(true)
     }
-console.log(courses)
     return (
         <div className="container mt-3">
             <div className="row">
@@ -94,8 +105,8 @@ console.log(courses)
                     {/* <p className="fw-bold">Technologies used: Doo</p> */}
                     <p className="fw-bold">Total Enrolled Student: {total}</p>
                     <p className="fw-bold">Rating:
-                    {submit && course.rating}
-                    {!submit && <select id="rationSelect" name="quantity" onChange={(e) => setRating(e.target.value)}>
+                    {course.rating}/5
+                    <div>{!submit && bought && <select id="rationSelect" name="quantity" onChange={(e) => setRating(e.target.value)}>
                         <option value="1" >1</option>
                         <option value="1" >1.5</option>
                         <option value="2" >2</option>
@@ -106,12 +117,14 @@ console.log(courses)
                         <option value="4" >4.5</option>
                         <option value="5" >5</option>
                     </select>}
-                    /5 {!submit && <button className=" btn btn-success" type="submit" onClick={handleSubmit}>Submit</button>}
+                    {!submit && bought && <button className=" btn btn-success" type="submit" onClick={handleSubmit}>Submit</button>}</div>
                     
                     </p>
-                    <p><Link className="btn btn-success" to="/my-courses">Enroll Now</Link>
+                    {bought && <p><Link className="btn btn-success" to="/my-courses">You are Enrolled!</Link>
+                    </p>}
+                    {!bought && <p><Link className="btn btn-success" to="/my-courses">Enroll Now</Link>
                     <Link className="ms-2 btn btn-outline-info border border-primary" to="/favourite-courses"><i class="fa-solid fa-heart btn-outline-danger"></i>  Add to Wishlist</Link>
-                    </p>
+                    </p>}
 
                 </div>
             </div>  

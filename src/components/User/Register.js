@@ -21,7 +21,7 @@ function Register(){
         console.log("disable")
         setLoad(true)
         fetch(
-            "/auth/t_signup", 
+            "/auth/signup", 
             {
                 method : "POST",
                 headers: {"Content-Type" : "application/json"},
