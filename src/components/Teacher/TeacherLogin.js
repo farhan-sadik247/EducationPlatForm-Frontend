@@ -73,12 +73,15 @@ function TeacherLogin(props){
                             <input type="password" className="form-control" id="floatingPassword" placeholder="Password" value = {password} onChange={(e) => setPassowrd(e.target.value)}/>
                             <label htmlFor="floatingPassword">Password</label>
                             </div>
+
                             {/* <div className="checkbox mb-3 mt-1">
                                 <input type="checkbox" className="from-check-input" id="exampleCheck1" />
                                 <label className="from-check-label" htmlFor="exampleCheck1">Remember Me</label>
                             </div> */}
                             <button className="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
                             {warning && <div className="text-danger">Unknown Cred</div>}
+                            <p className="mt-4"><Link to="/teachet-forgot-password/1" className="text-danger">Forgot Password?</Link></p>
+                            <p>Don't have account?<Link to="/teacher-register">Create Account</Link></p>
 
                         </form>
                         </div>

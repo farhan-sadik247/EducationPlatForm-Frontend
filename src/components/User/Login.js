@@ -101,6 +101,8 @@ function Login(props){
                             </div> */}
                             <button className="w-100 btn btn-lg btn-primary" type="submit" onClick={handleSubmit}>Sign in</button>
                             {warning && <div className="text-danger">Unknown Cred {password}</div>}
+                            <p className="mt-4"><Link>Forgot Password?</Link></p>
+                            <p>Don't have account?<Link to="/user-register">Create Account</Link></p>
                         </form>
                         </div>
                     </div>

@@ -8,6 +8,8 @@ import Footer from './Footer';
 import SearchBox from "./SearchBox";
 import ProfilePicture from "./ProfilePicture";
 
+
+
 //Student Pannel
 import Login from './User/Login';
 import Register from './User/Register';
@@ -52,6 +54,7 @@ import PopularTeachers from "./PopularTeachers";
 import AfterSearchPage from "./AfterSearchPage";
 import SearchPageSidebar from "./SearchPageSidebar";
 import AddToCart from "./AddToCart";
+import ForgotPassword from "./Teacher/TeacherForgotPassword";
 
 
 
@@ -92,8 +95,11 @@ function Main() {
         <Route path="/searchbox" element={ <SearchBox /> } />
         <Route path="/profile-picture" element={ <ProfilePicture /> } />
 
+        
+        
+        
         {/* User or Student */}
-        <Route path="/user-login" element={ <Login user={setUser}/> } />
+        <Route path="/user-login" element={ <Login user={setUser}/> } />    
         <Route path="/user-register" element={ <Register /> } />
         <Route path="/user-dashboard" element={ <Dashboard /> } />
         <Route path="/my-courses" element={ <MyCourses /> } />
@@ -124,6 +130,7 @@ function Main() {
         <Route path="/add-assignment/:user_id/:teacher_id" element={ <AddAssignment/> } />
         <Route path="/edit-assignment/:user_id/:teacher_id" element={ <EditAssignment/> } />
         <Route path="/show-assignment/:user_id/:teacher_id" element={ <ShowAssignments/> } />
+        <Route path="/teachet-forgot-password/:teacher_id" element={ <ForgotPassword/> } />
 
 
         {/* List Pages */}
