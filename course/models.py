@@ -56,6 +56,7 @@ class Content(models.Model):
     title = models.CharField(max_length=200, blank=False, null = False, default = "")
     remarks = models.TextField(blank=True, null=True, default = None)
     sub_link = models.TextField(blank=True, null=True, default = None)
+    type = models.CharField(max_length=50, null = True, blank= True, default = None)
     
 
     course = models.ForeignKey(Course, on_delete = models.CASCADE)

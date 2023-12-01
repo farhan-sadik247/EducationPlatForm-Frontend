@@ -29,4 +29,5 @@ urlpatterns = [
     path("getstd", views.getStd, name = "getstd"),
     path("enroll", views.enRoll, name = "enroll"),
     path("addfav", views.addFav, name = "addfav"),
+    path("<str:content_id>/contentteacher", views.contentTeacher, name = "contentTeacher"),
 ]

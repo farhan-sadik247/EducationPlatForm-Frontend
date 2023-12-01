@@ -75,6 +75,18 @@ def cata_name(request, cataname):
 def getContent(request, course_id):
     if course_id == "undefined":
         return Response("None")
+    if course_id == "$":
+        course_list = []
+        user = request.user
+        bought_items = Bought_item.objects.filter(student = user)
+        for bought_item in bought_items:
+            course = bought_item.course
+            course_list.append(course.id)
+        courses = Course.objects.filter(id__in=course_list)
+        contents = Content.objects.filter(Q(course__in = courses) & Q(type = "assignment"))
+        serializer = ContentSerializer(contents, many = True)
+        return Response(serializer.data)
+
     if request.method == "GET":
         content = Content.objects.filter(course = course_id)
         serializer = ContentSerializer(content, many = True)
@@ -371,6 +383,16 @@ def addFav(request):
         Fav_item.objects.create(student = user, course=course)
         
     
+    return Response(" ")
+
+@api_view(["GET"])
+def contentTeacher(request, content_id):
+    if request.method == "GET":
+        content = Content.objects.get(id = content_id)
+        course = content.course
+        teacher = course.teacher
+        seralizer = UserinfoSerializer(teacher, many = False)
+        return Response(seralizer.data)
     return Response(" ")
 
 
