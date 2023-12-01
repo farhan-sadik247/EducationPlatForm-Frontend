@@ -93,7 +93,7 @@ function Main() {
         <Route path="/profile-picture" element={ <ProfilePicture /> } />
 
         {/* User or Student */}
-        <Route path="/user-login" element={ <Login /> } />
+        <Route path="/user-login" element={ <Login user={setUser}/> } />
         <Route path="/user-register" element={ <Register /> } />
         <Route path="/user-dashboard" element={ <Dashboard /> } />
         <Route path="/my-courses" element={ <MyCourses /> } />

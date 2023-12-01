@@ -1,30 +1,78 @@
-import { Link, Navigate, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect,useState } from "react";
+import { Link,Navigate, useNavigate } from "react-router-dom";
+import Header from "../Header";
 
-function Login(){
+function Login(props){
 
 
+    // const [username, setUsername] = useState("")
+    // const [password, setPassowrd] = useState("")
+    // const [warning, usercheck] = useState(false)
+    // const goHome = useNavigate()
+
+
+
+    // const handleSubmit = () => {
+    //     const credential = { username, password}
+    //     fetch("/auth/signin", {
+    //         method: "POST",
+    //         headers: {"Content-Type": "application/json"},
+    //         body: JSON.stringify(credential)})
+    //     .then(data => {
+    //         if (data === "f"){usercheck(true)}
+    //         if (data === "welcome"){goHome("/")}
+
+    //     })      
+    // }
+    
     const [username, setUsername] = useState("")
+    const [user, setUser] = useState("1")
     const [password, setPassowrd] = useState("")
-    const [warning, usercheck] = useState(false)
+    const [warning, setWarning] = useState(false)
     const goHome = useNavigate()
 
+    console.log(user)
 
-
-    const handleSubmit = () => {
-        const credential = { username, password}
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const credential = { username, password };
         fetch("/auth/signin", {
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(credential)})
-        .then(data => {
-            if (data === "f"){usercheck(true)}
-            if (data === "welcome"){goHome("/")}
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(credential),
+        })
+          .then(() => getUser())
+          .catch((error) => {
+            console.error("Error logging in:", error);
+          });
+      };
 
-        })      
-    }
-    
-    
+
+    const getUser = async () => {
+        try {
+          let res = await fetch("/auth/getuser");
+          let data = await res.json();
+          setUser(data)
+        } catch (error) {
+          console.error("Error getting user:", error);
+        }
+      };
+
+
+    useEffect (
+        () => {
+            if (user === "")(setWarning(true))
+            else{if (user === "1")(setWarning(false))
+            else{
+                props.user(user)
+                goHome("/")
+            }}
+        }, [user]
+    )
+
+    useEffect (()=>{
+      document.title = 'Teacher Login'
+  })    
     return(
         <div className="container mt-4">
             <div className="row">
