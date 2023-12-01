@@ -47,10 +47,10 @@ function Login(){
                             <input type="password" className="form-control" id="floatingPassword" placeholder="Password" value = {password} onChange={(e) => setPassowrd(e.target.value)}/>
                             <label htmlFor="floatingPassword">Password</label>
                             </div>
-                            <div className="checkbox mb-3 mt-1">
+                            {/* <div className="checkbox mb-3 mt-1">
                                 <input type="checkbox" className="from-check-input" id="exampleCheck1" />
                                 <label className="from-check-label" htmlFor="exampleCheck1">Remember Me</label>
-                            </div>
+                            </div> */}
                             <button className="w-100 btn btn-lg btn-primary" type="submit" onClick={handleSubmit}>Sign in</button>
                             {warning && <div className="text-danger">Unknown Cred {password}</div>}
                         </form>

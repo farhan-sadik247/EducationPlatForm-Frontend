@@ -23,25 +23,25 @@ function TeacherDashboard(){
     }, [])
     
     return(
-        <div class="container mt-4">
-        <div class="row">
-            <aside class="col-md-3">
+        <div className="container mt-4">
+        <div className="row">
+            <aside className="col-md-3">
             <TeacherSidebar />
             </aside>
-            <section class="col-md-9 mt-2">
-            <div class="row">
-                <div class="col-md-4 ms-5">
-                <div class="card border border-primary">
-                    <center><div class="card-header bg-info fw-bolder">Total Enrolled Students</div></center>
-                    <div class="card-body">
+            <section className="col-md-9 mt-2">
+            <div className="row">
+                <div className="col-md-4 ms-5">
+                <div className="card border border-primary">
+                    <center><div className="card-header bg-info fw-bolder">Total Enrolled Students</div></center>
+                    <div className="card-body">
                     <Link to="/enrolled-student">{totalstd}</Link>
                     </div>
                 </div>
                 </div>
-                <div class="col-md-4 ms-5">
-                <div class="card border border-primary">
-                    <center><div class="card-header bg-primary text-white fw-bolder">Total Courses</div></center>
-                    <div class="card-body">
+                <div className="col-md-4 ms-5">
+                <div className="card border border-primary">
+                    <center><div className="card-header bg-primary text-white fw-bolder">Total Courses</div></center>
+                    <div className="card-body">
                         <Link to="/teacher-courses">{totalcourse}</Link>
                     </div>
                 </div>

@@ -39,7 +39,7 @@ function Header(props) {
             </Link>
 
             <Link className="nav-link btn-outline-success" to="/all-courses">Courses</Link>
-            <Link className="mt-2" to="/add-to-cart"><i class="fa-solid fa-cart-plus btn btn-outline-light "></i></Link>
+            <Link className="mt-2" to="/add-to-cart"><i className="fa-solid fa-cart-plus btn btn-outline-light "></i></Link>
 
                 {props.user === "" ? (
                   <>

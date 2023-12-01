@@ -158,7 +158,7 @@ function CourseDetail(props){
                     {bought && <p><Link className="btn btn-success" to="/my-courses">You are Enrolled!</Link>
                     </p>}
                     {(!bought && !wish) && <p><button className=" btn btn-success" type="submit" onClick={handleEnroll}>Enroll Now</button>
-                    <button className="ms-2 btn btn-outline-info border border-primary" onClick={handleWish}><i class="fa-solid fa-heart btn-outline-danger"></i>  Add to Wishlist</button>
+                    <button className="ms-2 btn btn-outline-info border border-primary" onClick={handleWish}><i className="fa-solid fa-heart btn-outline-danger"></i>  Add to Wishlist</button>
                     </p>}
                     {(!bought && wish) && <p><button className=" btn btn-success" type="submit" onClick={handleEnroll}>Enroll Now</button>
                         <Link className="ms-2 btn btn-outline-info border border-primary" to="/favourite-courses">  View Wishlist</Link>

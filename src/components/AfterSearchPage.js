@@ -54,8 +54,8 @@ function AfterSearchPage(props){
                             </td>
                             <td>
                             <button className="btn btn-primary">Enroll Now</button>
-                            <Link to="/add-to-cart"><button className="btn btn-success ms-2"><i class="fa-solid fa-cart-plus"></i></button></Link>
-                            <Link to="/my-courses"><button className="btn btn-success ms-2"><i class="fa-solid fa-heart"></i></button></Link>
+                            <Link to="/add-to-cart"><button className="btn btn-success ms-2"><i className="fa-solid fa-cart-plus"></i></button></Link>
+                            <Link to="/my-courses"><button className="btn btn-success ms-2"><i className="fa-solid fa-heart"></i></button></Link>
                             </td>
                             </tr>))}
                             <tr>
@@ -77,8 +77,8 @@ function AfterSearchPage(props){
                             </td>
                             <td>
                             <button className="btn btn-primary ">Enroll Now</button>
-                            <Link><button className="btn btn-success ms-2"><i class="fa-solid fa-cart-plus"></i></button></Link>
-                            <Link ><button className="btn btn-success ms-2"><i class="fa-solid fa-heart"></i></button></Link>
+                            <Link><button className="btn btn-success ms-2"><i className="fa-solid fa-cart-plus"></i></button></Link>
+                            <Link ><button className="btn btn-success ms-2"><i className="fa-solid fa-heart"></i></button></Link>
                             
                             </td>
                             </tr>
