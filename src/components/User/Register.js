@@ -18,10 +18,9 @@ function Register(){
 
     const handleSubmit = async (e) => {
         const credential = { username, fullname, email, password, cpass, skills, type}
-        console.log("disable")
         setLoad(true)
         fetch(
-            "/auth/t_signup", 
+            "/auth/signup", 
             {
                 method : "POST",
                 headers: {"Content-Type" : "application/json"},
@@ -94,7 +93,7 @@ function Register(){
                             </div>
                             <div className="form-floating mb-3 mt-1">
                                 <input type="text" className="form-control mb-2" id="floatingSkill" placeholder="Username" value = {skills} onChange={(e) => setSkills(e.target.value)} />
-                                <label htmlFor="floatingSkill">Interested</label>
+                                <label htmlFor="floatingSkill">Interested Topics</label>
                                 <div id="textHelp" className="form-text text-dark">python,css,java, etc.</div>
                             </div>
                             {!warning && !warning2 && <button className="w-100 btn btn-lg btn-primary" type="submit">Register</button>}
