@@ -15,7 +15,7 @@ function MyCourses(){
 
     let getCourses = async () => {
 
-        let response = await fetch(`/course/${student_id}/boughtcourses`)
+        let response = await fetch(`/course/$/boughtCourses`)
         let data = await response.json()
         setCourses(data)
     }
@@ -40,13 +40,13 @@ function MyCourses(){
                                 </tr>
                             </thead>
                             <tbody>
-                                <td>{courses.map((coursetitle, student, index) => (
-                                    <>
-                                    <td><center><Link to="/">{coursetitle}</Link></center></td>
-                                    <td><center><Link to="/">{student}</Link> </center></td>
+                                {courses.map((student, index) => (
+                                    <td>
+                                    <td><center><Link to="/">{courses[index].title}</Link></center></td>
+                                    <td><center><Link to="/">{courses[index].teacher}</Link> </center></td>
                                     <td><center><button className="btn btn-danger text-dark">Remove</button></center></td>
-                                    </>
-                                ))}</td>  
+                                    </td>
+                                ))} 
                             </tbody>
                         </table>
                     </div>
