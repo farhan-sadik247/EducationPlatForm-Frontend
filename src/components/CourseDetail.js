@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 
@@ -18,6 +18,7 @@ function CourseDetail(props){
     let [submit, setSubmit] = useState(false)
     let [courses, setCourses] = useState([])
     let [bought, setBought] = useState(false)
+    let goHome = useNavigate()
     
 
     useEffect(
@@ -91,6 +92,18 @@ function CourseDetail(props){
         })
         setSubmit(true)
     }
+
+    const handleEnroll = async () => {
+        let cred = {courseid}
+        console.log(cred)
+        fetch(`/course/enroll`, {
+            method : "POST",
+            headers: {"Content-Type" : "application/json", "X-CSRFtoken": Cookies.get("csrftoken")},
+            body: JSON.stringify(cred)
+        })
+        goHome("/my-courses")
+    }
+
     return (
         <div className="container mt-3">
             <div className="row">
@@ -122,7 +135,7 @@ function CourseDetail(props){
                     </p>
                     {bought && <p><Link className="btn btn-success" to="/my-courses">You are Enrolled!</Link>
                     </p>}
-                    {!bought && <p><button className="btn btn-success" to="/my-courses">Enroll Now</button>
+                    {!bought && <p><button className=" btn btn-success" type="submit" onClick={handleEnroll}>Enroll Now</button>
                     <Link className="ms-2 btn btn-outline-info border border-primary" to="/favourite-courses"><i class="fa-solid fa-heart btn-outline-danger"></i>  Add to Wishlist</Link>
                     </p>}
 
