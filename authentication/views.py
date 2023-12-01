@@ -54,13 +54,6 @@ def teacher_signup(request):
         password = request.data["password"]
         password2 = request.data["cpass"]
         skills = request.data["skills"]
-
-        if User.objects.filter(username=username):
-            print("f")
-            return Response("f")
-        
-        if password!= password2:
-            return Response("g")
         
         userinfo = Userinfo.objects.create_user(username, email, password= password, fullname= fullname, skills = skills, is_teacher= True)
 
@@ -78,19 +71,13 @@ def signup(request):
         password2 = request.data["cpass"]
         interest = request.data["it"]
 
-
-        if User.objects.filter(username=username):
-            return Response(email)
         
-        if password!= password2:
-            return Response("g")
-        
-        userinfo = Userinfo.objects.create_user(username, password, email, fullname= fullname, it = interest, is_teacher = False)
+        userinfo = Userinfo.objects.create_user(username, email, password= password, fullname= fullname, it = interest, is_teacher= False)
 
         userinfo.save()
 
         return Response("gg")
-    return Response("Do")
+    
 
 @api_view(["GET"])
 def allTeacher(request):
