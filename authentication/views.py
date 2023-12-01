@@ -69,7 +69,7 @@ def signup(request):
         email = request.data["email"]
         password = request.data["password"]
         password2 = request.data["cpass"]
-        interest = request.data["it"]
+        interest = request.data["skills"]
 
         
         userinfo = Userinfo.objects.create_user(username, email, password= password, fullname= fullname, it = interest, is_teacher= False)
