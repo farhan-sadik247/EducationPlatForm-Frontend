@@ -9,33 +9,41 @@ function CourseDetail(props){
     const {courseid}=useParams();
 
     
-    let [course, setCourses] = useState([])
+    let [course, setCourse] = useState([])
     let [cata, setCata] = useState([])
     let [content, setContent] = useState([])
     let [rating, setRating] = useState(1)
     let [teacher, setTeacher] = useState(0)
     let [total, setTotal] = useState(0)
     let [submit, setSubmit] = useState(false)
+    let [courses, setCourses] = useState([])
     
 
     useEffect(
-        () => {getCourses()}, [submit]
+        () => {getCourse()}, [submit]
     )
 
     useEffect(
-        () => {getTeacher()}, [course]
+        () => {getTeacher()
+        getCata()}, [course]
+    )
+
+    useEffect(
+        () => {getCourses()}, [cata]
     )
     
     useEffect(
         () => {getContent()},[]
     )
 
-    useEffect(
-        () => {getCata()},[course]
-    )
+    let getCourse = async () => {
+        let response = await fetch(`/course/${courseid}/getcourse`)
+        let data = await response.json()
+        setCourse(data)
+    }
 
     let getCourses = async () => {
-        let response = await fetch(`/course/${courseid}/getcourse`)
+        let response = await fetch(`/course/ff${cata.id}/coursesearch`)
         let data = await response.json()
         setCourses(data)
     }
@@ -55,7 +63,7 @@ function CourseDetail(props){
         let data = await response.json()
         setContent(data)
     }
-
+    
     let getCata = async () => {
         let response = await fetch(`/course/${course.catagory}/getcata`)
         let data = await response.json()
@@ -71,7 +79,7 @@ function CourseDetail(props){
         })
         setSubmit(true)
     }
-
+console.log(courses)
     return (
         <div className="container mt-3">
             <div className="row">
@@ -152,15 +160,17 @@ function CourseDetail(props){
             
             <h3 className="border-bottom pb-2 md-4 mt-5">Related Courses<Link href="#" className="float-end" style={{ color: 'blue', fontSize: '18px' }} ></Link></h3>
             <div className="row mb-4">
+                {courses.map((name, index)=>
+                (courses[index].title !== course.title &&
                 <div className="col-md-3">
                     <div className=" card" style={{ color: 'blue', fontSize: '18px' }}>
-                    <Link to="/details/1"><img src="/logo001.png" className="card-img-top" alt="..." /></Link>
+                    <Link to={`/details/${courses[index].id}`}><img src="/logo001.png" className="card-img-top" alt="..." /></Link>
                         <div className="card-body">
-                        <h5 className="card-title"><Link to="/details/1">Course Title</Link></h5>
+                        <h5 className="card-title"><Link to={`/details/${courses[index].id}`}>{courses[index].title}</Link></h5>
                         {/* <Link href="#" className="btn btn-primary">Details</Link> */}
                         </div>
                     </div>
-                </div> 
+                </div> ))}
                 <div className="col-md-3">
                     <div className=" card" style={{ color: 'blue', fontSize: '18px' }}>
                         <Link href="#"><img src="/logo001.png" className="card-img-top" alt="..." /></Link>

@@ -14,6 +14,7 @@ function AddChapter(){
     const [link, setLink] = useState("")
     const goHome = useNavigate()
     const {course_id} = useParams()
+    const type = "chapter"
 
     const getCourse = async() => {
         let res = await fetch(`/course/${course_id}/getcourse`)
@@ -22,7 +23,7 @@ function AddChapter(){
     }
 
     const handleSubmit = async (e) => {
-        const credential = { course_id, description, title, remark, link}
+        const credential = { course_id, description, title, remark, link, type}
         fetch(
             "/course/addcontent", 
             {

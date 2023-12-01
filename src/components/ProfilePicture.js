@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 
 function ProfilePicture(props) {
 
-    console.log(props.user)
-
     const handlelogout = async () => {
         await fetch("/auth/signout");
         props.setUser("")
@@ -56,9 +54,13 @@ function ProfilePicture(props) {
                         </Link></center>
                     </li>
                     <li>
-                        <center><Link className="dropdown-item" to="/teacher-dashboard">
+                        {props.user.is_teacher ?
+                        (<center><Link className="dropdown-item" to="/teacher-dashboard">
                         <i className="fa-solid fa-gauge"></i>Dashboard
-                        </Link></center>
+                        </Link></center>):
+                        (<center><Link className="dropdown-item" to="/user-dashboard">
+                        <i className="fa-solid fa-gauge"></i>Dashboard
+                        </Link></center>)}
                     </li>
                     <li>
                         <center><Link

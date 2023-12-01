@@ -63,7 +63,22 @@ function Main() {
 
   const [user, setUser] = useState("")
   const [search, setSearch] = useState("")
+  const [type, getType] = useState(false)
   console.log(user)
+
+  const getUser = async () => {
+    try {
+      let res = await fetch("/auth/getuser");
+      let data = await res.json();
+      setUser(data)
+    } catch (error) {
+      console.error("Error getting user:", error);
+    }
+  };
+
+  useEffect(
+    () => {getUser()}, []
+  )
 
   return (
     <div className="App">
