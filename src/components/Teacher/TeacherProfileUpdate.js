@@ -15,13 +15,14 @@ function TeacherProfileUpdate(){
     const [gender, setgender] = useState("")
     const [pic, setpic] = useState("")
     const [warning, usercheck] = useState(false)
-    const [address, setadd] = useState(false)
+    const [address, setadd] = useState("")
+    const [user, setUser] = useState([])
     
     const navigate = useNavigate()
 
     const handleSubmit = () => {
-        const credential = { username, email, password, dob, phone, pic, gender}
-        fetch("/auth/signup", {
+        const credential = { username, email, password, dob, phone, pic, gender, address}
+        fetch("/auth/update", {
             method: "POST",
             headers: {"Content-Type": "application/json", "X-CSRFtokes": Cookies.get("csrftoken")},
             body: JSON.stringify(credential)
@@ -31,13 +32,26 @@ function TeacherProfileUpdate(){
 
     useEffect (
         () => {
-            fetch(`auth/1${username}`)
+            fetch(`auth/checkname/1${username}`)
             .then (response => response.json())
             .then(data => data === "ase" ? usercheck(true) : usercheck(false) )
 
         },
         [username]
     )
+
+    useEffect (
+        () => {
+            getUser()
+        },
+        []
+    )
+    
+    const getUser= async () => {
+        let res = await fetch("auth/getuser")
+        let data = await res.json()
+        setUser(data)
+    }
 
 
     return(
@@ -55,7 +69,7 @@ function TeacherProfileUpdate(){
                         <div className="mb-3 row">
                             <label htmlFor="floatingUsername" className="col-sm-2 col-form-label">Username</label>
                             <div className="col-sm-10">
-                            <input type="text" className="form-control" id="floatingUsername" value = {username} onChange={(e) => setUsername(e.target.value)}/>
+                            <input type="text" className="form-control" id="floatingUsername"  placeholder = {user.username} value = {username} onChange={(e) => setUsername(e.target.value)}/>
                             {warning && <div className="text-danger">Username already used</div>}
                             </div>
                         </div>
@@ -63,14 +77,19 @@ function TeacherProfileUpdate(){
                         <div className="mb-3 row">
                             <label htmlFor="staticEmail" className="col-sm-2 col-form-label">Email</label>
                             <div className="col-sm-10">
-                            <input type="text" className="form-control" id="staticEmail" placeholder="email@example.com" value = {email} onChange={(e) => setEmail(e.target.value)}/>
+                            {user.email === "" ? (<input type="text" className="form-control" id="staticEmail" placeholder="email@example.com" value = {email} onChange={(e) => setEmail(e.target.value)}/>)
+                            :
+                            (<input type="text" className="form-control" id="staticEmail" placeholder={user.email} value = {email} onChange={(e) => setEmail(e.target.value)}/>)}
                             </div>
                         </div>
 
                         <div className="mb-3 row">
                             <label htmlFor="floatingNumber" className="col-sm-2 col-form-label">Phone Number</label>
                             <div className="col-sm-10">
-                            <input type="text" className="form-control" id="floatingNumber" placeholder="+8801xxxxxxxxx" value = {phone} onChange={(e) => setphone(e.target.value)}/>
+                            {user.phone === "" ?
+                                (<input type="text" className="form-control" id="floatingNumber" placeholder="+8801xxxxxxxxx" value = {user.phone} onChange={(e) => setphone(e.target.value)}/>)
+                                :
+                                (<input type="text" className="form-control" id="floatingNumber" placeholder={user.phone} value = {user.phone} onChange={(e) => setphone(e.target.value)}/>)}
                             </div>
                         </div>
 
@@ -83,7 +102,7 @@ function TeacherProfileUpdate(){
 
                         <div className="mb-3">
                             <label htmlFor="dobInput" className="form-label">Date of Birth</label>
-                            <input type="date" className="form-control" id="dobInput" value = {dob} onChange={(e) => setdob(e.target.value)}/>
+                            <input type="date" className="form-control" id="dobInput" value = {user.dob} onChange={(e) => setdob(e.target.value)}/>
                         </div>
                         
                         <div className="mb-3">
@@ -93,7 +112,7 @@ function TeacherProfileUpdate(){
 
                         <div className="mb-3">
                         <label htmlFor="exampleFormControlTextarea1" className="form-label">Address</label>
-                        <textarea className="form-control" id="exampleFormControlTextarea1" rows="3" value = {address} onChange={(e) => setadd(e.target.value)}></textarea>
+                        <textarea className="form-control" id="exampleFormControlTextarea1" rows="3" value = {user.address} onChange={(e) => setadd(e.target.value)}></textarea>
                         </div>
 
                         <div className="mb-3">
