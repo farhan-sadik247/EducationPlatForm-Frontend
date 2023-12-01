@@ -337,4 +337,16 @@ def getStd(request):
         std = Userinfo.objects.filter(id__in=std_list)
         ser = UserinfoSerializer(std, many = True)
         return Response(ser.data)
+    
+@api_view(["POST"])
+def enRoll(request):
+    if request.method == "POST":
+        user = request.user
+        course_id = request.data["courseid"]
+        course = Course.objects.get(id = course_id)
+        Bought_item.objects.create(student = user, course=course)
+        
+    
+    return Response(" ")
+
 
