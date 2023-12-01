@@ -217,25 +217,38 @@ def boughtCourses(request, student_id):
             course = Course.objects.filter(id__in=course_list)
             ser = CourseSerializer(course, many = True)
             return Response(ser.data)
-            
-            
-
-    
+        
 @api_view(["GET"])
 def favCourses(request):
-    user = request.user
-    fav_course = Fav_item.objects.filter(student = user)
-    serializer = CourseSerializer(fav_course, many = True)
-    return Response(serializer.data)
-
+    if request.method == "GET":
+        course_list = []
+        user = request.user
+        bought_items = Fav_item.objects.filter(student = user)
+        for bought_item in bought_items:
+            course = bought_item.course
+            course_list.append(course.id)
+        course = Course.objects.filter(id__in=course_list)
+        ser = CourseSerializer(course, many = True)
+        return Response(ser.data)
 
 @api_view(["POST"])
-def removeCourse(request, teacher_id):
+def removeFav(request):
     if request.method == "POST":
         user = request.user
-        course_id = request.data("course_id")
-        course = Fav_item.objects.get(id = course_id)          
-        course.delete()
+        course_id = request.data["index"]
+        course = Course.objects.get(id = course_id)         
+        bought = Fav_item.objects.get(course = course, student= user) 
+        bought.delete()
+        return Response("")
+    
+@api_view(["POST"])
+def removeBought(request):
+    if request.method == "POST":
+        user = request.user
+        course_id = request.data["index"]
+        course = Course.objects.get(id = course_id)         
+        bought = Bought_item.objects.get(course = course, student= user) 
+        bought.delete()
         return Response("")
 
 
@@ -345,6 +358,17 @@ def enRoll(request):
         course_id = request.data["courseid"]
         course = Course.objects.get(id = course_id)
         Bought_item.objects.create(student = user, course=course)
+        
+    
+    return Response(" ")
+
+@api_view(["POST"])
+def addFav(request):
+    if request.method == "POST":
+        user = request.user
+        course_id = request.data["courseid"]
+        course = Course.objects.get(id = course_id)
+        Fav_item.objects.create(student = user, course=course)
         
     
     return Response(" ")

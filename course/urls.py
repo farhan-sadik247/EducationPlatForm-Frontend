@@ -15,8 +15,9 @@ urlpatterns = [
     path("<int:teacher_id>/recentcourse", views.RecentCourses, name = "recentcourses"),
     path("delelteCourse", views.deleteCourse, name = "deletecourses"),
     path("deleltecontent", views.deleteContent, name = "deletecontent"),
-    path("<str:student_id>/favCourses", views.favCourses, name = "favCourses"),
-    path("<int:student_id>/removeCourses", views.removeCourse, name = "removeCourses"),
+    path("favCourses", views.favCourses, name = "favCourses"),
+    path("removefav", views.removeFav, name = "removefav"),
+    path("removebought", views.removeBought, name = "removebought"),
     path("<str:student_id>/boughtCourses", views.boughtCourses, name = "boughtCourses"),
     path("checkname/<str:coursename>", views.check_name, name = "checkname"),
     path("cataname/<str:cataname>", views.cata_name, name = "cataname"),
@@ -27,4 +28,5 @@ urlpatterns = [
     path("<str:cata_id>/coursesearch", views.courseSearch, name = "coursesearch"),
     path("getstd", views.getStd, name = "getstd"),
     path("enroll", views.enRoll, name = "enroll"),
+    path("addfav", views.addFav, name = "addfav"),
 ]
