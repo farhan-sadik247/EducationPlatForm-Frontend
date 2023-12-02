@@ -3,7 +3,7 @@
     /* height: 60px; */
     background-color: #353b48;
     border-radius: 30px;
-    padding: 10px;
+    padding: 5px;
 }
 
 .search_input {
@@ -13,12 +13,12 @@
     background: none;
     width: 0;
     caret-color: transparent;
-    line-height: 40px;
+    line-height: 22px;
     transition: width 0.4s linear;
 }
 
 .searchbar:hover>.search_input {
-    padding: 0 10px;
+    padding: 0 2px;
     width: 80%;
     caret-color: red;
     transition: width 0.4s linear;
