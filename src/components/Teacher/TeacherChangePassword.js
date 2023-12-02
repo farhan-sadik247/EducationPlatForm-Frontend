@@ -1,10 +1,10 @@
 import { Link, Navigate, useNavigate } from "react-router-dom";
+import TeacherSidebar from "./TeacherSidebar";
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
-import Sidebar from "./Sidebar";
 
 
-function ChangePassword(){
+function TeacherChangePassword(){
 
     const [pass1, setpass1] = useState("")
     const [pass2, setpass2] = useState("")
@@ -36,7 +36,7 @@ function ChangePassword(){
         <div className="container mt-4">
             <div className="row">
                 <aside className="col-md-3">
-                    <Sidebar />
+                    <TeacherSidebar />
                 </aside>
                 <section className="col-md-9">
                 <div className="card">
@@ -71,4 +71,4 @@ function ChangePassword(){
     );
 }
 
-export default ChangePassword;
+export default TeacherChangePassword;

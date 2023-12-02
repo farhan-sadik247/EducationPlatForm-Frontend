@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function Register(){
+function TeacherRegister(){
 
     const [username, setUsername] = useState("")
     const [fullname, setFullname] = useState("")
@@ -14,13 +14,14 @@ function Register(){
     const [warning, usercheck] = useState(false)
     const [warning2, passcheck] = useState(false)
     const navigate = useNavigate()
-    const type = false
+    const type = true
 
     const handleSubmit = async (e) => {
         const credential = { username, fullname, email, password, cpass, skills, type}
+        console.log("disable")
         setLoad(true)
         fetch(
-            "/auth/signup", 
+            "/auth/t_signup", 
             {
                 method : "POST",
                 headers: {"Content-Type" : "application/json"},
@@ -55,7 +56,7 @@ function Register(){
             <div className="row">
                 <div className="col-6 offset-3">
                     <div className="card">
-                        <h4 className="card-header bg-success">User Registration</h4> 
+                        <h4 className="card-header bg-success">Teacher Registration</h4> 
                         <div className="card-body">
                         <form onSubmit={handleSubmit}>
                             <img className="mb-3 mt-0 img-thumbnail bg-success" src="logo002.png" alt="Centered Image" width="600" height="100"/>
@@ -93,7 +94,7 @@ function Register(){
                             </div>
                             <div className="form-floating mb-3 mt-1">
                                 <input type="text" className="form-control mb-2" id="floatingSkill" placeholder="Username" value = {skills} onChange={(e) => setSkills(e.target.value)} />
-                                <label htmlFor="floatingSkill">Interested Topics</label>
+                                <label htmlFor="floatingSkill">Skills</label>
                                 <div id="textHelp" className="form-text text-dark">python,css,java, etc.</div>
                             </div>
                             {!warning && !warning2 && <button className="w-100 btn btn-lg btn-primary" type="submit">Register</button>}
@@ -107,4 +108,4 @@ function Register(){
     );
 }
 
-export default Register;
+export default TeacherRegister;

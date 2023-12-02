@@ -1,10 +1,10 @@
 import { Link, useNavigate } from "react-router-dom";
+import TeacherSidebar from "./TeacherSidebar";
 import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
-import Sidebar from "./Sidebar";
 
 
-function ProfileUpdate(){
+function TeacherProfileUpdate(){
 
     const [username, setUsername] = useState("")
     const [phone, setphone] = useState("")
@@ -15,14 +15,14 @@ function ProfileUpdate(){
     const [gender, setgender] = useState("")
     const [pic, setpic] = useState("")
     const [warning, usercheck] = useState(false)
-    const [address, setadd] = useState(false)
+    const [address, setadd] = useState("")
     const [user, setUser] = useState([])
     
     const navigate = useNavigate()
 
     const handleSubmit = () => {
         const credential = { username, email, password, dob, phone, pic, gender, address}
-        fetch("/auth/signup", {
+        fetch("/auth/update", {
             method: "POST",
             headers: {"Content-Type": "application/json", "X-CSRFtokes": Cookies.get("csrftoken")},
             body: JSON.stringify(credential)
@@ -54,12 +54,11 @@ function ProfileUpdate(){
     }
 
 
-
     return(
         <div className="container mt-4">
             <div className="row">
                 <aside className="col-md-3">
-                    <Sidebar />
+                    <TeacherSidebar />
                 </aside>
                 <section className="col-md-9">
                 <div className="card">
@@ -138,4 +137,4 @@ function ProfileUpdate(){
     );
 }
 
-export default ProfileUpdate;
+export default TeacherProfileUpdate;

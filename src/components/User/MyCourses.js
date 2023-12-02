@@ -1,7 +1,52 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Sidebar from "./Sidebar";
+import { useEffect, useState } from "react";
+import Cookies from "js-cookie";
 
 function MyCourses(){
+
+    const { student_id } = useParams()
+    
+
+    let [courses, setCourses] = useState([])
+    let [teachers, setTeahcer] = useState([])
+    var teacher = []
+
+    useEffect(
+        () => {getCourses()}, []
+    )
+
+    useEffect(() => {
+        courses.map((name, index) =>{
+            fetch(`/auth/getteacher/${courses[index].teacher}`)
+            .then(res => res.json())
+            .then(data => (() => teacher = data))
+            .then(console.log(teacher))
+        }
+        )
+    }, [courses]
+    )
+
+    let getCourses = async () => {
+
+        let response = await fetch(`/course/$/boughtCourses`)
+        let data = await response.json()
+        setCourses(data)
+    }
+
+    const handleDelete = async (index) =>{
+        let credential = {index}
+        console.log(credential)
+        fetch(`/course/removebought`, {
+            method: "POST",
+            headers: {"Content-Type": "application/json", "X-CSRFtoken": Cookies.get("csrftoken")},
+            body: JSON.stringify(credential)
+        })
+        window.location.reload()
+    }
+    useEffect (()=>{
+        document.title = 'My courses'
+    })
     return(
         <div className="container mt-4">
             <div className="row">
@@ -20,14 +65,12 @@ function MyCourses(){
                                     <th><center>Action</center></th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <td><center>Learn ReactJs for begginers </center></td>    
-                                <td><center><Link to="/">Farhan Sadik</Link></center></td>  
-                                <td>
-                                <center><button className="btn btn-danger text-dark">Remove</button></center>  
-                                </td>  
-                                <td></td>  
-                            </tbody>
+                                {courses.map((student, index) => (
+                                <tbody>
+                                    <td><center><Link to={`/details/${courses[index].id}`}>{courses[index].title}</Link></center></td>
+                                    <td><center><Link to={`/teacher-detail/${courses[index].teacher}`}>{teacher[index]}</Link> </center></td>
+                                    <td><center><button className="btn btn-danger text-dark" onClick={()=>{handleDelete(courses[index].id)}}>Remove</button></center></td>
+                                </tbody>))} 
                         </table>
                     </div>
                 </div>

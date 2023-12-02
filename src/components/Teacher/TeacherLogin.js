@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Header from "../Header";
 
-function Login(props){
+function TeacherLogin(props){
     const [username, setUsername] = useState("")
     const [user, setUser] = useState("1")
     const [password, setPassowrd] = useState("")
@@ -49,14 +49,14 @@ function Login(props){
     )
 
     useEffect (()=>{
-      document.title = 'Login'
+      document.title = 'Teacher Login'
   })
     return(
         <div className="container mt-4">
             <div className="row">
                 <div className="col-6 offset-3">
                     <div className="card">
-                        <h4 className="card-header bg-success">User Login</h4> 
+                        <h4 className="card-header bg-success">Teacher Login</h4> 
                         <div className="card-body">
                         <form onSubmit={handleSubmit}>
                             <img className="mb-3 mt-0 img-thumbnail bg-success" src="logo002.png" alt="" width="600" height="200"/>
@@ -89,4 +89,4 @@ function Login(props){
     );
 }
 
-export default Login;
+export default TeacherLogin;
