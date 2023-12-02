@@ -101,7 +101,7 @@ function Main() {
         <Route path="/profile-picture" element={ <ProfilePicture /> } />
 
         {/* User or Student */}
-        <Route path="/user-login" element={ <Login /> } />
+        <Route path="/user-login" element={ <Login user = {setUser}/> } />
         <Route path="/user-register" element={ <Register /> } />
         <Route path="/user-dashboard" element={ <Dashboard /> } />
         <Route path="/my-courses" element={ <MyCourses /> } />
@@ -129,7 +129,7 @@ function Main() {
         <Route path="/add-chapter/:course_id" element={ <AddChapter /> } />
         <Route path="/teacher-detail/:teacher_id" element={ <TeacherDetail /> } />
         <Route path="/enrolled-student" element={ <EnrolledStudent/> } />
-        <Route path="/add-assignment/:user_id/:teacher_id" element={ <AddAssignment/> } />
+        <Route path="/add-assignment/:teacher_id" element={ <AddAssignment/> } />
         <Route path="/edit-assignment/:user_id/:teacher_id" element={ <EditAssignment/> } />
         <Route path="/show-assignment/:user_id/:teacher_id" element={ <ShowAssignments/> } />
 

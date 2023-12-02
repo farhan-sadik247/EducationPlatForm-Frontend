@@ -6,7 +6,7 @@ import Cookies from "js-cookie";
 
 function AddAssignment(){
 
-    const {course_id} = useParams()
+    const {teacher_id} = useParams()
     const [title, settitle] = useState("")
     const [course, setCourse] = useState("")
     const [description, setdescription] = useState("")
@@ -15,13 +15,15 @@ function AddAssignment(){
     const goHome = useNavigate()
     const type = "assignment"
 
+
     const getCourse = async() => {
-        let res = await fetch(`/course/${course_id}/getcourse`)
+        let res = await fetch(`/course/${teacher_id}/getcourse`)
         let data = await res.json()
         setCourse(data)
     }
 
     const handleSubmit = async (e) => {
+        let course_id = teacher_id
         const credential = { course_id, description, title, sub_link, link, type}
         fetch(
             "/course/addcontent", 

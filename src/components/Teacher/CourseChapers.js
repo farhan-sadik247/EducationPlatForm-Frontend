@@ -67,9 +67,9 @@ function CourseChapters(){
                     Add Content
                     </button>
                     <ul className="dropdown-menu">
-                        <center><li><Link className="dropdown-item" to="/add-chapter/1">Add Chapter</Link></li></center>
+                        <center><li><Link className="dropdown-item" to={`/add-chapter/${chapter_id}`}>Add Chapter</Link></li></center>
                         <li><hr className="dropdown-divider"/></li>
-                        <center><li><Link className="dropdown-item" to="/add-assignment/1/2">Add Assignment</Link></li></center>
+                        <center><li><Link className="dropdown-item" to={`/add-assignment/${chapter_id}`}>Add Assignment</Link></li></center>
                         
                         
                     </ul>

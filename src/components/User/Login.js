@@ -1,30 +1,56 @@
-import { Link, Navigate, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import Header from "../Header";
 
-function Login(){
-
-
+function Login(props){
     const [username, setUsername] = useState("")
+    const [user, setUser] = useState("1")
     const [password, setPassowrd] = useState("")
-    const [warning, usercheck] = useState(false)
+    const [warning, setWarning] = useState(false)
     const goHome = useNavigate()
 
+    console.log(user)
 
-
-    const handleSubmit = () => {
-        const credential = { username, password}
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const credential = { username, password };
         fetch("/auth/signin", {
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(credential)})
-        .then(data => {
-            if (data === "f"){usercheck(true)}
-            if (data === "welcome"){goHome("/")}
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(credential),
+        })
+          .then(() => getUser())
+          .catch((error) => {
+            console.error("Error logging in:", error);
+          });
+      };
 
-        })      
-    }
-    
-    
+
+    const getUser = async () => {
+        try {
+          let res = await fetch("/auth/getuser");
+          let data = await res.json();
+          setUser(data)
+        } catch (error) {
+          console.error("Error getting user:", error);
+        }
+      };
+
+
+    useEffect (
+        () => {
+            if (user === "")(setWarning(true))
+            else{if (user === "1")(setWarning(false))
+            else{
+                props.user(user)
+                goHome("/")
+            }}
+        }, [user]
+    )
+
+    useEffect (()=>{
+      document.title = 'Login'
+  })
     return(
         <div className="container mt-4">
             <div className="row">
@@ -32,7 +58,7 @@ function Login(){
                     <div className="card">
                         <h4 className="card-header bg-success">User Login</h4> 
                         <div className="card-body">
-                        <form>
+                        <form onSubmit={handleSubmit}>
                             <img className="mb-3 mt-0 img-thumbnail bg-success" src="logo002.png" alt="" width="600" height="200"/>
                             {/* <h1 className="h3 mb-3 fw-normal">Please sign in</h1> */}
                             {/* <div className="form-floating">
@@ -41,7 +67,7 @@ function Login(){
                             </div> */}
                             <div className="form-floating">
                             <input type="text" className="form-control mb-2" id="floatingUsername" placeholder="Username" value = {username} onChange={(e) => setUsername(e.target.value)}/>
-                            <label htmlFor="floatingInput">Username</label>
+                            <label htmlFor="floatingUsername">Username</label>
                             </div>
                             <div className="form-floating">
                             <input type="password" className="form-control" id="floatingPassword" placeholder="Password" value = {password} onChange={(e) => setPassowrd(e.target.value)}/>
@@ -51,8 +77,9 @@ function Login(){
                                 <input type="checkbox" className="from-check-input" id="exampleCheck1" />
                                 <label className="from-check-label" htmlFor="exampleCheck1">Remember Me</label>
                             </div>
-                            <button className="w-100 btn btn-lg btn-primary" type="submit" onClick={handleSubmit}>Sign in</button>
-                            {warning && <div className="text-danger">Unknown Cred {password}</div>}
+                            <button className="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+                            {warning && <div className="text-danger">Unknown Cred</div>}
+
                         </form>
                         </div>
                     </div>
@@ -61,6 +88,5 @@ function Login(){
         </div>
     );
 }
-
 
 export default Login;

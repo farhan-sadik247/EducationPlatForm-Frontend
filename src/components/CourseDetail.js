@@ -5,7 +5,7 @@ import Cookies from "js-cookie";
 
 function CourseDetail(props){
 
-
+    console.log(props)
     const {courseid}=useParams();
     // console.log(props.user.id)
     
@@ -157,11 +157,14 @@ function CourseDetail(props){
                     </p>
                     {bought && <p><Link className="btn btn-success" to="/my-courses">You are Enrolled!</Link>
                     </p>}
-                    {(!bought && !wish) && <p><button className=" btn btn-success" type="submit" onClick={handleEnroll}>Enroll Now</button>
+                    {(props.user !== "" && !bought && !wish) && <p><button className=" btn btn-success" type="submit" onClick={handleEnroll}>Enroll Now</button>
                     <button className="ms-2 btn btn-outline-info border border-primary" onClick={handleWish}><i class="fa-solid fa-heart btn-outline-danger"></i>  Add to Wishlist</button>
                     </p>}
                     {(!bought && wish) && <p><button className=" btn btn-success" type="submit" onClick={handleEnroll}>Enroll Now</button>
                         <Link className="ms-2 btn btn-outline-info border border-primary" to="/favourite-courses">  View Wishlist</Link>
+                    </p>}
+                    {(props.user === "") && <p><Link className=" btn btn-success" type="submit" to = "/user-login">Enroll Now</Link>
+                    <Link className="ms-2 btn btn-outline-info border border-primary" to = "/user-login"><i class="fa-solid fa-heart btn-outline-danger"></i>  Add to Wishlist</Link>
                     </p>}
 
                 </div>

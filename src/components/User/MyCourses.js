@@ -6,12 +6,25 @@ import Cookies from "js-cookie";
 function MyCourses(){
 
     const { student_id } = useParams()
-
+    
 
     let [courses, setCourses] = useState([])
+    let [teachers, setTeahcer] = useState([])
+    var teacher = []
 
     useEffect(
         () => {getCourses()}, []
+    )
+
+    useEffect(() => {
+        courses.map((name, index) =>{
+            fetch(`/auth/getteacher/${courses[index].teacher}`)
+            .then(res => res.json())
+            .then(data => (() => teacher = data))
+            .then(console.log(teacher))
+        }
+        )
+    }, [courses]
     )
 
     let getCourses = async () => {
@@ -34,7 +47,6 @@ function MyCourses(){
     useEffect (()=>{
         document.title = 'My courses'
     })
-
     return(
         <div className="container mt-4">
             <div className="row">
@@ -55,8 +67,8 @@ function MyCourses(){
                             </thead>
                                 {courses.map((student, index) => (
                                 <tbody>
-                                    <td><center><Link to="/">{courses[index].title}</Link></center></td>
-                                    <td><center><Link to="/">{courses[index].teacher}</Link> </center></td>
+                                    <td><center><Link to={`/details/${courses[index].id}`}>{courses[index].title}</Link></center></td>
+                                    <td><center><Link to={`/teacher-detail/${courses[index].teacher}`}>{teacher[index]}</Link> </center></td>
                                     <td><center><button className="btn btn-danger text-dark" onClick={()=>{handleDelete(courses[index].id)}}>Remove</button></center></td>
                                 </tbody>))} 
                         </table>
