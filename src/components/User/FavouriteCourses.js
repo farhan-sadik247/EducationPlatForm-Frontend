@@ -8,7 +8,8 @@ function FavouriteCourses(){
 
     const { student_id } = useParams()
 
-    let [courses, setCourses] = useState([])
+    let [courses, setCourses] = useState({"course":[], "teacher":[]})
+    console.log(courses)
 
     useEffect(
         () => {getCourses()}, []
@@ -54,11 +55,11 @@ function FavouriteCourses(){
                                     <th><center>Action</center></th>
                                 </tr>
                             </thead>
-                            {courses.map((student, index) => (
+                            {courses.course.map((student, index) => (
                                 <tbody>
-                                    <td><center><Link to="/">{courses[index].title}</Link></center></td>
-                                    <td><center><Link to="/">{courses[index].teacher}</Link> </center></td>
-                                    <td><center><button className="btn btn-danger text-dark">Remove</button></center></td>
+                                    <td><center><Link to="/">{courses.course[index].title}</Link></center></td>
+                                    <td><center><Link to="/">{courses?.teacher[index]?.fullname}</Link> </center></td>
+                                    <td><center><button className="btn btn-danger text-dark" onClick={()=>handleDelete(courses.course[index].id)}>Remove</button></center></td>
                                 </tbody>))} 
                         </table>
                     </div>

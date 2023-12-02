@@ -89,8 +89,8 @@ function CourseDetail(props){
         let response = await fetch(`/course/favCourses`)
         let data = await response.json()
         console.log(data)
-        data.map((name, index)=> 
-            (data[index].id === Number(courseid) ? (setWish(true)) :(false))
+        data.course.map((name, index)=> 
+            (data.course[index].id === Number(courseid) ? (setWish(true)) :(false))
         )
     }
 
