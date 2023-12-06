@@ -1,10 +1,10 @@
 import { Link, Navigate, useNavigate } from "react-router-dom";
-import TeacherSidebar from "./TeacherSidebar";
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
+import Sidebar from "./Sidebar";
 
 
-function TeacherChangePassword(){
+function UserForgotChangePassword(){
 
     const [pass1, setpass1] = useState("")
     const [pass2, setpass2] = useState("")
@@ -35,20 +35,11 @@ function TeacherChangePassword(){
     return(
         <div className="container mt-4">
             <div className="row">
-                <aside className="col-md-3">
-                    <TeacherSidebar />
-                </aside>
                 <section className="col-md-9">
                 <div className="card">
                     <h5 className="card-header">Change Password</h5>
                     <div className="card-body">
-                        <form onSubmit={handleSubmit}>
-                        <div className="mb-3 row">
-                            <label htmlFor="inputPassword" className="col-sm-2 col-form-label">Old Password </label>
-                            <div className="col-sm-10">
-                            <input type="password" className="form-control" id="inputPassword" value = {pass1} onChange={(e) => setpass1(e.target.value)}/>
-                            </div>
-                        </div>        
+                        <form onSubmit={handleSubmit}>     
                         <div className="mb-3 row">
                             <label htmlFor="inputPassword" className="col-sm-2 col-form-label">New Password </label>
                             <div className="col-sm-10">
@@ -64,8 +55,8 @@ function TeacherChangePassword(){
                             {warning && <div className="text-danger">Password did not match</div>}
                         </div>  
                         <hr/>
-                        {!warning && <button className="w-100 btn btn-lg btn-primary" type="submit">Register</button>}
-                        {warning && <button className="w-100 btn btn-lg btn-primary" disabled>Register</button>}
+                        {!warning && <button className="w-100 btn btn-lg btn-primary" type="submit">Change Password</button>}
+                        {warning && <button className="w-100 btn btn-lg btn-primary" disabled>Change Password</button>}
                         <div className="mb-3 row">    
                         </div>       
                         </form>    
@@ -77,4 +68,4 @@ function TeacherChangePassword(){
     );
 }
 
-export default TeacherChangePassword;
+export default UserForgotChangePassword;

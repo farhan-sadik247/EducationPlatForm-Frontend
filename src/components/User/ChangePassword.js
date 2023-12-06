@@ -44,6 +44,12 @@ function ChangePassword(){
                     <div className="card-body">
                         <form onSubmit={handleSubmit}>
                         <div className="mb-3 row">
+                            <label htmlFor="inputPassword" className="col-sm-2 col-form-label">Old Password </label>
+                            <div className="col-sm-10">
+                            <input type="password" className="form-control" id="inputPassword" value = {pass1} onChange={(e) => setpass1(e.target.value)}/>
+                            </div>
+                        </div>        
+                        <div className="mb-3 row">
                             <label htmlFor="inputPassword" className="col-sm-2 col-form-label">New Password </label>
                             <div className="col-sm-10">
                             <input type="password" className="form-control" id="inputPassword" value = {pass1} onChange={(e) => setpass1(e.target.value)}/>

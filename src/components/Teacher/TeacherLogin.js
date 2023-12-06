@@ -80,7 +80,7 @@ function TeacherLogin(props){
                             </div> */}
                             <button className="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
                             {warning && <div className="text-danger">Unknown Cred</div>}
-                            <p className="mt-4"><Link to="/teachet-forgot-password/1" className="text-danger">Forgot Password?</Link></p>
+                            <p className="mt-4"><Link to="/teacher-forgot-password/1" className="text-danger">Forgot Password?</Link></p>
                             <p>Don't have account?<Link to="/teacher-register">Create Account</Link></p>
 
                         </form>

@@ -78,10 +78,10 @@ function AddCourse(){
                         <textarea className="form-control" id="exampleFormControlTextarea1" rows="3" value = {description} onChange={(e) => setdescription(e.target.value)}></textarea>
                         </div>
 
-                        {/* <div className="input-group mb-3">
+                        <div className="input-group mb-3">
                         <label className="input-group-text" htmlFor="inputGroupFile01">Upload Featured Image</label>
                         <input type="file" className="form-control" id="inputGroupFile01" />
-                        </div> */}
+                        </div>
 
                         <div className="mb-3">
                             <label htmlFor="exampleFormControlInput1" className="form-label">Course Subscription Amount</label>

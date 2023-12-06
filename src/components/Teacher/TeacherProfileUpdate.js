@@ -23,13 +23,13 @@ function TeacherProfileUpdate(){
     const handleSubmit = () => {
         const credential = { username, email, password, dob, phone, gender, address}
 
-        // fetch("/auth/update", {
-        //     method: "POST",
-        //     headers: {"Content-Type": "multipart/form-data", "X-CSRFtoken": Cookies.get("csrftoken")},
-        //     body: JSON.stringify(credential)
-        // })
+        fetch("/auth/update", {
+            method: "POST",
+            headers: {"Content-Type": "multipart/form-data", "X-CSRFtoken": Cookies.get("csrftoken")},
+            body: JSON.stringify(credential)
+        })
         handleImage()
-        // .then(navigate("/"))
+        .then(navigate("/"))
     }
 
     const handleImage = () => {
@@ -134,6 +134,13 @@ function TeacherProfileUpdate(){
                         <option value="Female">Female</option>
                         <option value="Others">Others</option>
                         </select>
+                        </div>
+                        <div className="mb-3 row">
+                            <label htmlFor="floatingNumber" className="col-sm-2 col-form-label" > <i className="fa-solid fa-percent"></i>Discount</label>
+                            <div className="col-sm-10">
+                                <input type="text" className="form-control" id="floatingNumber" placeholder="10%" value = {user.phone} onChange={(e) => setphone(e.target.value)}/>
+
+                            </div>
                         </div>
                         <hr/>
                         {!warning && <button className="w-100 btn btn-lg btn-primary" type="submit">Register</button>}
