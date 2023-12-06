@@ -1,9 +1,9 @@
 .searchbar {
     margin-right: 2rem;
-    /* height: 60px; */
+    height: 60px;
     background-color: #353b48;
     border-radius: 30px;
-    padding: 5px;
+    padding: 10px;
 }
 
 .search_input {
@@ -13,7 +13,7 @@
     background: none;
     width: 0;
     caret-color: transparent;
-    line-height: 22px;
+    line-height: 10px;
     transition: width 0.4s linear;
 }
 

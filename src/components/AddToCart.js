@@ -1,53 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from "react";
+import React,{ Link } from "react-router-dom";
 import './AddToCart.css';
-const CartItem = ({ item, onSelect }) => (
-  <tr>
-    <td>
-      <input type="checkbox" onChange={onSelect} />
-    </td>
-    <td>
-      <img src={item.image} alt={item.name} style={{ width: '100px', height: '100px' }}/>
-    </td>
-    <td>{item.name}</td>
-    <td>{item.details}</td>
-    <td>${item.price}</td>
-  </tr>
-);
 
-const AddToCart = () => {
-  const [cartItems, setCartItems] = useState([
-    {
-      id: 1,
-      image: '/logo001.png',
-      name: 'Product 1',
-      details: 'This is a description of product 1.',
-      price: 0,
-    },
-    {
-      id: 2,
-      image: '/logo001.png',
-      name: 'Product 2',
-      details: 'This is a description of product 2.',
-      price: 49.99,
-    },
-  ]);
-
-  const [selectedItems, setSelectedItems] = useState([]);
-
-  const handleSelectItem = (itemId, checked) => {
-    if (checked) {
-      setSelectedItems([...selectedItems, itemId]);
-    } else {
-      setSelectedItems(selectedItems.filter((id) => id !== itemId));
-    }
-  };
-
-  const proceedToPayment = () => {
-    // Implement your payment processing logic here
-    console.log(`Selected items for payment:`, selectedItems);
-  };
-
-  return (
+function AddToCart(){
+  return(
     <div className="container card-header mt-4">
     <div className="row">
     <section className="col-md-9">
@@ -55,29 +11,70 @@ const AddToCart = () => {
     <div className="container-fluid">
     <div className="card-body">
     <div className="cart-page">
-      <table className="cart-table">
-        <thead>
+    <table className="table">
+      <thead>
+        <tr>
+        <th>Select</th>
+        <th>Image</th>
+        <th className=''>Name</th>
+        <th className=''>Price</th>
+        <hr/>
+        </tr>
+      </thead>
+      <tbody>
           <tr>
-            <th>Select</th>
-            <th>Image</th>
-            <th className=''>Name</th>
-            <th className=''>Details</th>
-            <th className=''>Price</th>
-            <hr/>
+          <td>
+          <input type="checkbox" />
+          </td>
+          <td>
+          <img src="/logo001.png" className="rounded border-0 object-fit-cover mr-2" style={{ width: '200px', height: '200px' }} alt="Course Image" />
+          </td>
+          <td>
+              <div className="course-details">
+              <h3>Another Course Name</h3>
+              <p>Course Description</p>
+              <p>Created by: Jane Doe</p>
+              <p>Rating: 4.8</p>
+              </div>
+          </td>
+          <td>
+              <div className="price-block">
+              <span>$29.99</span>
+              </div>
+          </td>
           </tr>
-        </thead>
-        <tbody>
-          {cartItems.map((item) => (
-            <CartItem key={item.id} item={item} onSelect={(checked) => handleSelectItem(item.id, checked)} />
-          ))}
-        </tbody>
-      </table>
-      <div className="cart-total">
-        <strong>Total: ${cartItems.reduce((acc, item) => acc + item.price, 0)}</strong>
-      </div>
-      <button className='btn btn-success' disabled={!selectedItems.length} onClick={proceedToPayment}>
-        Proceed to Payment
-      </button>
+      </tbody>
+      <tbody>
+          <tr>
+          <td>
+          <input type="checkbox" />
+          </td>
+          <td>
+          <img src="/logo001.png" className="rounded border-0 object-fit-cover mr-2" style={{ width: '200px', height: '200px' }} alt="Course Image" />
+          </td>
+          <td>
+              <div className="course-details">
+              <h3>Another Course Name</h3>
+              <p>Course Description</p>
+              <p>Created by: Jane Doe</p>
+              <p>Rating: 4.8</p>
+              </div>
+          </td>
+          <td>
+              <div className="price-block">
+              <span>$29.99</span>
+              </div>
+          </td>
+          </tr>
+      </tbody>
+    </table>
+    <div className="cart-total">
+    <strong className="float-start">Total: $</strong>
+     
+    <button className='btn btn-success'>
+       Proceed to Payment
+    </button>
+    </div>
     </div>
     </div>
     </div>
@@ -86,6 +83,5 @@ const AddToCart = () => {
     </div>
     </div>
   );
-};
-
+}
 export default AddToCart;

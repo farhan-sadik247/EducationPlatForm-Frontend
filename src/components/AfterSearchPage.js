@@ -76,7 +76,7 @@ function AfterSearchPage(props){
                                 </div>
                             </td>
                             <td>
-                            <button className="btn btn-primary ">Enroll Now</button>
+                            <Link to="/my-courses"><button className="btn btn-primary ">Enroll Now</button></Link>
                             <Link><button className="btn btn-success ms-2"><i className="fa-solid fa-cart-plus"></i></button></Link>
                             <Link ><button className="btn btn-success ms-2"><i className="fa-solid fa-heart"></i></button></Link>
                             

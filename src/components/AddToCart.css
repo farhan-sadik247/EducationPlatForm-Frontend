@@ -1,49 +1,58 @@
-.cart-page {
-    width: 80%;
-    margin: auto;
-    padding: 20px;
-  }
+/* Global styles */
+body {
+  font-family: Arial, sans-serif;
+}
 
-  .cart-table {
-    border-collapse: collapse;
-    width: 100%;
-  }
-  
-  .cart-table th,
-  .cart-table td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: left;
-  }
-  
-  .cart-table th {
-    background-color: #f2f2f2;
-  }
-  
-  .cart-table img {
-    width: 50px;
-    height: auto;
-  }
-  
-  .cart-total {
-    margin-top: 20px;
-  }
-  
-  .cart-total strong {
-    font-weight: bold;
-  }
-  
-  button {
-    background-color: #008CBA;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    margin-top: 10px;
-  }
-  
-  button:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-  
+/* Card header styling */
+.card-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #ddd;
+  padding: 15px;
+}
+
+/* Course details styling */
+.course-details {
+  margin-bottom: 10px;
+}
+
+.course-details h3 {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.course-details p {
+  font-size: 14px;
+  margin-bottom: 0;
+  line-height: 1.5;
+}
+
+/* Price block styling */
+.price-block {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* Cart total styling */
+.cart-total {
+  margin-top: 20px;
+  border-top: 1px solid #ddd;
+  padding: 10px;
+}
+
+.cart-total strong {
+  font-size: 16px;
+}
+
+.cart-total button {
+  float: right;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.cart-total button:hover {
+  background-color: #339933;
+}
