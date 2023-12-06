@@ -7,24 +7,10 @@ function MyCourses(){
 
     const { student_id } = useParams()
     
-
     let [courses, setCourses] = useState([])
-    let [teachers, setTeahcer] = useState([])
-    var teacher = []
 
     useEffect(
         () => {getCourses()}, []
-    )
-
-    useEffect(() => {
-        courses.map((name, index) =>{
-            fetch(`/auth/getteacher/${courses[index].teacher}`)
-            .then(res => res.json())
-            .then(data => (() => teacher = data))
-            .then(console.log(teacher))
-        }
-        )
-    }, [courses]
     )
 
     let getCourses = async () => {
@@ -65,11 +51,11 @@ function MyCourses(){
                                     <th><center>Action</center></th>
                                 </tr>
                             </thead>
-                                {courses.map((student, index) => (
+                                {courses.course?.map((student, index) => (
                                 <tbody>
-                                    <td><center><Link to={`/details/${courses[index].id}`}>{courses[index].title}</Link></center></td>
-                                    <td><center><Link to={`/teacher-detail/${courses[index].teacher}`}>{teacher[index]}</Link> </center></td>
-                                    <td><center><button className="btn btn-danger text-dark" onClick={()=>{handleDelete(courses[index].id)}}>Remove</button></center></td>
+                                    <td><center><Link to={`/details/${courses.course[index].id}`}>{courses.course[index].title}</Link></center></td>
+                                    <td><center><Link to={`/teacher-detail/${courses.teacher[index].id}`}>{courses.teacher[index].fullname}</Link> </center></td>
+                                    <td><center><button className="btn btn-danger text-dark" onClick={()=>{handleDelete(courses.course[index].id)}}>Remove</button></center></td>
                                 </tbody>))} 
                         </table>
                     </div>

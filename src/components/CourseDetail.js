@@ -89,8 +89,8 @@ function CourseDetail(props){
         let response = await fetch(`/course/favCourses`)
         let data = await response.json()
         console.log(data)
-        data.map((name, index)=> 
-            (data[index].id === Number(courseid) ? (setWish(true)) :(false))
+        data.course.map((name, index)=> 
+            (data.course[index].id === Number(courseid) ? (setWish(true)) :(false))
         )
     }
 
@@ -136,7 +136,7 @@ function CourseDetail(props){
                     <h3>{course.title}</h3>
                     <p>{course.details}</p>
                     <p className="fw-bold">Course By: <Link to={`/teacher-detail/${teacher.id}`}>{teacher.fullname}</Link></p>
-                    <p className="fw-bold">Category: {cata.title}</p>
+                    <p className="fw-bold">Category: <Link to="/category-details/1">{cata.title}</Link></p>
                     {/* <p className="fw-bold">Technologies used: Doo</p> */}
                     <p className="fw-bold">Total Enrolled Student: {total}</p>
                     <p className="fw-bold">Rating:
@@ -155,7 +155,7 @@ function CourseDetail(props){
                     {!submit && bought && <button className=" btn btn-success" type="submit" onClick={handleSubmit}>Submit</button>}</div>
                     
                     </p>
-                    {bought && <p><Link className="btn btn-success" to="/my-courses">You are Enrolled!</Link>
+                    {bought && <p>You are Enrolled!  <Link className="btn btn-outline-warning" to="/my-courses">View Course</Link>
                     </p>}
                     {(props.user !== "" && !bought && !wish) && <p><button className=" btn btn-success" type="submit" onClick={handleEnroll}>Enroll Now</button>
                     <button className="ms-2 btn btn-outline-info border border-primary" onClick={handleWish}><i class="fa-solid fa-heart btn-outline-danger"></i>  Add to Wishlist</button>

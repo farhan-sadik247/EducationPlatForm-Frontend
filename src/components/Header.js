@@ -39,33 +39,7 @@ function Header(props) {
             </Link>
 
             <Link className="nav-link btn-outline-success" to="/all-courses">Courses</Link>
-
-                {/* <li className="nav-item dropdown">
-                  <Link className="nav-link dropdown-toggle" to="#" id="teachersDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  <i className="fa-solid fa-chalkboard-user"></i>
-                  </Link>
-                  <ul className="dropdown-menu" aria-labelledby="teachersDropdown">
-                  <center><li>Teacher</li></center>
-                    <li>
-                        <hr className="dropdown-divider" />
-                    </li>
-                    <center><li><Link className="dropdown-item" to="/teacher-dashboard"><i className="bi bi-speedometer2"></i>Dashboard</Link></li></center>
-                    <center><li onClick={handlelogout}><Link className="dropdown-item" to="/"><i className="bi bi-box-arrow-right"></i>Sign out</Link></li></center>
-                  </ul>
-                </li>
-                <li className="nav-item dropdown">
-                  <Link className="nav-link dropdown-toggle" to="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  <i className="fa-solid fa-users"></i>
-                  </Link>
-                  <ul className="dropdown-menu" aria-labelledby="userDropdown">
-                    <center><li>Student</li></center>
-                    <li>
-                        <hr className="dropdown-divider" />
-                    </li>
-                    <center><li><Link className="dropdown-item" to="/user-dashboard"><i className="bi bi-speedometer2"></i>Dashboard</Link></li></center>
-                    <center><li><Link className="dropdown-item" to="/user-login"><i className="bi bi-box-arrow-right"></i>Sign out</Link></li></center>
-                  </ul>
-                </li> */}
+            <Link className="mt-2" to="/add-to-cart"><i className="fa-solid fa-cart-plus btn btn-outline-light "></i></Link>
 
                 {props.user === "" ? (
                   <>

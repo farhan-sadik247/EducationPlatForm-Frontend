@@ -1,8 +1,30 @@
-import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useEffect,useState } from "react";
+import { Link,Navigate, useNavigate } from "react-router-dom";
 import Header from "../Header";
 
 function Login(props){
+
+
+    // const [username, setUsername] = useState("")
+    // const [password, setPassowrd] = useState("")
+    // const [warning, usercheck] = useState(false)
+    // const goHome = useNavigate()
+
+
+
+    // const handleSubmit = () => {
+    //     const credential = { username, password}
+    //     fetch("/auth/signin", {
+    //         method: "POST",
+    //         headers: {"Content-Type": "application/json"},
+    //         body: JSON.stringify(credential)})
+    //     .then(data => {
+    //         if (data === "f"){usercheck(true)}
+    //         if (data === "welcome"){goHome("/")}
+
+    //     })      
+    // }
+    
     const [username, setUsername] = useState("")
     const [user, setUser] = useState("1")
     const [password, setPassowrd] = useState("")
@@ -73,13 +95,14 @@ function Login(props){
                             <input type="password" className="form-control" id="floatingPassword" placeholder="Password" value = {password} onChange={(e) => setPassowrd(e.target.value)}/>
                             <label htmlFor="floatingPassword">Password</label>
                             </div>
-                            <div className="checkbox mb-3 mt-1">
+                            {/* <div className="checkbox mb-3 mt-1">
                                 <input type="checkbox" className="from-check-input" id="exampleCheck1" />
                                 <label className="from-check-label" htmlFor="exampleCheck1">Remember Me</label>
-                            </div>
-                            <button className="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-                            {warning && <div className="text-danger">Unknown Cred</div>}
-
+                            </div> */}
+                            <button className="w-100 btn btn-lg btn-primary" type="submit" onClick={handleSubmit}>Sign in</button>
+                            {warning && <div className="text-danger">Unknown Cred {password}</div>}
+                            <p className="mt-4"><Link>Forgot Password?</Link></p>
+                            <p>Don't have account?<Link to="/user-register">Create Account</Link></p>
                         </form>
                         </div>
                     </div>

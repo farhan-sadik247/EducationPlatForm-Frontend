@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 function ProfilePicture(props) {
 
-    console.log(props)
     const handlelogout = async () => {
         await fetch("/auth/signout");
         props.setUser("")
@@ -19,7 +18,7 @@ function ProfilePicture(props) {
             >
                 <img
                     id="userProfileImage"
-                    src="/logo001.png"  
+                    src={`http://127.0.0.1:8000/${props.user.pic}`}  
                     alt="User Profile"
                     className="rounded-circle border-0 object-fit-cover"
                     style={{ width: '40px', height: '40px' }}
@@ -31,7 +30,7 @@ function ProfilePicture(props) {
                     <div className="d-flex align-items-center px-1">
                         <img
                             id="userProfileImageDropdown"
-                            src="/logo001.png"
+                            src={`http://127.0.0.1:8000/${props.user.pic}`}
                             alt="User Profile"
                             className="rounded-circle border-0 object-fit-cover mr-2"
                             style={{ width: '40px', height: '40px' }}
