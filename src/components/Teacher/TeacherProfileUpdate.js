@@ -21,13 +21,26 @@ function TeacherProfileUpdate(){
     const navigate = useNavigate()
 
     const handleSubmit = () => {
-        const credential = { username, email, password, dob, phone, pic, gender, address}
+        const credential = { username, email, password, dob, phone, gender, address}
+
         fetch("/auth/update", {
             method: "POST",
-            headers: {"Content-Type": "application/json", "X-CSRFtokes": Cookies.get("csrftoken")},
+            headers: {"Content-Type": "multipart/form-data", "X-CSRFtoken": Cookies.get("csrftoken")},
             body: JSON.stringify(credential)
         })
+        handleImage()
         .then(navigate("/"))
+    }
+
+    const handleImage = () => {
+        let formdata = new FormData()
+        formdata.append("file", pic)
+        console.log(formdata)
+        fetch("/auth/getpic", {
+            method: "POST",
+            headers : {"X-CSRFtoken": Cookies.get("csrftoken")},
+            body : formdata
+        })
     }
 
     useEffect (
@@ -52,7 +65,6 @@ function TeacherProfileUpdate(){
         let data = await res.json()
         setUser(data)
     }
-
 
     return(
         <div className="container mt-4">
@@ -107,7 +119,7 @@ function TeacherProfileUpdate(){
                         
                         <div className="mb-3">
                         <label htmlFor="formFile" className="form-label">Profile Picture</label>
-                        <input className="form-control" type="file" id="formFile" value = {pic} onChange={(e) => setpic(e.target.value)}/>
+                        <input className="form-control" accept = "image/*" type="file" id="formFile" onChange={(e) => setpic(e.target.files[0])}/>
                         </div>
 
                         <div className="mb-3">
@@ -122,6 +134,13 @@ function TeacherProfileUpdate(){
                         <option value="Female">Female</option>
                         <option value="Others">Others</option>
                         </select>
+                        </div>
+                        <div className="mb-3 row">
+                            <label htmlFor="floatingNumber" className="col-sm-2 col-form-label" > <i className="fa-solid fa-percent"></i>Discount</label>
+                            <div className="col-sm-10">
+                                <input type="text" className="form-control" id="floatingNumber" placeholder="10%" value = {user.phone} onChange={(e) => setphone(e.target.value)}/>
+
+                            </div>
                         </div>
                         <hr/>
                         {!warning && <button className="w-100 btn btn-lg btn-primary" type="submit">Register</button>}

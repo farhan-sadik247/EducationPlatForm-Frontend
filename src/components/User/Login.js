@@ -71,8 +71,8 @@ function Login(props){
     )
 
     useEffect (()=>{
-      document.title = 'Teacher Login'
-  })    
+      document.title = 'Login'
+  })
     return(
         <div className="container mt-4">
             <div className="row">
@@ -80,7 +80,7 @@ function Login(props){
                     <div className="card">
                         <h4 className="card-header bg-success">User Login</h4> 
                         <div className="card-body">
-                        <form>
+                        <form onSubmit={handleSubmit}>
                             <img className="mb-3 mt-0 img-thumbnail bg-success" src="logo002.png" alt="" width="600" height="200"/>
                             {/* <h1 className="h3 mb-3 fw-normal">Please sign in</h1> */}
                             {/* <div className="form-floating">
@@ -89,7 +89,7 @@ function Login(props){
                             </div> */}
                             <div className="form-floating">
                             <input type="text" className="form-control mb-2" id="floatingUsername" placeholder="Username" value = {username} onChange={(e) => setUsername(e.target.value)}/>
-                            <label htmlFor="floatingInput">Username</label>
+                            <label htmlFor="floatingUsername">Username</label>
                             </div>
                             <div className="form-floating">
                             <input type="password" className="form-control" id="floatingPassword" placeholder="Password" value = {password} onChange={(e) => setPassowrd(e.target.value)}/>
@@ -101,7 +101,7 @@ function Login(props){
                             </div> */}
                             <button className="w-100 btn btn-lg btn-primary" type="submit" onClick={handleSubmit}>Sign in</button>
                             {warning && <div className="text-danger">Unknown Cred {password}</div>}
-                            <p className="mt-4"><Link>Forgot Password?</Link></p>
+                            <p className="mt-4"><Link to="/user-forgot-password/1">Forgot Password?</Link></p>
                             <p>Don't have account?<Link to="/user-register">Create Account</Link></p>
                         </form>
                         </div>
@@ -111,6 +111,5 @@ function Login(props){
         </div>
     );
 }
-
 
 export default Login;

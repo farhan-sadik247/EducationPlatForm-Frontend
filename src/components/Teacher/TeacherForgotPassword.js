@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import './TeacherForgotPassword.css';
 const ForgotPassword = () => {
   const [question, setQuestion] = useState(null);
@@ -21,8 +21,10 @@ const ForgotPassword = () => {
         <label htmlFor="question">Choose a question</label>
         <select name="question" id="question" onChange={(e) => setQuestion(e.target.value)}>
           <option value="">-- Select a Question --</option>
-          <option value="question1">What was your favorite childhood pet?</option>
-          <option value="question2">What is your mother's maiden name?</option>
+          <option value="favorite Place">What was your favorite Place?</option>
+          <option value="favourite author">What is your favourite author?</option>
+          <option value="favourite movie">What is your favourite movie?</option>
+          <option value="favourite book">What is your favourite book?</option>
         </select>
         {question && (
           <div>
@@ -30,7 +32,8 @@ const ForgotPassword = () => {
             <input type="text" name="answer" id="answer" value={answer} onChange={(e) => setAnswer(e.target.value)} />
           </div>
         )}
-        <button type="submit">Submit</button>
+        <Link to="/teacher-forgot-change-password/1"><button type="submit">Submit</button></Link>
+
       </form>
     </div>
   );

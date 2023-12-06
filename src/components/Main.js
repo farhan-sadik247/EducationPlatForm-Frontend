@@ -22,6 +22,8 @@ import ChangePassword from "./User/ChangePassword";
 import StudentDetails from "./StudentDetails";
 import UserAssignment from "./User/UserAssignment";
 import StdCourseChapters from "./User/StdCourseChapers";
+import UserForgotPassword from "./User/UserForgotPassword";
+import UserForgotChangePassword from "./User/UserForgotChangePassword";
 
 //Teacher Pannel
 import TeacherLogin from './Teacher/TeacherLogin';
@@ -44,6 +46,8 @@ import EnrolledStudent from "./Teacher/EnrolledStudent";
 import AddAssignment from "./Teacher/AddAssignment";
 import EditAssignment from "./Teacher/EditAssignment";
 import ShowAssignments from "./Teacher/ShowAssignments";
+import TeacherForgotChangePassword from "./Teacher/TeacherForgotChangePassword";
+import ForgotPassword from "./Teacher/TeacherForgotPassword";
 
 
 
@@ -55,7 +59,10 @@ import PopularTeachers from "./PopularTeachers";
 import AfterSearchPage from "./AfterSearchPage";
 import SearchPageSidebar from "./SearchPageSidebar";
 import AddToCart from "./AddToCart";
-import ForgotPassword from "./Teacher/TeacherForgotPassword";
+
+
+
+
 
 
 
@@ -69,7 +76,6 @@ function Main() {
   const [user, setUser] = useState("")
   const [search, setSearch] = useState("")
   const [type, getType] = useState(false)
-  console.log(user)
 
   const getUser = async () => {
     try {
@@ -111,6 +117,9 @@ function Main() {
         <Route path="/user-details" element={ <StudentDetails /> } />
         <Route path="/user-assignment/:student_id" element={ <UserAssignment /> } />
         <Route path="/std-course-chapters/:chapter_id" element={ <StdCourseChapters /> } />
+        <Route path="/user-forgot-password/:student_id" element={ <UserForgotPassword /> } />
+        <Route path="/user-forgot-change-password/:student_id" element={ <UserForgotChangePassword /> } />
+        
 
         {/* Teacher */}
         <Route path="/teacher-login" element={ <TeacherLogin user ={setUser}/> } />
@@ -129,10 +138,11 @@ function Main() {
         <Route path="/add-chapter/:course_id" element={ <AddChapter /> } />
         <Route path="/teacher-detail/:teacher_id" element={ <TeacherDetail /> } />
         <Route path="/enrolled-student" element={ <EnrolledStudent/> } />
-        <Route path="/add-assignment/:user_id/:teacher_id" element={ <AddAssignment/> } />
+        <Route path="/add-assignment/:teacher_id" element={ <AddAssignment/> } />
         <Route path="/edit-assignment/:user_id/:teacher_id" element={ <EditAssignment/> } />
         <Route path="/show-assignment/:user_id/:teacher_id" element={ <ShowAssignments/> } />
-        <Route path="/teachet-forgot-password/:teacher_id" element={ <ForgotPassword/> } />
+        <Route path="/teacher-forgot-password/:teacher_id" element={ <ForgotPassword/> } />
+        <Route path="/teacher-forgot-change-password/:teacher_id" element={ <TeacherForgotChangePassword/> } />
 
 
         {/* List Pages */}

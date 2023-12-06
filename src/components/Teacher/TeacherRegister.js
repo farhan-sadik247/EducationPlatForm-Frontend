@@ -14,6 +14,10 @@ function TeacherRegister(){
     const [warning, usercheck] = useState(false)
     const [warning2, passcheck] = useState(false)
     const navigate = useNavigate()
+
+    const [question, setQuestion] = useState(null);
+    const [answer, setAnswer] = useState('');
+
     const type = true
 
     const handleSubmit = async (e) => {
@@ -93,8 +97,22 @@ function TeacherRegister(){
                                 <label htmlFor="floatingSkill">Skills</label>
                                 <div id="textHelp" className="form-text text-dark">python,css,java, etc.</div>
                             </div>
-                            {!warning && !warning2 && <button className="w-100 btn btn-lg btn-primary" type="submit">Register</button>}
-                            {!(!warning && !warning2) && <button className="w-100 btn btn-lg btn-primary" disabled>Register</button>}
+                            <label htmlFor="question">Choose a question</label>
+                            <select name="question" id="question" onChange={(e) => setQuestion(e.target.value)}>
+                            <option value="">-- Select a Question --</option>
+                            <option value="favorite Place">What was your favorite Place?</option>
+                            <option value="favourite author">What is your favourite author?</option>
+                            <option value="favourite movie">What is your favourite movie?</option>
+                            <option value="favourite book">What is your favourite book?</option>
+                            </select>
+                            {question && (
+                            <div>
+                                <label htmlFor="answer">{`What is the answer to "${question}"?`}</label>
+                                <input type="text" name="answer" id="answer" value={answer} onChange={(e) => setAnswer(e.target.value)} />
+                            </div>
+                            )}
+                            {!warning && !warning2 && <button className="w-100 btn btn-lg btn-primary mt-2" type="submit">Register</button>}
+                            {!(!warning && !warning2) && <button className="w-100 btn btn-lg btn-primary mt-2" disabled>Register</button>}
                         </form>
                         </div>
                     </div>
