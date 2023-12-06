@@ -17,6 +17,7 @@ urlpatterns = [
     path("getteacher/<str:teacher_id>", views.getTeacher, name = "getteacher"),
     path("checkname/<str:username>", views.check_name, name = "checkname"),
     path("getuser", views.getUser, name = "getuser"),
+    path("getpic", views.getPic, name = "getpic"),
     path("test", views.test, name = "test"),
 
 ]

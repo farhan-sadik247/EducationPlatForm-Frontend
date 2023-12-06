@@ -145,3 +145,6 @@ DEFAULT_AUTHENTICATION_CLASSES: [
     # 'rest_framework.authentication.SessionAuthentication',
     'rest_framework.authentication.BasicAuthentication',
 ]
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'images'

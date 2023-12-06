@@ -7,7 +7,7 @@ class Userinfo(AbstractUser):
     fullname = models.CharField(max_length=100,blank=True, null = True, default = None)
     skills = models.TextField(blank=True, null= True)
     phone = models.CharField( max_length=10, blank=True, null= True)
-    # pic = models.ImageField(upload_to="images/", blank=True, null= True)
+    pic = models.ImageField(upload_to="user", blank=True, null= True)
     dob = models.DateField(auto_now=False, auto_now_add=False, blank=True, null= True)
     rating = models.DecimalField(max_digits=2, decimal_places=1, blank=False, default=0)
     address = models.CharField(max_length=200, blank=True, null= True)

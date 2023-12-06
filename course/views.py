@@ -218,17 +218,6 @@ def totalStd(request, course_id):
 
 @api_view(["GET"])
 def boughtCourses(request, student_id):
-    # if request.method == "GET":
-    #     if student_id == "$":
-    #         course_list = []
-    #         user = request.user
-    #         bought_items = Bought_item.objects.filter(student = user)
-    #         for bought_item in bought_items:
-    #             course = bought_item.course
-    #             course_list.append(course.id)
-    #         course = Course.objects.filter(id__in=course_list)
-    #         ser = CourseSerializer(course, many = True)
-    #         return Response(ser.data)
     if request.method == "GET":
         course_list = []
         teacher_list = []

@@ -139,9 +139,9 @@ def create_admin(request):
         return redirect("home")
     
 
-@api_view(["PUT","GET"])
+@api_view(["POST","GET"])
 def edit_profile(request):
-    if request.method == "PUT":
+    if request.method == "POST":
         # password = request.data["password"]
         user = request.user
         # if password != request.user.password:
@@ -166,6 +166,16 @@ def edit_profile(request):
             u.gender = request.data["gender"]
         u.save()
     return Response("")
+
+
+def getPic(request):
+    if request.method == "POST":
+        user = request.user
+        u = Userinfo.objects.get(id = user.id)
+        u.pic = request.FILES["file"]
+        u.save()
+    return HttpResponse([])
+
 
 @api_view(["POST"])
 def changePass(request):

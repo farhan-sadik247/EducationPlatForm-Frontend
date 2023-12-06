@@ -16,7 +16,7 @@ class Course(models.Model):
     title = models.CharField(max_length=100,blank=False, default = None)
     details = models.TextField(blank=False, default = None)
     price = models.DecimalField(max_digits=10, decimal_places=2, blank=False, default = 0)
-    # pic = models.ImageField(upload_to="images/")
+    pic = models.ImageField(upload_to="courses/", blank = True, null = True)
     rating = models.DecimalField(max_digits=2, decimal_places=1, blank=False, default=0)
     techs = models.TextField(blank=False, default = None)
     created_at = models.DateTimeField(auto_now_add = True)
@@ -57,6 +57,7 @@ class Content(models.Model):
     remarks = models.TextField(blank=True, null=True, default = None)
     sub_link = models.TextField(blank=True, null=True, default = None)
     type = models.CharField(max_length=50, null = True, blank= True, default = None)
+    discount = models.DecimalField(blank = True, null = True, default = 0, max_digits=4, decimal_places=1)
     
 
     course = models.ForeignKey(Course, on_delete = models.CASCADE)
