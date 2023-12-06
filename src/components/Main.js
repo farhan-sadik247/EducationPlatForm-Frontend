@@ -8,6 +8,8 @@ import Footer from './Footer';
 import SearchBox from "./SearchBox";
 import ProfilePicture from "./ProfilePicture";
 
+
+
 //Student Pannel
 import Login from './User/Login';
 import Register from './User/Register';
@@ -34,6 +36,7 @@ import AddChapter from "./Teacher/AddChapter";
 import CourseChapters from "./Teacher/CourseChapers";
 import EditChapter from "./Teacher/EditChapter";
 import CourseCategory from "./Teacher/CourseCategory";
+import CategoryDetails from "./Teacher/CategoryDetails";
 import TeacherSkillCourse from "./Teacher/TeacherSkillCourse";
 import Test from "./Teacher/test"
 import TeacherDetail from "./TeacherDetail";
@@ -48,18 +51,11 @@ import ShowAssignments from "./Teacher/ShowAssignments";
 import AllCourses from "./AllCourses";
 import PopularCourses from "./PopularCourses";
 import PopularTeachers from "./PopularTeachers";
-import CategoryCourses from "./CategoryCourses";
+// import CategoryCourses from "./CategoryCourses";
 import AfterSearchPage from "./AfterSearchPage";
 import SearchPageSidebar from "./SearchPageSidebar";
-
-
-
-
-
-
-
-
-
+import AddToCart from "./AddToCart";
+import ForgotPassword from "./Teacher/TeacherForgotPassword";
 
 
 
@@ -73,7 +69,6 @@ function Main() {
   const [user, setUser] = useState("")
   const [search, setSearch] = useState("")
   const [type, getType] = useState(false)
-  console.log(user)
 
   const getUser = async () => {
     try {
@@ -100,8 +95,11 @@ function Main() {
         <Route path="/searchbox" element={ <SearchBox /> } />
         <Route path="/profile-picture" element={ <ProfilePicture /> } />
 
+        
+        
+        
         {/* User or Student */}
-        <Route path="/user-login" element={ <Login user = {setUser}/> } />
+        <Route path="/user-login" element={ <Login user={setUser}/> } />    
         <Route path="/user-register" element={ <Register /> } />
         <Route path="/user-dashboard" element={ <Dashboard /> } />
         <Route path="/my-courses" element={ <MyCourses /> } />
@@ -125,6 +123,7 @@ function Main() {
         <Route path="/course-chapters/:chapter_id" element={ <CourseChapters /> } />
         <Route path="/edit-chapters/:chapter_id" element={ <EditChapter /> } />
         <Route path="/course-category" element={ <CourseCategory /> } />
+        <Route path="/category-details/:category_id" element={ <CategoryDetails /> } />
         <Route path="/teacher-skill_course/:skill_name/:teacher_id" element={ <TeacherSkillCourse /> } />
         <Route path="/add-chapter/:course_id" element={ <AddChapter /> } />
         <Route path="/teacher-detail/:teacher_id" element={ <TeacherDetail /> } />
@@ -132,6 +131,7 @@ function Main() {
         <Route path="/add-assignment/:teacher_id" element={ <AddAssignment/> } />
         <Route path="/edit-assignment/:user_id/:teacher_id" element={ <EditAssignment/> } />
         <Route path="/show-assignment/:user_id/:teacher_id" element={ <ShowAssignments/> } />
+        <Route path="/teachet-forgot-password/:teacher_id" element={ <ForgotPassword/> } />
 
 
         {/* List Pages */}
@@ -140,7 +140,8 @@ function Main() {
         <Route path="/popular-teachers" element={ <PopularTeachers /> } />
         <Route path="/aftersearchpage" element={ <AfterSearchPage search = {search}/> } />
         <Route path="/searchpage-sidebar" element={ <SearchPageSidebar/> } />
-        <Route path="/category/:category_slug" element={ <CategoryCourses /> } />
+        <Route path="/add-to-cart" element={ <AddToCart/> } />
+        {/* <Route path="/category/:category_slug" element={ <CategoryCourses /> } /> */}
         
       
 

@@ -80,10 +80,6 @@ function TeacherRegister(){
                                 <input type="password" className="form-control" id="floatingPassword" placeholder="Password" value = {password} onChange={(e) => setPassw(e.target.value)} required/>
                                 <label htmlFor="floatingPassword">Password</label>
                                 <div id="passwordHelpBlock" className="form-text fw-bold text-danger">
-                                    {/* <li>Your password must be 8-20 characters long</li>
-                                    <li>contain letters and numbers</li>
-                                    <li>and must not contain spaces</li>
-                                    <li>special characters or emoji.</li> */}
                                 </div>
                             </div>
 

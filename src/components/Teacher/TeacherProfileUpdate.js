@@ -21,13 +21,26 @@ function TeacherProfileUpdate(){
     const navigate = useNavigate()
 
     const handleSubmit = () => {
-        const credential = { username, email, password, dob, phone, pic, gender, address}
-        fetch("/auth/update", {
+        const credential = { username, email, password, dob, phone, gender, address}
+
+        // fetch("/auth/update", {
+        //     method: "POST",
+        //     headers: {"Content-Type": "multipart/form-data", "X-CSRFtoken": Cookies.get("csrftoken")},
+        //     body: JSON.stringify(credential)
+        // })
+        handleImage()
+        // .then(navigate("/"))
+    }
+
+    const handleImage = () => {
+        let formdata = new FormData()
+        formdata.append("file", pic)
+        console.log(formdata)
+        fetch("/auth/getpic", {
             method: "POST",
-            headers: {"Content-Type": "application/json", "X-CSRFtokes": Cookies.get("csrftoken")},
-            body: JSON.stringify(credential)
+            headers : {"X-CSRFtoken": Cookies.get("csrftoken")},
+            body : formdata
         })
-        .then(navigate("/"))
     }
 
     useEffect (
@@ -52,7 +65,6 @@ function TeacherProfileUpdate(){
         let data = await res.json()
         setUser(data)
     }
-
 
     return(
         <div className="container mt-4">
@@ -107,7 +119,7 @@ function TeacherProfileUpdate(){
                         
                         <div className="mb-3">
                         <label htmlFor="formFile" className="form-label">Profile Picture</label>
-                        <input className="form-control" type="file" id="formFile" value = {pic} onChange={(e) => setpic(e.target.value)}/>
+                        <input className="form-control" accept = "image/*" type="file" id="formFile" onChange={(e) => setpic(e.target.files[0])}/>
                         </div>
 
                         <div className="mb-3">
