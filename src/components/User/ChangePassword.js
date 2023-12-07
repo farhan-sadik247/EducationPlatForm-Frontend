@@ -4,34 +4,38 @@ import Cookies from "js-cookie";
 import Sidebar from "./Sidebar";
 
 
-function ChangePassword(){
+function ChangePassword(props){
 
+    const [password, setpass] = useState("")
     const [pass1, setpass1] = useState("")
     const [pass2, setpass2] = useState("")
     const goHome = useNavigate()
     const [warning, passcheck] = useState(false)
-
-
+    const [warning2, passcheck2] = useState(false)
+    
     const handleSubmit = async () => {
-        const credential = { pass1, pass2}
+        const credential = {password, pass1, pass2}
         fetch("/auth/change_pass", {
             method: "POST",
             headers: {"Content-Type": "application/json", 'X-CSRFToken': Cookies.get("csrftoken") },
             body: JSON.stringify(credential)})
-        goHome("/")
-    }
-
-    useEffect (
-        () => {
-            pass1===pass2 ? passcheck(false): passcheck(true)
-        },
-        [pass1,pass2]
-    )
-
-    useEffect (()=>{
-        document.title = 'Teacher-Change-Password'
-    })
-
+            .then(props.setuser(""))
+            goHome("/user-login")
+        }
+        
+        
+        useEffect (
+            () => {
+                pass1===pass2 ? passcheck(false): passcheck(true)
+            },
+            [pass1,pass2]
+            )
+            
+            useEffect (()=>{
+                document.title = 'Teacher-Change-Password'
+            })
+            
+            
     return(
         <div className="container mt-4">
             <div className="row">
@@ -40,19 +44,20 @@ function ChangePassword(){
                 </aside>
                 <section className="col-md-9">
                 <div className="card">
-                    <h5 className="card-header">Change Password</h5>
+                    <h5 className="card-header">Change Password (You will be logged out in this process)</h5>
                     <div className="card-body">
                         <form onSubmit={handleSubmit}>
                         <div className="mb-3 row">
                             <label htmlFor="inputPassword" className="col-sm-2 col-form-label">Old Password </label>
                             <div className="col-sm-10">
-                            <input type="password" className="form-control" id="inputPassword" value = {pass1} onChange={(e) => setpass1(e.target.value)}/>
+                            <input type="password" className="form-control" id="inputPassword" value = {password} onChange={(e) => setpass(e.target.value)}/>
+                            {warning2 && <div className="text-danger">Password did not match</div>}
                             </div>
                         </div>        
                         <div className="mb-3 row">
                             <label htmlFor="inputPassword" className="col-sm-2 col-form-label">New Password </label>
                             <div className="col-sm-10">
-                            <input type="password" className="form-control" id="inputPassword" value = {pass1} onChange={(e) => setpass1(e.target.value)}/>
+                            <input type="password" className="form-control" id="inputPassword1" value = {pass1} onChange={(e) => setpass1(e.target.value)}/>
                             </div>
                         </div>        
 

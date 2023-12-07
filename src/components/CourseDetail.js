@@ -5,7 +5,6 @@ import Cookies from "js-cookie";
 
 function CourseDetail(props){
 
-    console.log(props)
     const {courseid}=useParams();
     // console.log(props.user.id)
     
@@ -19,9 +18,9 @@ function CourseDetail(props){
     let [courses, setCourses] = useState([])
     let [bought, setBought] = useState(false)
     let [wish, setWish] = useState(false)
+    const [rate, setRate] = useState(false)
     let goHome = useNavigate()
     
-
     useEffect(
         () => {getCourse()}, [submit]
     )
@@ -77,18 +76,25 @@ function CourseDetail(props){
         setCata(data)
     }
     let getBought = async () => {
-        let response = await fetch(`/course/$/boughtCourses`)
+        let response = await fetch(`/course/$${courseid}/boughtCourses`)
         let data = await response.json()
-        console.log(data)
-        data.map((name, index)=> 
-            (data[index].id === Number(courseid) ? (setBought(true)) :(false))
-        )
+        if(data === true){
+            setBought(true)
+            setSubmit(true)
+        }
+        if(data === false){
+            setBought(true)
+            setSubmit(false)
+        }
+        if (data === "f"){
+            setBought(false)
+            setSubmit(true)
+        }
     }
 
     let getWish = async () => {
         let response = await fetch(`/course/favCourses`)
         let data = await response.json()
-        console.log(data)
         data.course.map((name, index)=> 
             (data.course[index].id === Number(courseid) ? (setWish(true)) :(false))
         )
@@ -102,6 +108,7 @@ function CourseDetail(props){
             body: JSON.stringify(cred)
         })
         setSubmit(true)
+        props.setuser("")
     }
 
     const handleEnroll = async () => {
@@ -136,20 +143,16 @@ function CourseDetail(props){
                     <h3>{course.title}</h3>
                     <p>{course.details}</p>
                     <p className="fw-bold">Course By: <Link to={`/teacher-detail/${teacher.id}`}>{teacher.fullname}</Link></p>
-                    <p className="fw-bold">Category: <Link to="/category-details/1">{cata.title}</Link></p>
+                    <p className="fw-bold">Category: <Link to={`/category-details/${course.catagory}`}>{cata.title}</Link></p>
                     {/* <p className="fw-bold">Technologies used: Doo</p> */}
                     <p className="fw-bold">Total Enrolled Student: {total}</p>
                     <p className="fw-bold">Rating:
                     {course.rating}/5
                     <div>{!submit && bought && <select id="rationSelect" name="quantity" onChange={(e) => setRating(e.target.value)}>
                         <option value="1" >1</option>
-                        <option value="1" >1.5</option>
                         <option value="2" >2</option>
-                        <option value="2" >2.5</option>
                         <option value="3" >3</option>
-                        <option value="3" >3.5</option>
                         <option value="4" >4</option>
-                        <option value="4" >4.5</option>
                         <option value="5" >5</option>
                     </select>}
                     {!submit && bought && <button className=" btn btn-success" type="submit" onClick={handleSubmit}>Submit</button>}</div>

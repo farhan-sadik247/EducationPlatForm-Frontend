@@ -75,7 +75,6 @@ function Main() {
 
   const [user, setUser] = useState("")
   const [search, setSearch] = useState("")
-  const [type, getType] = useState(false)
 
   const getUser = async () => {
     try {
@@ -97,7 +96,7 @@ function Main() {
       <Switch>
         <Route path="/" element={ <Home /> } />
         <Route path="/about" element={ <About /> } />
-        <Route path="/details/:courseid" element={ <CourseDetail user = {user}/> } />
+        <Route path="/details/:courseid" element={ <CourseDetail user = {user} setuser ={setUser}/> } />
         <Route path="/test" element={ <Test /> } />
         <Route path="/searchbox" element={ <SearchBox /> } />
         <Route path="/profile-picture" element={ <ProfilePicture /> } />
@@ -113,7 +112,7 @@ function Main() {
         <Route path="/favourite-courses" element={ <FavouriteCourses /> } />
         <Route path="/recommended-courses" element={ <RecommendedCourses /> } />
         <Route path="/profile-update" element={ <ProfileUpdate /> } />
-        <Route path="/change-password" element={ <ChangePassword /> } />
+        <Route path="/change-password" element={ <ChangePassword setuser = {setUser} user = {user}/> } />
         <Route path="/user-details" element={ <StudentDetails /> } />
         <Route path="/user-assignment/:student_id" element={ <UserAssignment /> } />
         <Route path="/std-course-chapters/:chapter_id" element={ <StdCourseChapters /> } />

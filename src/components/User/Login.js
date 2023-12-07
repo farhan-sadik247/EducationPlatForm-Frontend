@@ -10,8 +10,6 @@ function Login(props){
     const [warning, setWarning] = useState(false)
     const goHome = useNavigate()
 
-    console.log(user)
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         const credential = { username, password };
@@ -79,7 +77,7 @@ function Login(props){
                                 <label className="from-check-label" htmlFor="exampleCheck1">Remember Me</label>
                             </div> */}
                             <button className="w-100 btn btn-lg btn-primary" type="submit" onClick={handleSubmit}>Sign in</button>
-                            {warning && <div className="text-danger">Unknown Cred {password}</div>}
+                            {warning && <div className="text-danger">Unknown Cred</div>}
                             <p className="mt-4"><Link to="/user-forgot-password">Forgot Password?</Link></p>
                             <p>Don't have account?<Link to="/user-register">Create Account</Link></p>
                         </form>

@@ -15,16 +15,16 @@ function ProfilePicture(props) {
                 data-bs-toggle="dropdown"
                 
             >
-                {props.user.pic === "" | <img
+                {props.user.pic !== null && <img
                     id="userProfileImage"
                     src={`http://127.0.0.1:8000/${props.user.pic}`}  
                     alt="User Profile"
                     className="rounded-circle border-0 object-fit-cover"
                     style={{ width: '40px', height: '40px' }}
                 />}
-                {props.user.pic === "" && <img
+                {props.user.pic === null && <img
                     id="userProfileImage"
-                    src="/logo001.png"  
+                    src={"logo001.png"} 
                     alt="User Profile"
                     className="rounded-circle border-0 object-fit-cover"
                     style={{ width: '40px', height: '40px' }}
@@ -34,16 +34,16 @@ function ProfilePicture(props) {
                 <ul className="dropdown-menu">
                 <li className="d-flex align-items-center">
                     <div className="d-flex align-items-center px-1">
-                        {props.user.pic === "" | <img
+                        {props.user.pic !== null && <img
                             id="userProfileImageDropdown"
                             src={`http://127.0.0.1:8000/${props.user.pic}`}
                             alt="User Profile"
                             className="rounded-circle border-0 object-fit-cover mr-2"
                             style={{ width: '40px', height: '40px' }}
                         />}
-                        {props.user.pic === "" && <img
+                        {props.user.pic === null && <img
                             id="userProfileImageDropdown"
-                            src=""
+                            src="logo001.png"
                             alt="User Profile"
                             className="rounded-circle border-0 object-fit-cover mr-2"
                             style={{ width: '40px', height: '40px' }}
