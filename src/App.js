@@ -4,6 +4,8 @@ import './assets/css/fontawesome.min.css';
 import './assets/css/brands.min.css';
 import './assets/css/regular.min.css';
 import './assets/css/solid.min.css';
+import useRazorpay from "react-razorpay";
+
 
 function App() {
   return (

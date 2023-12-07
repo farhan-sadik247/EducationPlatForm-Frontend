@@ -60,7 +60,7 @@ import AfterSearchPage from "./AfterSearchPage";
 import SearchPageSidebar from "./SearchPageSidebar";
 import AddToCart from "./AddToCart";
 
-
+import { PayApp } from "./Payment/PayApp";
 
 
 
@@ -154,12 +154,13 @@ function Main() {
         <Route path="/add-to-cart" element={ <AddToCart/> } />
         {/* <Route path="/category/:category_slug" element={ <CategoryCourses /> } /> */}
         
-      
+        <Route path="/payment-gateway" element={ <PayApp/> } />
 
       </Switch>
       <Footer />
     </div>
   );
 }
+
 
 export default Main;
