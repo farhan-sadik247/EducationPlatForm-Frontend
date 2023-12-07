@@ -71,9 +71,11 @@ function AddToCart(){
     <div className="cart-total">
     <strong className="float-start">Total: $</strong>
      
+    <Link to="/payment-gateway">
     <button className='btn btn-success'>
        Proceed to Payment
     </button>
+    </Link>
     </div>
     </div>
     </div>
