@@ -4,19 +4,17 @@ import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 
 
-function TeacherProfileUpdate(){
+function TeacherProfileUpdate(props){
 
     const [username, setUsername] = useState("")
     const [phone, setphone] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassw] = useState("")
     const [dob, setdob] = useState("")
-    // const [skills, setSkills] = useState("")
     const [gender, setgender] = useState("")
     const [pic, setpic] = useState("")
     const [warning, usercheck] = useState(false)
     const [address, setadd] = useState("")
-    const [user, setUser] = useState([])
     
     const navigate = useNavigate()
 
@@ -25,10 +23,10 @@ function TeacherProfileUpdate(){
 
         fetch("/auth/update", {
             method: "POST",
-            headers: {"Content-Type": "multipart/form-data", "X-CSRFtoken": Cookies.get("csrftoken")},
+            headers: {"Content-Type": "application/json", "X-CSRFtoken": Cookies.get("csrftoken")},
             body: JSON.stringify(credential)
         })
-        handleImage()
+        .then(pic && handleImage())
         .then(navigate("/"))
     }
 
@@ -53,19 +51,6 @@ function TeacherProfileUpdate(){
         [username]
     )
 
-    useEffect (
-        () => {
-            getUser()
-        },
-        []
-    )
-    
-    const getUser= async () => {
-        let res = await fetch("auth/getuser")
-        let data = await res.json()
-        setUser(data)
-    }
-
     return(
         <div className="container mt-4">
             <div className="row">
@@ -81,7 +66,7 @@ function TeacherProfileUpdate(){
                         <div className="mb-3 row">
                             <label htmlFor="floatingUsername" className="col-sm-2 col-form-label">Username</label>
                             <div className="col-sm-10">
-                            <input type="text" className="form-control" id="floatingUsername"  placeholder = {user.username} value = {username} onChange={(e) => setUsername(e.target.value)}/>
+                            <input type="text" className="form-control" id="floatingUsername"  placeholder = {props.user.username} value = {username} onChange={(e) => setUsername(e.target.value)}/>
                             {warning && <div className="text-danger">Username already used</div>}
                             </div>
                         </div>
@@ -89,19 +74,19 @@ function TeacherProfileUpdate(){
                         <div className="mb-3 row">
                             <label htmlFor="staticEmail" className="col-sm-2 col-form-label">Email</label>
                             <div className="col-sm-10">
-                            {user.email === "" ? (<input type="text" className="form-control" id="staticEmail" placeholder="email@example.com" value = {email} onChange={(e) => setEmail(e.target.value)}/>)
+                            {props.user.email === "" ? (<input type="text" className="form-control" id="staticEmail" placeholder="email@example.com" value = {email} onChange={(e) => setEmail(e.target.value)}/>)
                             :
-                            (<input type="text" className="form-control" id="staticEmail" placeholder={user.email} value = {email} onChange={(e) => setEmail(e.target.value)}/>)}
+                            (<input type="text" className="form-control" id="staticEmail" placeholder={props.user.email} value = {email} onChange={(e) => setEmail(e.target.value)}/>)}
                             </div>
                         </div>
 
                         <div className="mb-3 row">
                             <label htmlFor="floatingNumber" className="col-sm-2 col-form-label">Phone Number</label>
                             <div className="col-sm-10">
-                            {user.phone === "" ?
-                                (<input type="text" className="form-control" id="floatingNumber" placeholder="+8801xxxxxxxxx" value = {user.phone} onChange={(e) => setphone(e.target.value)}/>)
+                            {props.user.phone === "" ?
+                                (<input type="text" className="form-control" id="floatingNumber" placeholder="+8801xxxxxxxxx" value = {props.user.phone} onChange={(e) => setphone(e.target.value)}/>)
                                 :
-                                (<input type="text" className="form-control" id="floatingNumber" placeholder={user.phone} value = {user.phone} onChange={(e) => setphone(e.target.value)}/>)}
+                                (<input type="text" className="form-control" id="floatingNumber" placeholder={props.user.phone} value = {props.user.phone} onChange={(e) => setphone(e.target.value)}/>)}
                             </div>
                         </div>
 
@@ -114,7 +99,7 @@ function TeacherProfileUpdate(){
 
                         <div className="mb-3">
                             <label htmlFor="dobInput" className="form-label">Date of Birth</label>
-                            <input type="date" className="form-control" id="dobInput" value = {user.dob} onChange={(e) => setdob(e.target.value)}/>
+                            <input type="date" className="form-control" id="dobInput" value = {props.user.dob} onChange={(e) => setdob(e.target.value)}/>
                         </div>
                         
                         <div className="mb-3">
@@ -124,7 +109,7 @@ function TeacherProfileUpdate(){
 
                         <div className="mb-3">
                         <label htmlFor="exampleFormControlTextarea1" className="form-label">Address</label>
-                        <textarea className="form-control" id="exampleFormControlTextarea1" rows="3" value = {user.address} onChange={(e) => setadd(e.target.value)}></textarea>
+                        <textarea className="form-control" id="exampleFormControlTextarea1" rows="3" value = {props.user.address} onChange={(e) => setadd(e.target.value)}></textarea>
                         </div>
 
                         <div className="mb-3">
@@ -138,7 +123,7 @@ function TeacherProfileUpdate(){
                         <div className="mb-3 row">
                             <label htmlFor="floatingNumber" className="col-sm-2 col-form-label" > <i className="fa-solid fa-percent"></i>Discount</label>
                             <div className="col-sm-10">
-                                <input type="text" className="form-control" id="floatingNumber" placeholder="10%" value = {user.phone} onChange={(e) => setphone(e.target.value)}/>
+                                <input type="text" className="form-control" id="floatingNumber" placeholder="10%" value = {props.user.phone} onChange={(e) => setphone(e.target.value)}/>
 
                             </div>
                         </div>
