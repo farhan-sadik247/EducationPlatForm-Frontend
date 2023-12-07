@@ -113,7 +113,7 @@ function Main() {
         <Route path="/recommended-courses" element={ <RecommendedCourses /> } />
         <Route path="/profile-update" element={ <ProfileUpdate /> } />
         <Route path="/change-password" element={ <ChangePassword setuser = {setUser} user = {user}/> } />
-        <Route path="/user-details" element={ <StudentDetails /> } />
+        <Route path="/user-details/:student_id" element={ <StudentDetails /> } />
         <Route path="/user-assignment/:student_id" element={ <UserAssignment /> } />
         <Route path="/std-course-chapters/:chapter_id" element={ <StdCourseChapters /> } />
         <Route path="/user-forgot-password" element={ <UserForgotPassword /> } />

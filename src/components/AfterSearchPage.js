@@ -6,6 +6,8 @@ function AfterSearchPage(props){
 
     const [course, setCourse] = useState([])
 
+    console.log(course)
+
     return(
         <div className="container mt-4">
             <div className="row">
@@ -37,7 +39,8 @@ function AfterSearchPage(props){
                         {course.map((name, index) =>
                             (<tr>
                             <td>
-                                <img src="/logo001.png" className="rounded border-0 object-fit-cover mr-2" style={{ width: '200px', height: '200px' }} alt="Course Image" />
+                                {course[index].pic !== null && <img src={`http://127.0.0.1:8000/${course[index].pic}`} className="rounded border-0 object-fit-cover mr-2" style={{ width: '200px', height: '200px' }} alt="Course Image" />}
+                                {course[index].pic === null && <img src= "/logo001.png" className="rounded border-0 object-fit-cover mr-2" style={{ width: '200px', height: '200px' }} alt="Course Image" />}
                             </td>
                             <td>
                                 <div className="course-details">

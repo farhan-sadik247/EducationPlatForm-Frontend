@@ -18,6 +18,7 @@ function CourseDetail(props){
     let [courses, setCourses] = useState([])
     let [bought, setBought] = useState(false)
     let [wish, setWish] = useState(false)
+    let [cart, setCart] = useState(false)
     const [rate, setRate] = useState(false)
     let goHome = useNavigate()
     
@@ -100,6 +101,14 @@ function CourseDetail(props){
         )
     }
 
+    let getCart= async () => {
+        let response = await fetch(`/course/cartCourse`)
+        let data = await response.json()
+        data.course.map((name, index)=> 
+            (data.course[index].id === Number(courseid) ? (setCart(true)) :(false))
+        )
+    }
+    
     const handleSubmit = async () => {
         let cred = { rating}
         fetch(`/course/${courseid}/getcourse`, {
@@ -131,6 +140,17 @@ function CourseDetail(props){
             body: JSON.stringify(cred)
         })
         goHome("/favourite-courses")
+    }
+
+    const handleCart = async () => {
+        let cred = {courseid}
+        console.log(cred)
+        fetch(`/course/addcart`, {
+            method : "POST",
+            headers: {"Content-Type" : "application/json", "X-CSRFtoken": Cookies.get("csrftoken")},
+            body: JSON.stringify(cred)
+        })
+        goHome("/add-to-cart")
     }
 
     return (
@@ -169,6 +189,7 @@ function CourseDetail(props){
                     {(props.user === "") && <p><Link className=" btn btn-success" type="submit" to = "/user-login">Enroll Now</Link>
                     <Link className="ms-2 btn btn-outline-info border border-primary" to = "/user-login"><i class="fa-solid fa-heart btn-outline-danger"></i>  Add to Wishlist</Link>
                     </p>}
+                    {!cart && <p><button className="ms-2 btn btn-outline-info border border-primary" onClick={handleCart}>  Add to Cart</button></p>}
 
                 </div>
             </div>  
