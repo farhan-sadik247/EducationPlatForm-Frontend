@@ -6,6 +6,7 @@ const UserForgotPassword = () => {
   const [question, setQuestion] = useState(null);
   const [answer, setAnswer] = useState('');
 //   const history = useHistory();
+const [username, setUsername] = useState("")
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -18,6 +19,10 @@ const UserForgotPassword = () => {
     <div className="container mt-4">
       <h1>Forgot Password</h1>
       <form onSubmit={handleSubmit}>
+      <div className="form-floating">
+      <input type="text" className="form-control mb-2" id="floatingUsername" placeholder="Username" value = {username} onChange={(e) => setUsername(e.target.value)}/>
+      <label htmlFor="floatingUsername">Username</label>
+      </div>
         <label htmlFor="question">Choose a question</label>
         <select name="question" id="question" onChange={(e) => setQuestion(e.target.value)}>
         <option value="">-- Select a Question --</option>
@@ -32,7 +37,7 @@ const UserForgotPassword = () => {
             <input type="text" name="answer" id="answer" value={answer} onChange={(e) => setAnswer(e.target.value)} />
           </div>
         )}
-        <Link to="/user-forgot-change-password/1"><button type="submit">Submit</button></Link>
+        <Link to="/user-forgot-change-password/1"><button className='mt-2' type="submit">Submit</button></Link>
       </form>
     </div>
   );

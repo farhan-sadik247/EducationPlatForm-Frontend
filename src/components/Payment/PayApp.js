@@ -112,3 +112,4 @@ export const PayApp = ()=>{
         </div>
     )
 }
+export default PayApp;
