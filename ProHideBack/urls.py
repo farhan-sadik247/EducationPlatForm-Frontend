@@ -23,5 +23,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("auth/", include("authentication.urls")),
     path("course/", include("course.urls")),
-
+    path("razorpay/", include("razorpaybackend.api.urls"))
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

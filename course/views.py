@@ -4,7 +4,7 @@ from rest_framework.decorators import api_view
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from .serializers import CourseSerializer, ContentSerializer, CatagorySerializer
+from .serializers import CourseSerializer, ContentSerializer, CatagorySerializer, BoughtSerializer
 from django.http import HttpResponse, HttpRequest, JsonResponse
 from .models import *
 from django.views.decorators.csrf import csrf_exempt
@@ -149,6 +149,10 @@ def getCourse(request, course_id):
             course.save()
         course.no_rating += 1
         course.save()
+        user = request.user
+        bought = Bought_item.objects.get(student = user, course = course)
+        bought.rating = True
+        bought.save()
     return Response(course.rating)
 
 
@@ -218,11 +222,46 @@ def totalStd(request, course_id):
 
 @api_view(["GET"])
 def boughtCourses(request, student_id):
+    if student_id[0] == "$":
+        user = request.user
+        course_id = int(student_id[1:])
+        bought = Bought_item.objects.filter(student=user, course= course_id)
+        if len(bought) > 0:
+            return Response(bought[0].rating)
+        else:
+            return Response("f")
+    if request.method == "GET":
+        course_list = []
+        teacher_list = []
+        rating_list = []
+        user = request.user
+        bought_items = Bought_item.objects.filter(student = user)
+        for bought_item in bought_items:
+            course = bought_item.course
+            course_list.append(course.id)
+            rating_list.append(bought_item.rating)
+        for i in range(len(course_list)):
+            course = Course.objects.get(id = course_list[i])
+            teacher = course.teacher
+            course = CourseSerializer(course, many = False)
+            teacher = UserinfoSerializer(teacher, many = False)
+            course_list[i] = course.data
+            teacher_list.append(teacher.data)
+        data = {
+            "teacher": teacher_list,
+            "course": course_list,
+            "rating": rating_list
+        }
+        return Response(data)
+        
+        
+@api_view(["GET"])
+def favCourses(request):
     if request.method == "GET":
         course_list = []
         teacher_list = []
         user = request.user
-        bought_items = Bought_item.objects.filter(student = user)
+        bought_items = Fav_item.objects.filter(student = user)
         for bought_item in bought_items:
             course = bought_item.course
             course_list.append(course.id)
@@ -238,14 +277,14 @@ def boughtCourses(request, student_id):
             "course": course_list
         }
         return Response(data)
-        
+    
 @api_view(["GET"])
-def favCourses(request):
+def cartCourses(request):
     if request.method == "GET":
         course_list = []
         teacher_list = []
         user = request.user
-        bought_items = Fav_item.objects.filter(student = user)
+        bought_items = Cart_item.objects.filter(student = user)
         for bought_item in bought_items:
             course = bought_item.course
             course_list.append(course.id)
@@ -280,6 +319,16 @@ def removeBought(request):
         course_id = request.data["index"]
         course = Course.objects.get(id = course_id)         
         bought = Bought_item.objects.get(course = course, student= user) 
+        bought.delete()
+        return Response("")
+    
+@api_view(["POST"])
+def removeCart(request):
+    if request.method == "POST":
+        user = request.user
+        course_id = request.data["index"]
+        course = Course.objects.get(id = course_id)         
+        bought = Cart_item.objects.get(course = course, student= user) 
         bought.delete()
         return Response("")
 
@@ -401,9 +450,17 @@ def addFav(request):
         course_id = request.data["courseid"]
         course = Course.objects.get(id = course_id)
         Fav_item.objects.create(student = user, course=course)
-        
-    
     return Response(" ")
+
+@api_view(["POST"])
+def addCart(request):
+    if request.method == "POST":
+        user = request.user
+        course_id = request.data["courseid"]
+        course = Course.objects.get(id = course_id)
+        Cart_item.objects.create(student = user, course=course)
+    return Response(" ")
+
 
 @api_view(["GET"])
 def contentTeacher(request, content_id):

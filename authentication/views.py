@@ -41,7 +41,6 @@ def signin(request):
         if userinfo is not None:
             login(request, userinfo)
             print(request.user.username)
-    print("swidojfjhsdiloj")
     return Response()
 
 
@@ -178,11 +177,16 @@ def getPic(request):
 @api_view(["POST"])
 def changePass(request):
     if request.method == "POST":
-        pass1 = request.data["pass1"]
-        username = request.user.pk
-        user = User.objects.get(pk = username)
-        user.set_password(pass1)
-        user.save()
+        password = request.data["password"]
+        print(request.user.check_password(password))
+        if request.user.check_password(password) == True:
+            pass1 = request.data["pass1"]
+            username = request.user.pk
+            user = User.objects.get(pk = username)
+            user.set_password(pass1)
+            user.save()
+            return Response("1")
+    return Response([])
 
 @api_view(["GET"])
 def getUser(request):
