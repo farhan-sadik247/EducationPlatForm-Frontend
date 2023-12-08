@@ -41,7 +41,6 @@ def signin(request):
         if userinfo is not None:
             login(request, userinfo)
             print(request.user.username)
-    print("swidojfjhsdiloj")
     return Response()
 
 
@@ -70,9 +69,11 @@ def signup(request):
         password = request.data["password"]
         password2 = request.data["cpass"]
         interest = request.data["skills"]
+        ques = request.data["question"]
+        ans = request.data["answer"]
 
         
-        userinfo = Userinfo.objects.create_user(username, email, password= password, fullname= fullname, it = interest, is_teacher= False)
+        userinfo = Userinfo.objects.create_user(username, email, password= password, fullname= fullname, it = interest, is_teacher= False, ques = ques, ans = ans)
 
         userinfo.save()
 
@@ -149,19 +150,15 @@ def edit_profile(request):
         
         u = Userinfo.objects.get(id=user.id)
         if request.data["username"] != "":
-            u.username = request.data["username"],
+            u.username = request.data["username"]
         if request.data["email"] != "":
-            u.email = request.data["email"],
-        if request.data["skills"] != "":
-            u.skills = request.data["skills"],
+            u.email = request.data["email"]
         if request.data["phone"] != "":
-            u.phone = request.data["phone"],
+            u.phone = request.data["phone"]
         if request.data["dob"] != "":
             u.dob = request.data["dob"],
-        # if request.data["pic"] != "":
-        # u.pic = request.data["pic"],
         if request.data["address"] != "":
-            u.address = request.data["address"],
+            u.address = request.data["address"]
         if request.data["gender"] != "":
             u.gender = request.data["gender"]
         u.save()
@@ -180,11 +177,16 @@ def getPic(request):
 @api_view(["POST"])
 def changePass(request):
     if request.method == "POST":
-        pass1 = request.data["pass1"]
-        username = request.user.pk
-        user = User.objects.get(pk = username)
-        user.set_password(pass1)
-        user.save()
+        password = request.data["password"]
+        print(request.user.check_password(password))
+        if request.user.check_password(password) == True:
+            pass1 = request.data["pass1"]
+            username = request.user.pk
+            user = User.objects.get(pk = username)
+            user.set_password(pass1)
+            user.save()
+            return Response("1")
+    return Response([])
 
 @api_view(["GET"])
 def getUser(request):

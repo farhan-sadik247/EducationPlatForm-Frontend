@@ -46,6 +46,13 @@ class Bought_item(models.Model):
 
     def __str__(self) -> str:
         return f'Course: {self.course.title} for {self.student.username}'
+    
+class Cart_item(models.Model):
+    student = models.ForeignKey(Userinfo, on_delete = models.CASCADE)
+    course = models.ForeignKey(Course, on_delete = models.CASCADE)
+
+    def __str__(self) -> str:
+        return f'Course: {self.course.title} for {self.student.username}'
 
 
 class Content(models.Model):
