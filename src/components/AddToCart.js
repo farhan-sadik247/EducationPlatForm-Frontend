@@ -7,7 +7,7 @@ function AddToCart(){
 
   let [courses, setCourses] = useState({"course":[], "teacher":[]})
   let [price, setPrice] = useState(0)
-
+    let [url, setLink] = useState(0)
 
     useEffect(
         () => {getCourses()}, []
@@ -15,9 +15,15 @@ function AddToCart(){
     let getPrice = (data) => {
         let total = 0
         data.course.map((name, index) => (
-            total = total + Number(data.course[index].price)
+            total = total + ((data.course[index].price*(100-Number(data.course[index].discount))/100))
         ))
         setPrice(total)
+        let link = ""
+        data.course.map((name, index) => {
+            link = link.concat("$")
+            link = link.concat(data.course[index].id)
+    })
+        setLink(link)
     }
 
     let getCourses = async () => {
@@ -81,7 +87,8 @@ function AddToCart(){
           </td>
           <td>
               <div className="price-block">
-              <span>${courses.course[index].price}</span>
+              {Number(courses.course[index].discount) === 0 && <span>${courses.course[index].price}</span>}
+              {Number(courses.course[index].discount) !== 0 && <><span className="text-decoration-line-through">${courses.course[index].price}</span><p>${(courses.course[index].price*(100-Number(courses.course[index].discount))/100)}</p></>}
               </div>
           </td>
           <td>  
@@ -126,7 +133,7 @@ function AddToCart(){
     <div className="cart-total">
     <strong className="float-start">Total: ${price}</strong>
      
-    <Link to={`/payment-gateway/${price}`}>
+    <Link to={`/payment-gateway/${price}${url}`}>
     <button className='btn btn-success'>
        Proceed to Payment
     </button>

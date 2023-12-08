@@ -128,7 +128,7 @@ function Main() {
         <Route path="/teacher-change-password" element={ <TeacherChangePassword /> } />
         <Route path="/teacher-profile-update" element={ <TeacherProfileUpdate user = {user}/> } />
         <Route path="/add-courses" element={ <AddCourse /> } />
-        <Route path="/edit-courses" element={ <EditCourse /> } />
+        <Route path="/edit-courses/:course_id" element={ <EditCourse /> } />
         <Route path="/course-chapters/:chapter_id" element={ <CourseChapters /> } />
         <Route path="/edit-chapters/:chapter_id" element={ <EditChapter /> } />
         <Route path="/course-category" element={ <CourseCategory /> } />
@@ -153,7 +153,7 @@ function Main() {
         <Route path="/add-to-cart" element={ <AddToCart/> } />
         {/* <Route path="/category/:category_slug" element={ <CategoryCourses /> } /> */}
         
-        <Route path="/payment-gateway/:price" element={ <PayApp/> } />
+        <Route path="/payment-gateway/:param" element={ <PayApp/> } />
 
       </Switch>
       <Footer />

@@ -153,6 +153,7 @@ function CourseDetail(props){
         })
         goHome("/add-to-cart")
     }
+    console.log(course)
     return (
         <div className="container mt-3">
             <div className="row">

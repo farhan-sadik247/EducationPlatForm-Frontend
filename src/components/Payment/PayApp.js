@@ -1,21 +1,33 @@
 import axios from "axios";
-import { useState } from "react";
+import Cookies from "js-cookie";
 // import useRazorpay, { RazorpayOptions } from "react-razorpay";
 import useRazorpay from "react-razorpay";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 
 function PayApp(){
 
-    const [amount, setAmount] = useState(1000)
     const [Razorpay] = useRazorpay();
-    const {price} = useParams()
+    const {param} = useParams()
+    const array = param.split("$")
+    let price = array[0]
+    let goHome = useNavigate()
+
+    let handleEnroll = async  () =>{
+      let cred = array.slice(1,)
+      fetch(`/course/enroll`, {
+        method : "POST",
+        headers: {"Content-Type" : "application/json", "X-CSRFtoken": Cookies.get("csrftoken")},
+        body: JSON.stringify(cred)
+    })
+      goHome("/")
+    }
 
     const complete_payment = (payment_id, order_id, signature)=>{
       axios.post('http://127.0.0.1:8000/razorpay/order/complete/', {
             "payment_id": payment_id,
             "order_id": order_id,
             "signature":signature,
-            "amount": amount,
+            "amount": price,
           })
           .then((response)=>{
             console.log(response.data);
@@ -91,7 +103,7 @@ function PayApp(){
                 </div>
                 <div className="d-grid mt-3">
                     <button type="button" className="btn btn-light fw-semibold py-3" onClick={razorpayPayment}>Enroll now</button>
-                    <button type="button" className="btn btn-light fw-semibold py-3 mt-2" onClick={razorpayPayment}>Enroll now</button>
+                    <button type="button" className="btn btn-light fw-semibold py-3 mt-2" onClick={handleEnroll}>Enroll now</button>
                 </div>
             </div>
         </div>

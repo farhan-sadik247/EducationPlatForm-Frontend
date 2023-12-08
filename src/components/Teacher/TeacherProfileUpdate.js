@@ -120,13 +120,6 @@ function TeacherProfileUpdate(props){
                         <option value="Others">Others</option>
                         </select>
                         </div>
-                        <div className="mb-3 row">
-                            <label htmlFor="floatingNumber" className="col-sm-2 col-form-label" > <i className="fa-solid fa-percent"></i>Discount</label>
-                            <div className="col-sm-10">
-                                <input type="text" className="form-control" id="floatingNumber" placeholder="10%" value = {props.user.phone} onChange={(e) => setphone(e.target.value)}/>
-
-                            </div>
-                        </div>
                         <hr/>
                         {!warning && <button className="w-100 btn btn-lg btn-primary" type="submit">Update</button>}
                         {warning && <button className="w-100 btn btn-lg btn-primary" disabled>update</button>}
