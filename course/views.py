@@ -32,6 +32,24 @@ def addCourse(request):
     return Response("")
 
 @api_view(["POST"])
+def editCourse(request, course_id):
+    if request.method == "POST":
+        course = Course.objects.get(id = course_id)
+        if request.data["title"] != "":
+            course.title = request.data["title"]
+        if request.data["description"] != "":
+            course.details = request.data["description"]
+        if request.data["subscriptionAmount"] != "":
+            course.price = request.data["subscriptionAmount"]
+        if request.data["discount"] != "":
+            course.discount = request.data["discount"]
+            print(request.data["discount"])
+
+        course.save()
+
+    return Response("")
+
+@api_view(["POST"])
 def addContent(request):
     if request.method == "POST":
         course_id = request.data["course_id"]
@@ -434,12 +452,27 @@ def getStd(request):
     
 @api_view(["POST"])
 def enRoll(request):
+    if type(request.data) == list:
+        user = request.user
+        for i in request.data:
+            course = Course.objects.get(id = int(i))
+            Bought_item.objects.create(student = user, course = course)
+            cart = Cart_item.objects.get(Q(student = user) & Q(course = course))
+            cart.delete()
+            fav = Fav_item.objects.get(Q(student = user) & Q(course = course))
+            fav.delete()
+        return Response(" ")
+        
     if request.method == "POST":
         user = request.user
         course_id = request.data["courseid"]
         course = Course.objects.get(id = course_id)
         Bought_item.objects.create(student = user, course=course)
-        
+        cart = Cart_item.objects.get(Q(student = user) & Q(course = course))
+        cart.delete()
+        fav = Fav_item.objects.get(Q(student = user) & Q(course = course))
+        fav.delete()
+
     
     return Response(" ")
 
