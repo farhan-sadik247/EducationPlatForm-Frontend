@@ -42,10 +42,10 @@ def addContent(request):
             
         if request.data["type"] == "chapter":
             remarks = request.data["remark"]
-            courseinfo = Content.objects.create(title = title, description= description, remarks = remarks, link = link, course=course)
+            courseinfo = Content.objects.create(title = title, description= description, remarks = remarks, link = link, course=course, type = request.data["type"])
         if request.data["type"] == "assignment":
             sub_link = request.data["sub_link"]
-            courseinfo = Content.objects.create(title = title, description= description, sub_link=sub_link, link = link, course=course)
+            courseinfo = Content.objects.create(title = title, description= description, sub_link=sub_link, link = link, course=course, type = request.data["type"])
 
         courseinfo.save()
     return Response("")
