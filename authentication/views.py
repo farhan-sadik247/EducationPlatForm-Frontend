@@ -84,6 +84,16 @@ def signup(request):
 def allTeacher(request):
     if request.method == "GET":
         teacher = Userinfo.objects.filter(is_teacher=True).order_by('-rating').all()
+        for i in teacher:
+            total = 0
+            course = Course.objects.filter(teacher = i)
+            if len(course) == 0:
+                i.rating = 0
+            else:
+                for j in course:
+                    total += j.rating
+                i.rating = (total/len(course))
+        # teacher = Userinfo.objects.filter(is_teacher=True).order_by('-rating').all()
         serializer = UserinfoSerializer(teacher, many = True)
         return Response(serializer.data)
     
@@ -180,7 +190,6 @@ def changePass(request, cp):
         if cp[0] == "$" :
             password = request.data["password"]
             if request.user.check_password(password) == True:
-                print(1)
                 pass1 = request.data["pass1"]
                 username = request.user.pk
                 user = User.objects.get(pk = username)
