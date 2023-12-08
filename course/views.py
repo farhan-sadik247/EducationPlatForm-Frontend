@@ -472,4 +472,13 @@ def contentTeacher(request, content_id):
         return Response(seralizer.data)
     return Response(" ")
 
+@api_view(["POST"])
+def getpic(request, id):
+    if request.method == "POST":
+        if id == "$":
+            course = Course.objects.latest("id")
+            course.pic = request.FILES["file"]
+            course.save()
+    return Response(" ")
+
 
