@@ -117,7 +117,7 @@ function Main() {
         <Route path="/user-assignment/:student_id" element={ <UserAssignment /> } />
         <Route path="/std-course-chapters/:chapter_id" element={ <StdCourseChapters /> } />
         <Route path="/user-forgot-password" element={ <UserForgotPassword /> } />
-        <Route path="/user-forgot-change-password" element={ <UserForgotChangePassword /> } />
+        <Route path="/user-forgot-change-password/:username" element={ <UserForgotChangePassword /> } />
         
 
         {/* Teacher */}

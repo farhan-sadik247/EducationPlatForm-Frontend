@@ -15,7 +15,7 @@ function ChangePassword(props){
     
     const handleSubmit = async () => {
         const credential = {password, pass1, pass2}
-        fetch("/auth/change_pass", {
+        fetch("/auth/change_pass/$", {
             method: "POST",
             headers: {"Content-Type": "application/json", 'X-CSRFToken': Cookies.get("csrftoken") },
             body: JSON.stringify(credential)})

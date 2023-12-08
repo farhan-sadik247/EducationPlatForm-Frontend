@@ -60,7 +60,8 @@ function TeacherDetail() {
         <div className="container mt-3">
             <div className="row">
                 <div className="col-4">
-                    <img src="/logo001.png" className="img-thumbnail" alt="Teacher Image" />
+                    {teacher.pic === null && <img src="/logo001.png" className="img-thumbnail" alt="Teacher Image" />}
+                    {teacher.pic !== null && <img src={`http://127.0.0.1:8000/${teacher.pic}`} className="img-thumbnail" alt="Teacher Image" />}
                 </div>
                 <div className="col-8">
                     <h3>{teacher.fullname}</h3>

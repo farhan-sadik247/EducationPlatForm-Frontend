@@ -25,7 +25,7 @@ function PopularTeachers() {
     {teacher.map((name, index) => 
         (<div className="col-md-3 mb-4" key = {index}>
         <div className=" card" style={{ color: 'blue', fontSize: '18px' }}>
-        <Link to={`/teacher-detail/${teacher[index].id}`}>{teacher[index].pic === null && <img src="teacher.png" className="card-img-top" alt="..." />}{teacher[index].pic === null && <img src={`http://127.0.0.1:8000/${teacher[index].pic}`} className="card-img-top" alt="..." />}</Link>
+        <Link to={`/teacher-detail/${teacher[index].id}`}>{teacher[index].pic === null && <img src="teacher.png" className="card-img-top" alt="..." />}{teacher[index].pic !== null && <img src={`http://127.0.0.1:8000/${teacher[index].pic}`} className="card-img-top" alt="..." />}</Link>
           <div className="card-body">
             <h5 className="card-title"><Link to={`/teacher-detail/${teacher[index].id}`}>{teacher[index].fullname}</Link></h5>
             {/* <a href="#" className="btn btn-primary">Details</a> */}
