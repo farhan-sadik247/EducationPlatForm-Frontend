@@ -76,7 +76,7 @@ function Login(props){
                                 <input type="checkbox" className="from-check-input" id="exampleCheck1" />
                                 <label className="from-check-label" htmlFor="exampleCheck1">Remember Me</label>
                             </div> */}
-                            <button className="w-100 btn btn-lg btn-primary" type="submit" onClick={handleSubmit}>Sign in</button>
+                            <button className="w-100 btn btn-lg btn-primary mt-3" type="submit" onClick={handleSubmit}>Sign in</button>
                             {warning && <div className="text-danger">Unknown Cred</div>}
                             <p className="mt-4"><Link to="/user-forgot-password">Forgot Password?</Link></p>
                             <p>Don't have account?<Link to="/user-register">Create Account</Link></p>
