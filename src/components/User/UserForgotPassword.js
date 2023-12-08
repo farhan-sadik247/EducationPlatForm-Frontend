@@ -13,9 +13,8 @@ const UserForgotPassword = () => {
         e.preventDefault()
         let res = await fetch(`/auth/change_pass/${username}$${question}$${answer}`)
         let data = await res.json()
-        console.log(data)
         if(data === "f")setWarning(true)
-        else(navigate("/user-forgot-change-password"))
+        else(navigate(`/user-forgot-change-password/${username}`))
     };
 
     return (

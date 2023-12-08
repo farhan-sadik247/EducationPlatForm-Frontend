@@ -1,19 +1,19 @@
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 
 
 function UserForgotChangePassword(){
 
+    const {username} = useParams()
     const [pass1, setpass1] = useState("")
     const [pass2, setpass2] = useState("")
     const goHome = useNavigate()
     const [warning, passcheck] = useState(false)
 
-
     const handleSubmit = async () => {
-        const credential = { pass1, pass2}
-        fetch("/auth/change_pass/", {
+        const credential = { username, pass1, pass2}
+        fetch(`/auth/change_pass/${username}`, {
             method: "POST",
             headers: {"Content-Type": "application/json", 'X-CSRFToken': Cookies.get("csrftoken") },
             body: JSON.stringify(credential)})
