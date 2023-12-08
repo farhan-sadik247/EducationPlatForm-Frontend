@@ -3,6 +3,7 @@ import React,{ Link } from "react-router-dom";
 import './AddToCart.css';
 import Cookies from "js-cookie";
 
+
 function AddToCart(){
 
   let [courses, setCourses] = useState({"course":[], "teacher":[]})
@@ -36,8 +37,7 @@ function AddToCart(){
 
     const handleDelete = async (index) =>{
         let credential = {index}
-        console.log(credential)
-        fetch(`/course/removefav`, {
+        fetch(`/course/removecart`, {
             method: "POST",
             headers: {"Content-Type": "application/json", "X-CSRFtoken": Cookies.get("csrftoken")},
             body: JSON.stringify(credential)
@@ -93,7 +93,7 @@ function AddToCart(){
           </td>
           <td>  
             <div className="remove">
-                <button className="btn btn-warning">Remove</button> 
+                <button className="btn btn-warning" onClick={() => handleDelete(courses.course[index].id)}>Remove</button> 
             </div>
           </td>
           </tr>
@@ -122,7 +122,7 @@ function AddToCart(){
           <td>
           <td>  
             <div className="remove">
-            <button className="btn btn-warning">Remove</button> 
+            <button className="btn btn-warning" onClick = {handleDelete}>Remove</button> 
             </div>
             
           </td>
