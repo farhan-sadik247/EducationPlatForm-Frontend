@@ -122,7 +122,7 @@ function CourseDetail(props){
     }
 
     const handleEnroll = async () => {
-        if(course.price === 0){let cred = {courseid}
+        if(Number(course.price) === 0){let cred = {courseid}
         fetch(`/course/enroll`, {
             method : "POST",
             headers: {"Content-Type" : "application/json", "X-CSRFtoken": Cookies.get("csrftoken")},
@@ -185,7 +185,7 @@ function CourseDetail(props){
                     </p>
                     {bought && <p>You are Enrolled!  <Link className="btn btn-outline-warning" to="/my-courses">View Course</Link>
                     </p>}
-                    {(props.user !== "" && !bought && !wish && props.user.is_teacher !== true) && <p><button className=" btn btn-success" type="submit" onClick={handleEnroll}>Enroll Now</button>
+                    {(props.user !== "" && !bought && !wish && props.user.is_teacher !== true && !cart) && <p><button className=" btn btn-success" type="submit" onClick={handleEnroll}>Enroll Now</button>
                     <button className="ms-2 btn btn-outline-info border border-primary" onClick={handleWish}><i className="fa-solid fa-heart btn-outline-danger"></i>  Add to Wishlist</button>
                     <button className="ms-2 btn btn-outline-info border border-primary" onClick={handleCart}>  Add to Cart</button>
                     </p>}
@@ -193,10 +193,10 @@ function CourseDetail(props){
                         <Link className="ms-2 btn btn-outline-info border border-primary" to="/favourite-courses">  View Wishlist</Link>
                         <button className="ms-2 btn btn-outline-info border border-primary" onClick={handleCart}>  Add to Cart</button>
                     </p>}
-                    {(!bought && wish && cart) && <p><button className=" btn btn-success" type="submit" onClick={handleEnroll}>Enroll Now</button>
+                    {(!bought && wish && cart) && <p><Link className=" btn btn-success" to = "/add-to-cart">View in Cart</Link>
                         <Link className="ms-2 btn btn-outline-info border border-primary" to="/favourite-courses">  View Wishlist</Link>
                     </p>}
-                    {(!bought && !wish && cart) && <p><button className=" btn btn-success" type="submit" onClick={handleEnroll}>Enroll Now</button>
+                    {(!bought && !wish && cart) && <p><Link className=" btn btn-success" to = "/add-to-cart">View in Cart</Link>
                     <button className="ms-2 btn btn-outline-info border border-primary" onClick={handleWish}><i className="fa-solid fa-heart btn-outline-danger"></i>  Add to Wishlist</button>
                     </p>}
                     {(props.user === "") && <p><Link className=" btn btn-success" type="submit" to = "/user-login">Enroll Now</Link>
