@@ -100,7 +100,7 @@ function CourseChapters(){
                                 <td>
                                   <center>
                                     <Link to={`/edit-chapters/${content[index].id}`}><button className="btn btn-info text-dark ">Edit</button></Link> 
-                                    <button className="btn btn-danger text-dark ms-2" onClick={()=>(handleDelete(content[index].id))}>Delete</button> 
+                                    <button className="btn btn-danger text-dark mt-2" onClick={()=>(handleDelete(content[index].id))}>Delete</button> 
                                   </center>
                                 </td>  
                             </tr>))}

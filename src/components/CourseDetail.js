@@ -206,8 +206,10 @@ function CourseDetail(props){
                 {content.map((name, index) => 
                 (<li className="list-group-item" key = {index}> 
                 <>{content[index].title}</>
-                {content[index].type !== "assignment" && (<span className="float-end">
-                <button className="btn btn-sm btn-outline-danger float-end" data-bs-toggle="modal" data-bs-target="#videpModal1"><i className="fa-brands fa-youtube"></i></button>
+                {content[index].type !== "assignment" && 
+                (<span className="float-end">
+                <button className="btn btn-sm btn-outline-danger float-end" data-bs-toggle="modal" data-bs-target="#videpModal1">
+                    <i className="fa-brands fa-youtube"></i></button>
                 </span>)}
                 {/* start video modal */}
                     <div className="modal fade" id="videpModal1" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

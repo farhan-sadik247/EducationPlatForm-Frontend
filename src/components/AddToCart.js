@@ -48,6 +48,7 @@ function AddToCart(){
         <th>Image</th>
         <th className=''>Name</th>
         <th className=''>Price</th>
+        <th className=''>Action</th>
         <hr/>
         </tr>
       </thead>
@@ -74,6 +75,11 @@ function AddToCart(){
               <span>${courses.course[index].price}</span>
               </div>
           </td>
+          <td>  
+            <div className="remove">
+                <button className="btn btn-warning">Remove</button> 
+            </div>
+          </td>
           </tr>
       </tbody>))}
       <tbody>
@@ -96,6 +102,14 @@ function AddToCart(){
               <div className="price-block">
               <span>$29.99</span>
               </div>
+          </td>
+          <td>
+          <td>  
+            <div className="remove">
+            <button className="btn btn-warning">Remove</button> 
+            </div>
+            
+          </td>
           </td>
           </tr>
       </tbody>
