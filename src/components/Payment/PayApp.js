@@ -6,9 +6,10 @@ import { useParams } from "react-router";
 
 function PayApp(){
 
-    const [amount, setAmount] = useState(1000)
-    const [Razorpay] = useRazorpay();
     const {price} = useParams()
+    const [amount, setAmount] = useState(500)
+    const [currency, setCurrency] = useState("BDT")
+    const [Razorpay] = useRazorpay();
 
     const complete_payment = (payment_id, order_id, signature)=>{
       axios.post('http://127.0.0.1:8000/razorpay/order/complete/', {
@@ -28,14 +29,14 @@ function PayApp(){
     const razorpayPayment =()=>{
         axios.post('http://127.0.0.1:8000/razorpay/order/create/', {
             "amount": price,
-            "currency": "USD"
+            "currency": currency
           })
           .then(function (response) {
             // console.log(response.data.data);
             const order_id = response.data.id
 
             const options = {
-                key: "rzp_test_vahqJG4VG4WTOj", // Enter the Key ID generated from the Dashboard
+                key: "rzp_test_vahqJG4VG4WTOj",
                 name: "Professor's Hideout",
                 description: "Professor's Hideout",
                 image: "/logo001.png",
@@ -65,15 +66,15 @@ function PayApp(){
             
               const rzp1 = new Razorpay(options);
             
-            //   rzp1.on("payment.failed", function (response) {
-            //     alert(response.error.code);
-            //     alert(response.error.description);
-            //     alert(response.error.source);
-            //     alert(response.error.step);
-            //     alert(response.error.reason);
-            //     alert(response.error.metadata.order_id);
-            //     alert(response.error.metadata.payment_id);
-            //   });
+              // rzp1.on("payment.failed", function (response) {
+              //   alert(response.error.code);
+              //   alert(response.error.description);
+              //   alert(response.error.source);
+              //   alert(response.error.step);
+              //   alert(response.error.reason);
+              //   alert(response.error.metadata.order_id);
+              //   alert(response.error.metadata.payment_id);
+              // });
             
               rzp1.open();
           })
@@ -86,7 +87,7 @@ function PayApp(){
         <div className="container mt-5 text-center rounded bg-warning border p-5" style={{width:"28%"}}>
             <h1 className="fw-bolder display-2">${price}</h1>
             <div>
-                <h3 className="fw-semibold">Basic</h3>
+                <h3 className="fw-semibold">Pay to Enroll</h3>
                 <div className="text-start mt-3">
                 </div>
                 <div className="d-grid mt-3">
