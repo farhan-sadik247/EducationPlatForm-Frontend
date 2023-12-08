@@ -45,7 +45,7 @@ function Home() {
 
       <div className="row mb-4">
       {course1.map((name, index) => 
-        (<div className="col-md-3">
+        (<div className="col-md-3" key = {index}>
         <div className=" card" style={{ color: 'blue', fontSize: '18px' }}>
         <Link to={`/details/${course1[index].id}`}>{course1[index].pic === null && <img src="cse471.png" className="card-img-top" alt="..." />}{course1[index].pic !== null && <img src={`http://127.0.0.1:8000/${course1[index].pic}`} className="card-img-top" alt="..." />}</Link>
           <div className="card-body">
@@ -71,7 +71,7 @@ function Home() {
       <h3 className="border-bottom pb-3 md-3 mt-5">Popular Courses<Link to="popular-courses" className="float-end" style={{ color: 'blue', fontSize: '18px' }} >See All</Link></h3>
       <div className="row mb-4">
       {course2.map((name, index) => 
-        (<div className="col-md-3">
+        (<div className="col-md-3" key = {index}>
         <div className=" card" style={{ color: 'blue', fontSize: '18px' }}>
           <a href={`/details/${course2[index].id}`}>{course2[index].pic === null && <img src="logo001.png" className="card-img-top" alt="..." />}{course2[index].pic !== null && <img src={`http://127.0.0.1:8000/${course2[index].pic}`} className="card-img-top" alt="..." />}</a>
           <div className="card-body">
@@ -110,7 +110,7 @@ function Home() {
       <h3 className="border-bottom pb-2 md-4">Featured Teacher<Link to="popular-teachers" className="float-end" style={{ color: 'blue', fontSize: '18px' }} >See All</Link></h3>
       <div className="row mb-4">
       {teacher.map((name, index) => 
-        (<div className="col-md-3 mb-4">
+        (<div className="col-md-3 mb-4" key = {index}>
         <div className=" card" style={{ color: 'blue', fontSize: '18px' }}>
         <Link to={`/teacher-detail/${teacher[index].id}`}>{teacher[index].pic === null && <img src="teacher.png" className="card-img-top" alt="..." />}{teacher[index].pic !== null && <img src={`http://127.0.0.1:8000/${teacher[index].pic}`} className="card-img-top" alt="..." />}</Link>
           <div className="card-body">

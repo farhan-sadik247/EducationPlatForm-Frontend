@@ -20,7 +20,7 @@ function AddCourse(){
     const handleSubmit = () => {
         const credential = { title, description, subscriptionAmount, techs, cata }
 
-        fetch("/auth/update", {
+        fetch("/course/addcourse", {
             method: "POST",
             headers: {"Content-Type": "application/json", "X-CSRFtoken": Cookies.get("csrftoken")},
             body: JSON.stringify(credential)
@@ -33,7 +33,7 @@ function AddCourse(){
         let formdata = new FormData()
         formdata.append("file", pic)
         console.log(formdata)
-        fetch("/auth/getpic", {
+        fetch("/course/getpic/$", {
             method: "POST",
             headers : {"X-CSRFtoken": Cookies.get("csrftoken")},
             body : formdata
