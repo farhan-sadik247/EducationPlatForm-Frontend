@@ -43,27 +43,27 @@ function Home() {
       {/* Latest Courses */}
       <h3 className="border-bottom pb-2 md-4">Latest Courses<Link to="all-courses" className="float-end" style={{ color: 'blue', fontSize: '18px' }} >See All</Link></h3>
 
-      <div className="row mb-4">
+      <div className="row mb-4" >
       {course1.map((name, index) => 
         (<div className="col-md-3" key = {index}>
-        <div className=" card" style={{ color: 'blue', fontSize: '18px' }}>
-        <Link to={`/details/${course1[index].id}`}>{course1[index].pic === null && <img src="cse471.png" className="card-img-top" alt="..." />}{course1[index].pic !== null && <img src={`http://127.0.0.1:8000/${course1[index].pic}`} className="card-img-top" alt="..." />}</Link>
+        <div className=" card" style={{ color: 'blue', fontSize: '18px'}}>
+        <Link to={`/details/${course1[index].id}`}>{course1[index].pic === null && <img src="cse471.png" className="card-img-top ms-2"  alt="..." />}{course1[index].pic !== null && <img src={`http://127.0.0.1:8000/${course1[index].pic}`} className="card-img-top" alt="..." />}</Link>
           <div className="card-body">
             <h5 className="card-title"><Link to={`/details/${course1[index].id}`}>{course1[index].title}</Link></h5>
-            {/* <a href="#" className="btn btn-primary">Details</a> */}
+            {/* <a to="#" className="btn btn-primary">Details</a> */}
           </div>
         </div>
       </div>  
       ))}
-        <div className="col-md-3">
+        {/* <div className="col-md-3">
           <div className=" card" style={{ color: 'blue', fontSize: '18px' }}>
           <Link to="/details/1"><img src="cse471.png" className="card-img-top" alt="..." /></Link>
             <div className="card-body">
               <h5 className="card-title"><Link to="/details/1">SYSTEM ANALYSIS AND DESIGN</Link></h5>
-              {/* <a href="#" className="btn btn-primary">Details</a> */}
+              <a to="#" className="btn btn-primary">Details</a>
             </div>
           </div>
-        </div>   
+        </div>    */}
       </div>
       {/* End Latest Courses */}
 
@@ -73,10 +73,9 @@ function Home() {
       {course2.map((name, index) => 
         (<div className="col-md-3" key = {index}>
         <div className=" card" style={{ color: 'blue', fontSize: '18px' }}>
-          <a href={`/details/${course2[index].id}`}>{course2[index].pic === null && <img src="logo001.png" className="card-img-top" alt="..." />}{course2[index].pic !== null && <img src={`http://127.0.0.1:8000/${course2[index].pic}`} className="card-img-top" alt="..." />}</a>
+          <Link to={`/details/${course2[index].id}`}>{course2[index].pic === null && <img src="cse471.png" className="card-img-top" alt="..." />}{course2[index].pic !== null && <img src={`http://127.0.0.1:8000/${course2[index].pic}`} className="card-img-top" alt="..." />}</Link>
           <div className="card-body">
-            <h5 className="card-title"><a href={`/details/${course2[index].id}`}>{course2[index].title}</a></h5>
-            {/* <a href="#" className="btn btn-primary">Details</a> */}
+            <h5 className="card-title"><Link to={`/details/${course2[index].id}`}>{course2[index].title}</Link></h5>
           </div>
           <div className="card-footer">
             <div className="title">
@@ -88,12 +87,12 @@ function Home() {
       </div>   
       ))}
 
-        <div className="col-md-3">
+        {/* <div className="col-md-3">
           <div className=" card" style={{ color: 'blue', fontSize: '18px' }}>
-            <a href="#"><img src="logo001.png" className="card-img-top" alt="..." /></a>
+            <a to="#"><img src="logo001.png" className="card-img-top" alt="..." /></a>
             <div className="card-body">
-              <h5 className="card-title"><a href="#">Course Title</a></h5>
-              {/* <a href="#" className="btn btn-primary">Details</a> */}
+              <h5 className="card-title"><a to="#">Course Title</a></h5>
+              <a to="#" className="btn btn-primary">Details</a>
             </div>
             <div className="card-footer">
               <div className="title">
@@ -102,7 +101,7 @@ function Home() {
               </div>
             </div>
           </div>
-        </div>    
+        </div>     */}
       </div>
       {/* End Popular Courses */} 
 
@@ -115,7 +114,6 @@ function Home() {
         <Link to={`/teacher-detail/${teacher[index].id}`}>{teacher[index].pic === null && <img src="teacher.png" className="card-img-top" alt="..." />}{teacher[index].pic !== null && <img src={`http://127.0.0.1:8000/${teacher[index].pic}`} className="card-img-top" alt="..." />}</Link>
           <div className="card-body">
             <h5 className="card-title"><Link to={`/teacher-detail/${teacher[index].id}`}>{teacher[index].username}</Link></h5>
-            {/* <a href="#" className="btn btn-primary">Details</a> */}
           </div>
             <div className="card-footer">
               <div className="title">
@@ -126,12 +124,11 @@ function Home() {
         </div>
       </div>  
       ))}
-        <div className="col-md-3">
+        {/* <div className="col-md-3">
           <div className=" card" style={{ color: 'blue', fontSize: '18px' }}>
-            <a href="#"><img src="logo001.png" className="card-img-top" alt="..." /></a>
+            <a to="#"><img src="logo001.png" className="card-img-top" alt="..." /></a>
             <div className="card-body">
               <h5 className="card-title"><Link to="/teacher-detail/1">Teacher Name</Link></h5>
-              {/* <a href="#" className="btn btn-primary">Details</a> */}
             </div>
             <div className="card-footer">
               <div className="title">
@@ -139,7 +136,7 @@ function Home() {
               </div>
             </div>
           </div>
-        </div>   
+        </div>    */}
       </div>
       {/* End Featured Teacher */}   
 

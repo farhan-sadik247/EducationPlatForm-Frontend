@@ -121,7 +121,7 @@ function ProfileUpdate(){
                         
                         <div className="mb-3">
                         <label htmlFor="formFile" className="form-label">Profile Picture</label>
-                        <input className="form-control" accept = "image/*" type="file" id="formFile" onChange={(e) => setpic(e.target.files[0])}/>
+                        <input className="form-control card-img-top rounded float-start" style={{ width: '200px', height: '200px' }} accept = "image/*" type="file" id="formFile" onChange={(e) => setpic(e.target.files[0])}/>
                         </div>
 
                         <div className="mb-3">

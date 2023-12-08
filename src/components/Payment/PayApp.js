@@ -90,6 +90,7 @@ function PayApp(){
                 </div>
                 <div className="d-grid mt-3">
                     <button type="button" className="btn btn-light fw-semibold py-3" onClick={razorpayPayment}>Enroll now</button>
+                    <button type="button" className="btn btn-light fw-semibold py-3 mt-2" onClick={razorpayPayment}>Enroll now</button>
                 </div>
             </div>
         </div>

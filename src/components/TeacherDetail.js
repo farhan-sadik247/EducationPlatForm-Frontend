@@ -69,7 +69,7 @@ function TeacherDetail() {
 
                     <p className="fw-bold">Skills: {teacher.skills} </p>
                     <p className="fw-bold">Recent Course: <Link to={`/details/${course.id}`}>{course.title}</Link></p>
-                    <p className="fw-bold">Rating:
+                    {/* <p className="fw-bold">Rating:
                     <select id="rationSelect" name="quantity" onChange= {(e) => (setRating(e))}>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -78,7 +78,7 @@ function TeacherDetail() {
                         <option value="5">5</option>
                     </select>
                     out of 5 <button className=" btn btn-success" type="submit" onClick={handleSubmit}>Submit</button>
-                    </p>
+                    </p> */}
                 </div>
             </div>  
             {/* Course Video */}

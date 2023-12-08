@@ -73,7 +73,7 @@ function TeacherCourses(){
                                     <td><center><Link to={`/add-chapter/${courses[index].id}`} className="btn btn-primary text-dark">Add chapter</Link></center> </td>
                                     <td>
                                         <center>
-                                            <Link to="/edit-courses"><button className="btn btn-info text-dark">Edit</button></Link>
+                                            {/* <Link to="/edit-courses"><button className="btn btn-info text-dark">Edit</button></Link> */}
                                             <button className="btn btn-danger text-dark ms-2" onClick={()=>{handleDelete(courses[index].id)}}>Remove</button>
                                         </center>
                                     </td>
