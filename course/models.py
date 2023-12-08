@@ -23,6 +23,7 @@ class Course(models.Model):
     no_rating = models.IntegerField(blank = True, null = True, default=1)
     total = models.DecimalField(max_digits=1000, decimal_places=1, blank=False, default=0)
     catagory = models.ForeignKey(Catagory, on_delete=models.CASCADE, default = "1")
+    discount = models.DecimalField(blank = True, null = True, default = 0, max_digits=4, decimal_places=1)
     
 
     teacher = models.ForeignKey(Userinfo, on_delete= models.CASCADE, default = None)
@@ -64,7 +65,6 @@ class Content(models.Model):
     remarks = models.TextField(blank=True, null=True, default = None)
     sub_link = models.TextField(blank=True, null=True, default = None)
     type = models.CharField(max_length=50, null = True, blank= True, default = None)
-    discount = models.DecimalField(blank = True, null = True, default = 0, max_digits=4, decimal_places=1)
     
 
     course = models.ForeignKey(Course, on_delete = models.CASCADE)
