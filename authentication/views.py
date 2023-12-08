@@ -177,23 +177,40 @@ def getPic(request):
 @api_view(["POST", "GET"])
 def changePass(request, cp):
     if request.method == "POST":
-        password = request.data["password"]
-        print(request.user.check_password(password))
-        if request.user.check_password(password) == True:
-            pass1 = request.data["pass1"]
-            username = request.user.pk
-            user = User.objects.get(pk = username)
-            user.set_password(pass1)
-            user.save()
-            return Response("1")
-        
-    if request.method == "GET":
-        name, q, a = [i for i in cp.split("$")]
-        user = Userinfo.objects.get(username = name)
-        if user.ques == int(q) and user.ans == a:
-            return Response(user.id)
+        if cp[0] == "$" :
+            password = request.data["password"]
+            if request.user.check_password(password) == True:
+                print(1)
+                pass1 = request.data["pass1"]
+                username = request.user.pk
+                user = User.objects.get(pk = username)
+                user.set_password(pass1)
+                user.save()
+                return Response("1")
         else:
-            return Response("f")
+            new_password = request.data["pass1"]
+            user = Userinfo.objects.get(username = cp)
+            user.set_password(new_password)
+            user.save()
+            return Response("")
+     
+    if request.method == "GET":
+        if cp[0] == "$":
+            password = cp[1:]
+            if request.user.check_password(password):
+                print("T")
+                return Response("t")
+            else:
+                print("f")
+                return Response("f")
+
+        else:
+            name, q, a = [i for i in cp.split("$")]
+            user = Userinfo.objects.get(username = name)
+            if user.ques == int(q) and user.ans == a:
+                return Response(user.id)
+            else:
+                return Response("f")
     return Response([])
 
 @api_view(["GET"])
