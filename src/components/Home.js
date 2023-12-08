@@ -80,7 +80,7 @@ function Home() {
           <div className="card-footer">
             <div className="title">
               <span className="text-dark">Rating: {course2[index].rating}</span>
-              <span className="float-end text-dark" >Views: 54658</span>
+              {/* <span className="float-end text-dark" >Views: 54658</span> */}
             </div>
           </div>
         </div>
@@ -116,10 +116,10 @@ function Home() {
             <h5 className="card-title"><Link to={`/teacher-detail/${teacher[index].id}`}>{teacher[index].username}</Link></h5>
           </div>
             <div className="card-footer">
-              <div className="title">
+              {/* <div className="title">
                 <span className="text-dark">Rating: {teacher[index].rating}</span>
                 
-              </div>
+              </div> */}
             </div>
         </div>
       </div>  

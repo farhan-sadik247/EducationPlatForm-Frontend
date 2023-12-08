@@ -44,7 +44,7 @@ function AfterSearchPage(props){
                             </td>
                             <td>
                                 <div className="course-details">
-                                <Link><h3>{course[index].title}</h3></Link>
+                                <Link to={`/details/${course[index].id}`}><h3>{course[index].title}</h3></Link>
                                 <p>{course[index].details}</p>
                                 {/* <p>Created by: John Doe</p> */}
                                 <p>Rating: {course[index].rating}</p>
@@ -57,8 +57,8 @@ function AfterSearchPage(props){
                             </td>
                             <td>
                             <button className="btn btn-primary">Enroll Now</button>
-                            <Link to="/add-to-cart"><button className="btn btn-success ms-2"><i className="fa-solid fa-cart-plus"></i></button></Link>
-                            <Link to="/my-courses"><button className="btn btn-success ms-2"><i className="fa-solid fa-heart"></i></button></Link>
+                            {/* <Link to="/add-to-cart"><button className="btn btn-success ms-2"><i className="fa-solid fa-cart-plus"></i></button></Link>
+                            <Link to="/my-courses"><button className="btn btn-success ms-2"><i className="fa-solid fa-heart"></i></button></Link> */}
                             </td>
                             </tr>))}
                             {/* <tr>
