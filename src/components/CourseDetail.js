@@ -58,8 +58,9 @@ function CourseDetail(props){
         let response = await fetch(`/auth/getteacher/${course.teacher}`)
         let data = await response.json()
         setTeacher(data)
-        response = await fetch(`/course/${course.teacher}/totalstd`)
+        response = await fetch(`/course/${courseid}/totalstd`)
         data = await response.json()
+        console.log(data)
         setTotal(data)
 
     }
@@ -101,7 +102,7 @@ function CourseDetail(props){
     }
 
     let getCart= async () => {
-        let response = await fetch(`/course/cartCourse`)
+        let response = await fetch(`/course/cartCourses`)
         let data = await response.json()
         console.log(data)
         data.course.map((name, index)=> 
@@ -121,13 +122,16 @@ function CourseDetail(props){
     }
 
     const handleEnroll = async () => {
-        let cred = {courseid}
+        if(course.price === 0){let cred = {courseid}
         fetch(`/course/enroll`, {
             method : "POST",
             headers: {"Content-Type" : "application/json", "X-CSRFtoken": Cookies.get("csrftoken")},
             body: JSON.stringify(cred)
         })
-        goHome("/my-courses")
+        goHome("/my-courses")}
+        else{
+            handleCart()
+        }
     }
 
     const handleWish = async () => {
@@ -149,8 +153,6 @@ function CourseDetail(props){
         })
         goHome("/add-to-cart")
     }
-    console.log(cart)
-
     return (
         <div className="container mt-3">
             <div className="row">
@@ -165,6 +167,9 @@ function CourseDetail(props){
                     <p className="fw-bold">Category: <Link to={`/category-details/${course.catagory}`}>{cata.title}</Link></p>
                     {/* <p className="fw-bold">Technologies used: Doo</p> */}
                     <p className="fw-bold">Total Enrolled Student: {total}</p>
+                    {Number(course.discount) === 0 && <p className="fw-bold">Price: ${course.price}</p>}
+                    <p className="text-decoration-line-through">Price: ${course.price}</p>
+                    <p className="fw-bold">Price: ${(course.price*(100-Number(course.discount))/100)}</p>
                     <p className="fw-bold">Rating:
                     {course.rating}/5
                     <div>{!submit && bought && props.user.is_teacher !== true && <select id="rationSelect" name="quantity" onChange={(e) => setRating(e.target.value)}>
@@ -183,10 +188,16 @@ function CourseDetail(props){
                     <button className="ms-2 btn btn-outline-info border border-primary" onClick={handleWish}><i className="fa-solid fa-heart btn-outline-danger"></i>  Add to Wishlist</button>
                     <button className="ms-2 btn btn-outline-info border border-primary" onClick={handleCart}>  Add to Cart</button>
                     </p>}
-                    {(!bought && wish) && <p><button className=" btn btn-success" type="submit" onClick={handleEnroll}>Enroll Now</button>
+                    {(!bought && wish && !cart) && <p><button className=" btn btn-success" type="submit" onClick={handleEnroll}>Enroll Now</button>
+                        <Link className="ms-2 btn btn-outline-info border border-primary" to="/favourite-courses">  View Wishlist</Link>
+                        <button className="ms-2 btn btn-outline-info border border-primary" onClick={handleCart}>  Add to Cart</button>
+                    </p>}
+                    {(!bought && wish && cart) && <p><button className=" btn btn-success" type="submit" onClick={handleEnroll}>Enroll Now</button>
                         <Link className="ms-2 btn btn-outline-info border border-primary" to="/favourite-courses">  View Wishlist</Link>
                     </p>}
-                    
+                    {(!bought && !wish && cart) && <p><button className=" btn btn-success" type="submit" onClick={handleEnroll}>Enroll Now</button>
+                    <button className="ms-2 btn btn-outline-info border border-primary" onClick={handleWish}><i className="fa-solid fa-heart btn-outline-danger"></i>  Add to Wishlist</button>
+                    </p>}
                     {(props.user === "") && <p><Link className=" btn btn-success" type="submit" to = "/user-login">Enroll Now</Link>
                     <Link className="ms-2 btn btn-outline-info border border-primary" to = "/user-login"><i className="fa-solid fa-heart btn-outline-danger"></i>  Add to Wishlist</Link>
                     <Link className="ms-2 btn btn-outline-info border border-primary" to = "/user-login">  Add to Cart</Link></p>}
@@ -206,13 +217,11 @@ function CourseDetail(props){
                 {content.map((name, index) => 
                 (<li className="list-group-item" key = {index}> 
                 <>{content[index].title}</>
-                {content[index].type !== "assignment" && 
-                (<span className="float-end">
-                <button className="btn btn-sm btn-outline-danger float-end" data-bs-toggle="modal" data-bs-target="#videpModal1">
-                    <i className="fa-brands fa-youtube"></i></button>
+                {content[index].type !== "assignment" && (<span className="float-end">
+                <button className="btn btn-sm btn-outline-danger float-end" data-bs-toggle="modal" data-bs-target={`#videpModal${index}`}><i className="fa-brands fa-youtube"></i></button>
                 </span>)}
                 {/* start video modal */}
-                    <div className="modal fade" id="videpModal1" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div className="modal fade" id={`videpModal${index}`} tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div className="modal-dialog modal-xl">
                         <div className="modal-content">
                         <div className="modal-header">

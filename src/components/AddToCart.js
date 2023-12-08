@@ -8,15 +8,24 @@ function AddToCart(){
   let [courses, setCourses] = useState({"course":[], "teacher":[]})
   let [price, setPrice] = useState(0)
 
+
     useEffect(
         () => {getCourses()}, []
     )
+    let getPrice = (data) => {
+        let total = 0
+        data.course.map((name, index) => (
+            total = total + Number(data.course[index].price)
+        ))
+        setPrice(total)
+    }
 
     let getCourses = async () => {
 
         let response = await fetch(`/course/cartCourses`)
         let data = await response.json()
         setCourses(data)
+        getPrice(data)
     }
 
     const handleDelete = async (index) =>{
@@ -31,7 +40,7 @@ function AddToCart(){
     }
     useEffect (()=>{
         document.title = 'My Cart'
-    })
+    }, [])
 
   return(
     <div className="container card-header mt-4">
@@ -115,9 +124,9 @@ function AddToCart(){
       </tbody>
     </table>
     <div className="cart-total">
-    <strong className="float-start">Total: $</strong>
+    <strong className="float-start">Total: ${price}</strong>
      
-    <Link to="/payment-gateway">
+    <Link to={`/payment-gateway/${price}`}>
     <button className='btn btn-success'>
        Proceed to Payment
     </button>

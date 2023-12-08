@@ -12,7 +12,7 @@ function StudentDetails() {
         let data = await res.json()
         setUser(data)
     }
-
+console.log(user)
     useState(
         () => (getUser()), []
     )
