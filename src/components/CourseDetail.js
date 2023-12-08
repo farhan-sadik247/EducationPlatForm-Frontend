@@ -58,8 +58,9 @@ function CourseDetail(props){
         let response = await fetch(`/auth/getteacher/${course.teacher}`)
         let data = await response.json()
         setTeacher(data)
-        response = await fetch(`/course/${course.teacher}/totalstd`)
+        response = await fetch(`/course/${courseid}/totalstd`)
         data = await response.json()
+        console.log(data)
         setTotal(data)
 
     }
@@ -101,7 +102,7 @@ function CourseDetail(props){
     }
 
     let getCart= async () => {
-        let response = await fetch(`/course/cartCourse`)
+        let response = await fetch(`/course/cartCourses`)
         let data = await response.json()
         console.log(data)
         data.course.map((name, index)=> 
@@ -149,7 +150,6 @@ function CourseDetail(props){
         })
         goHome("/add-to-cart")
     }
-
     return (
         <div className="container mt-3">
             <div className="row">
@@ -182,10 +182,16 @@ function CourseDetail(props){
                     <button className="ms-2 btn btn-outline-info border border-primary" onClick={handleWish}><i className="fa-solid fa-heart btn-outline-danger"></i>  Add to Wishlist</button>
                     <button className="ms-2 btn btn-outline-info border border-primary" onClick={handleCart}>  Add to Cart</button>
                     </p>}
-                    {(!bought && wish) && <p><button className=" btn btn-success" type="submit" onClick={handleEnroll}>Enroll Now</button>
+                    {(!bought && wish && !cart) && <p><button className=" btn btn-success" type="submit" onClick={handleEnroll}>Enroll Now</button>
+                        <Link className="ms-2 btn btn-outline-info border border-primary" to="/favourite-courses">  View Wishlist</Link>
+                        <button className="ms-2 btn btn-outline-info border border-primary" onClick={handleCart}>  Add to Cart</button>
+                    </p>}
+                    {(!bought && wish && cart) && <p><button className=" btn btn-success" type="submit" onClick={handleEnroll}>Enroll Now</button>
                         <Link className="ms-2 btn btn-outline-info border border-primary" to="/favourite-courses">  View Wishlist</Link>
                     </p>}
-                    
+                    {(!bought && !wish && cart) && <p><button className=" btn btn-success" type="submit" onClick={handleEnroll}>Enroll Now</button>
+                    <button className="ms-2 btn btn-outline-info border border-primary" onClick={handleWish}><i className="fa-solid fa-heart btn-outline-danger"></i>  Add to Wishlist</button>
+                    </p>}
                     {(props.user === "") && <p><Link className=" btn btn-success" type="submit" to = "/user-login">Enroll Now</Link>
                     <Link className="ms-2 btn btn-outline-info border border-primary" to = "/user-login"><i className="fa-solid fa-heart btn-outline-danger"></i>  Add to Wishlist</Link>
                     <Link className="ms-2 btn btn-outline-info border border-primary" to = "/user-login">  Add to Cart</Link></p>}

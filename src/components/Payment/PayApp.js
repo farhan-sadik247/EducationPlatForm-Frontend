@@ -2,11 +2,13 @@ import axios from "axios";
 import { useState } from "react";
 // import useRazorpay, { RazorpayOptions } from "react-razorpay";
 import useRazorpay from "react-razorpay";
+import { useParams } from "react-router";
 
 function PayApp(){
 
     const [amount, setAmount] = useState(1000)
     const [Razorpay] = useRazorpay();
+    const {price} = useParams()
 
     const complete_payment = (payment_id, order_id, signature)=>{
       axios.post('http://127.0.0.1:8000/razorpay/order/complete/', {
@@ -25,7 +27,7 @@ function PayApp(){
 
     const razorpayPayment =()=>{
         axios.post('http://127.0.0.1:8000/razorpay/order/create/', {
-            "amount": amount*100,
+            "amount": price,
             "currency": "USD"
           })
           .then(function (response) {
@@ -82,8 +84,7 @@ function PayApp(){
 
     return(
         <div className="container mt-5 text-center rounded bg-warning border p-5" style={{width:"28%"}}>
-            <h1 className="fw-bolder display-2">$250</h1>
-            <p>per year</p>
+            <h1 className="fw-bolder display-2">${price}</h1>
             <div>
                 <h3 className="fw-semibold">Basic</h3>
                 <div className="text-start mt-3">

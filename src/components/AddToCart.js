@@ -17,6 +17,10 @@ function AddToCart(){
         let response = await fetch(`/course/cartCourses`)
         let data = await response.json()
         setCourses(data)
+        let total = 0
+        courses.course.map((name, index) => (
+            total = total + Number(courses.course[index].price)
+        ))
     }
 
     const handleDelete = async (index) =>{
@@ -31,7 +35,7 @@ function AddToCart(){
     }
     useEffect (()=>{
         document.title = 'My Cart'
-    })
+    }, [])
 
   return(
     <div className="container card-header mt-4">
@@ -101,9 +105,9 @@ function AddToCart(){
       </tbody>
     </table>
     <div className="cart-total">
-    <strong className="float-start">Total: $</strong>
+    <strong className="float-start">Total: ${price}</strong>
      
-    <Link to="/payment-gateway">
+    <Link to={`/payment-gateway/${price}`}>
     <button className='btn btn-success'>
        Proceed to Payment
     </button>
