@@ -122,13 +122,16 @@ function CourseDetail(props){
     }
 
     const handleEnroll = async () => {
-        let cred = {courseid}
+        if(course.price === 0){let cred = {courseid}
         fetch(`/course/enroll`, {
             method : "POST",
             headers: {"Content-Type" : "application/json", "X-CSRFtoken": Cookies.get("csrftoken")},
             body: JSON.stringify(cred)
         })
-        goHome("/my-courses")
+        goHome("/my-courses")}
+        else{
+            handleCart()
+        }
     }
 
     const handleWish = async () => {
@@ -164,6 +167,9 @@ function CourseDetail(props){
                     <p className="fw-bold">Category: <Link to={`/category-details/${course.catagory}`}>{cata.title}</Link></p>
                     {/* <p className="fw-bold">Technologies used: Doo</p> */}
                     <p className="fw-bold">Total Enrolled Student: {total}</p>
+                    {Number(course.discount) === 0 && <p className="fw-bold">Price: ${course.price}</p>}
+                    <p className="text-decoration-line-through">Price: ${course.price}</p>
+                    <p className="fw-bold">Price: ${(course.price*(100-Number(course.discount))/100)}</p>
                     <p className="fw-bold">Rating:
                     {course.rating}/5
                     <div>{!submit && bought && props.user.is_teacher !== true && <select id="rationSelect" name="quantity" onChange={(e) => setRating(e.target.value)}>

@@ -80,8 +80,8 @@ function CourseChapters(){
                         <thead>
                             <tr>
                                 <th><center>Chapter Name</center></th>
-                                <th><center>Video</center></th>
-                                <th><center>Remarks</center></th>
+                                {/* <th><center>Video</center></th> */}
+                                <th><center>Details</center></th>
                                 <th><center>Action</center></th>
                             </tr>
                         </thead>  
@@ -96,11 +96,11 @@ function CourseChapters(){
                                     </video>
                                   </div>
                                 </td> */}
-                                <td>{content[index].remarks}</td>
+                                <td>{content[index].description}</td>
                                 <td>
                                   <center>
                                     <Link to={`/edit-chapters/${content[index].id}`}><button className="btn btn-info text-dark ">Edit</button></Link> 
-                                    <button className="btn btn-danger text-dark ms-2" onClick={()=>(handleDelete(content[index].id))}>Delete</button> 
+                                    <button className="btn btn-danger text-dark mt-2" onClick={()=>(handleDelete(content[index].id))}>Delete</button> 
                                   </center>
                                 </td>  
                             </tr>))}
