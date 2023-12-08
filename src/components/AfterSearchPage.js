@@ -44,7 +44,7 @@ function AfterSearchPage(props){
                             </td>
                             <td>
                                 <div className="course-details">
-                                <h3>{course[index].title}</h3>
+                                <Link><h3>{course[index].title}</h3></Link>
                                 <p>{course[index].details}</p>
                                 {/* <p>Created by: John Doe</p> */}
                                 <p>Rating: {course[index].rating}</p>
@@ -61,7 +61,7 @@ function AfterSearchPage(props){
                             <Link to="/my-courses"><button className="btn btn-success ms-2"><i className="fa-solid fa-heart"></i></button></Link>
                             </td>
                             </tr>))}
-                            <tr>
+                            {/* <tr>
                             <td>
                             <img src="/logo001.png" className="rounded border-0 object-fit-cover mr-2" style={{ width: '200px', height: '200px' }} alt="Course Image" />
                             </td>
@@ -84,7 +84,7 @@ function AfterSearchPage(props){
                             <Link ><button className="btn btn-success ms-2"><i className="fa-solid fa-heart"></i></button></Link>
                             
                             </td>
-                            </tr>
+                            </tr> */}
                         </tbody>
                         </table>
                     </div>

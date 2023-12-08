@@ -128,8 +128,8 @@ function TeacherProfileUpdate(props){
                             </div>
                         </div>
                         <hr/>
-                        {!warning && <button className="w-100 btn btn-lg btn-primary" type="submit">Register</button>}
-                        {warning && <button className="w-100 btn btn-lg btn-primary" disabled>Register</button>}
+                        {!warning && <button className="w-100 btn btn-lg btn-primary" type="submit">Update</button>}
+                        {warning && <button className="w-100 btn btn-lg btn-primary" disabled>update</button>}
                         <div className="mb-3 row">        
                         </div>    
                         </form>    
