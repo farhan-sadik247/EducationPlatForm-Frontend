@@ -68,8 +68,8 @@ function TeacherChangePassword(props){
                             {warning && <div className="text-danger">Password did not match</div>}
                         </div>  
                         <hr/>
-                        {!warning && <button className="w-100 btn btn-lg btn-primary" type="submit">Register</button>}
-                        {warning && <button className="w-100 btn btn-lg btn-primary" disabled>Register</button>}
+                        {!warning && <button className="w-100 btn btn-lg btn-primary" type="submit">Change Password</button>}
+                        {warning && <button className="w-100 btn btn-lg btn-primary" disabled>Change Password</button>}
                         <div className="mb-3 row">    
                         </div>       
                         </form>    

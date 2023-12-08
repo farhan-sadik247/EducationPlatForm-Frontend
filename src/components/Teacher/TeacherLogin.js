@@ -78,7 +78,7 @@ function TeacherLogin(props){
                                 <input type="checkbox" className="from-check-input" id="exampleCheck1" />
                                 <label className="from-check-label" htmlFor="exampleCheck1">Remember Me</label>
                             </div> */}
-                            <button className="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+                            <button className="w-100 btn btn-lg btn-primary mt-3" type="submit">Sign in</button>
                             {warning && <div className="text-danger">Unknown Cred</div>}
                             <p className="mt-4"><Link to="/teacher-forgot-password/1" className="text-danger">Forgot Password?</Link></p>
                             <p>Don't have account?<Link to="/teacher-register">Create Account</Link></p>

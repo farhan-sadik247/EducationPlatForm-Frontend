@@ -1,114 +1,98 @@
 import axios from "axios";
 import { useState } from "react";
+// import useRazorpay, { RazorpayOptions } from "react-razorpay";
 import useRazorpay from "react-razorpay";
 
+function PayApp(){
 
-export const PayApp = ()=>{
+    const [amount, setAmount] = useState(1000)
+    const [Razorpay] = useRazorpay();
 
-    const Razorpay = useRazorpay();
-    const [amount, setAmount] = useState(500);
-  
-    // complete order
-    const complete_order = (paymentID, orderID, signature)=>{
-        axios({
-            method: 'post',
-            url: 'http://127.0.0.1:8000/razorpay/order/complete/',
-            data: {
-                "payment_id": paymentID,
-                "order_id": orderID,
-                "signature": signature,
-                "amount": amount
-            }
-        })
-        .then((response)=>{
+    const complete_payment = (payment_id, order_id, signature)=>{
+      axios.post('http://127.0.0.1:8000/razorpay/order/complete/', {
+            "payment_id": payment_id,
+            "order_id": order_id,
+            "signature":signature,
+            "amount": amount,
+          })
+          .then((response)=>{
             console.log(response.data);
-        })
-        .catch((error)=>{
-            console.log(error.response.data);
-        })
+          })
+          .catch((error)=>{
+            console.log(error.response);
+          })
     }
 
-    const razorPay = ()=>{
-        //create order
-        axios({
-            method: 'post',
-            url: 'http://127.0.0.1:8000/razorpay/order/create/',
-            data: {
-                amount: amount,
-                currency: "INR"
-            }
-        })
-        .then((response)=>{
-            
-            // get order id
+    const razorpayPayment =()=>{
+        axios.post('http://127.0.0.1:8000/razorpay/order/create/', {
+            "amount": amount*100,
+            "currency": "USD"
+          })
+          .then(function (response) {
+            // console.log(response.data.data);
             const order_id = response.data.data.id
-            
-            // handle payment
+
             const options = {
                 key: "rzp_test_vahqJG4VG4WTOj", // Enter the Key ID generated from the Dashboard
-                name: "Acme Corp",
-                description: "Test Transaction",
-                image: "https://example.com/your_logo",
-                order_id: order_id, //This is a sample Order ID. Pass the `id` obtained in the response of createOrder().
+                name: "Professor's Hideout",
+                description: "Professor's Hideout",
+                image: "/logo001.png",
+                order_id: order_id,
                 handler: function (response) {
-
-                    //complete order
-                    complete_order(
-                        response.razorpay_payment_id,
-                        response.razorpay_order_id,
-                        response.razorpay_signature
-                    )
+                  // alert(response.razorpay_payment_id);
+                  // alert(response.razorpay_order_id);
+                  // alert(response.razorpay_signature);
+                  complete_payment(
+                    response.razorpay_payment_id,
+                    response.razorpay_order_id,
+                    response.razorpay_signature,
+                  )
                 },
                 prefill: {
-                name: "Piyush Garg",
-                email: "youremail@example.com",
-                contact: "9999999999",
+                  name: "Farhan Sadik",
+                  email: "md.farhan.sadik@g.bracu.ac.bd",
+                  contact: "01521555555",
                 },
                 notes: {
-                address: "Razorpay Corporate Office",
+                  address: "Razorpay Corporate Office",
                 },
                 theme: {
-                color: "#3399cc",
+                  color: "#9AE6D9",
                 },
-            };
-
-            const rzp1 = new Razorpay(options);
-            rzp1.on("payment.failed", function (response) {
-                alert(response.error.code);
-                alert(response.error.description);
-                alert(response.error.source);
-                alert(response.error.step);
-                alert(response.error.reason);
-                alert(response.error.metadata.order_id);
-                alert(response.error.metadata.payment_id);
-            });
-            rzp1.open();
-        })
-        .catch((error)=>{
+              };
+            
+              const rzp1 = new Razorpay(options);
+            
+            //   rzp1.on("payment.failed", function (response) {
+            //     alert(response.error.code);
+            //     alert(response.error.description);
+            //     alert(response.error.source);
+            //     alert(response.error.step);
+            //     alert(response.error.reason);
+            //     alert(response.error.metadata.order_id);
+            //     alert(response.error.metadata.payment_id);
+            //   });
+            
+              rzp1.open();
+          })
+          .catch(function (error) {
             console.log(error);
-        })
+          });  
     }
 
     return(
         <div className="container mt-5 text-center rounded bg-warning border p-5" style={{width:"28%"}}>
-            <h1 className="fw-bolder display-2">₹500</h1>
+            <h1 className="fw-bolder display-2">$250</h1>
             <p>per year</p>
             <div>
                 <h3 className="fw-semibold">Basic</h3>
                 <div className="text-start mt-3">
-                    <ul style={{fontSize:"14px"}}>
-                        <li>1 custom domain e.g. img.yourdomain.com</li>
-                        <li>Media library backup</li>
-                        <li>Automated image analysis reports with Performance Center</li>
-                        <li>One-time 30 minute consultation with a media optimization expert</li>
-                        <li>Live chat & 12-hr SLA support tickets</li>
-                        <li>5 user accounts with role-based permissions</li>
-                    </ul>
                 </div>
                 <div className="d-grid mt-3">
-                    <button type="button" className="btn btn-light fw-semibold py-3" onClick={razorPay}>Upgrad now</button>
+                    <button type="button" className="btn btn-light fw-semibold py-3" onClick={razorpayPayment}>Enroll now</button>
                 </div>
             </div>
         </div>
     )
 }
+export default PayApp;

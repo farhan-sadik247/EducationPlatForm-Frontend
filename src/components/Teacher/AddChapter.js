@@ -7,6 +7,8 @@ import Cookies from "js-cookie";
 function AddChapter(){
 
 
+    const {courseid}=useParams();
+    
     const [course, setCourse] = useState("")
     const [description, setdescription] = useState("")
     const [title, setTitle] = useState("")

@@ -60,7 +60,7 @@ import AfterSearchPage from "./AfterSearchPage";
 import SearchPageSidebar from "./SearchPageSidebar";
 import AddToCart from "./AddToCart";
 
-import { PayApp } from "./Payment/PayApp";
+import PayApp from "./Payment/PayApp";
 
 
 

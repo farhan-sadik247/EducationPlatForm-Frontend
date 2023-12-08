@@ -188,6 +188,7 @@ function CourseDetail(props){
                     {(!bought && wish) && <p><button className=" btn btn-success" type="submit" onClick={handleEnroll}>Enroll Now</button>
                         <Link className="ms-2 btn btn-outline-info border border-primary" to="/favourite-courses">  View Wishlist</Link>
                     </p>}
+                    
                     {(props.user === "") && <p><Link className=" btn btn-success" type="submit" to = "/user-login">Enroll Now</Link>
                     <Link className="ms-2 btn btn-outline-info border border-primary" to = "/user-login"><i class="fa-solid fa-heart btn-outline-danger"></i>  Add to Wishlist</Link>
                     <Link className="ms-2 btn btn-outline-info border border-primary" to = "/user-login">  Add to Cart</Link></p>}
@@ -195,7 +196,7 @@ function CourseDetail(props){
                 </div>
             </div>  
             {/* Course Video */}
-            <div className="card">
+            <div className="card mt-5">
             <div className="card" >
                 <div className="fw-bold card-header">
                     {props.user.id === teacher.id && <h5 className="card-header"><Link to = {`/course-chapters/${courseid}`}>Course Contents</Link></h5>}
@@ -229,17 +230,16 @@ function CourseDetail(props){
                 {/* End video modal */}
                 </li>
                 ))}
-                    <li className="list-group-item">Content--1
+                    {/* <li className="list-group-item">Content--1
                     <span className="float-end">
-                        {/* <span className="me-5"> 1 Hour 10 Min 45 Sec</span> */}
                         <button className="btn btn-sm btn-outline-danger float-end"><i className="fa-brands fa-youtube"></i></button>
                     </span>
-                    </li>
+                    </li> */}
                 </ul>
                 </div>
             </div>
             
-            <h3 className="border-bottom pb-2 md-4 mt-5">Related Courses<Link href="#" className="float-end" style={{ color: 'blue', fontSize: '18px' }} ></Link></h3>
+            {/* <h3 className="border-bottom pb-2 md-4 mt-5">Related Courses<Link href="#" className="float-end" style={{ color: 'blue', fontSize: '18px' }} ></Link></h3>
             <div className="row mb-4">
                 {courses.map((name, index)=>
                 (courses[index].title !== course.title &&
@@ -248,7 +248,7 @@ function CourseDetail(props){
                     <Link to={`/details/${courses[index].id}`}><img src="/logo001.png" className="card-img-top" alt="..." /></Link>
                         <div className="card-body">
                         <h5 className="card-title"><Link to={`/details/${courses[index].id}`}>{courses[index].title}</Link></h5>
-                        {/* <Link href="#" className="btn btn-primary">Details</Link> */}
+                        
                         </div>
                     </div>
                 </div> ))}
@@ -257,11 +257,11 @@ function CourseDetail(props){
                         <Link href="#"><img src="/logo001.png" className="card-img-top" alt="..." /></Link>
                         <div className="card-body">
                         <h5 className="card-title"><Link href="#">Course Title</Link></h5>
-                        {/* <Link href="#" className="btn btn-primary">Details</Link> */}
+                
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </div>
     );
 }
