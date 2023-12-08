@@ -1,7 +1,6 @@
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
-import Sidebar from "./Sidebar";
 
 
 function UserForgotChangePassword(){

@@ -38,10 +38,10 @@ function EnrolledStudent(){
                             </thead>
                                     {student.map((name, index) => 
                                     (<tbody>
-                                    <td><center><Link>{student[index].fullname}</Link></center></td>
+                                    <td><center>{student[index].fullname}</center></td>
                                     <td><center>{student[index].email} </center></td>
                                     <td><center> {student[index].username} </center></td>
-                                    <td><center><Link to="/user-details" className="btn btn-primary text-dark">View Details</Link></center> </td>  
+                                    <td><center><Link to={`/user-details/${student[index].id}`} className="btn btn-primary text-dark">View Details</Link></center> </td>  
                                     </tbody>))}
                         </table>
                     </div>

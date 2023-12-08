@@ -9,20 +9,18 @@ function Register(){
     const [password, setPassw] = useState("")
     const [cpass, setcpass] = useState("")
     const [skills, setSkills] = useState("")
-    const [load, setLoad] = useState(false)
     
     const [warning, usercheck] = useState(false)
     const [warning2, passcheck] = useState(false)
 
-    const [question, setQuestion] = useState(null);
+    const [question, setQuestion] = useState("");
     const [answer, setAnswer] = useState('');
 
     const navigate = useNavigate()
     const type = false
 
     const handleSubmit = async (e) => {
-        const credential = { username, fullname, email, password, cpass, skills, type}
-        setLoad(true)
+        const credential = { username, fullname, email, password, cpass, skills, type, question, answer}
         fetch(
             "/auth/signup", 
             {
@@ -51,7 +49,7 @@ function Register(){
     )
     
     useEffect (()=>{
-        document.title = 'Teacher Register'
+        document.title = 'User Register'
     })
 
     return(

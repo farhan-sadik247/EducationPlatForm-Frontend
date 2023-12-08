@@ -39,7 +39,6 @@ function Header(props) {
             </Link>
 
             <Link className="nav-link btn-outline-success" to="/all-courses">Courses</Link>
-            <Link className="mt-2" to="/add-to-cart"><i className="fa-solid fa-cart-plus btn btn-outline-light "></i></Link>
 
                 {props.user === "" ? (
                   <>
@@ -71,7 +70,8 @@ function Header(props) {
                 </li>
                 </>)
                 :
-            (< ProfilePicture user={props.user} setUser = {props.setUser}/>)}
+            (<>{!props.user.is_teacher && <Link className="mt-2" to="/add-to-cart"><i className="fa-solid fa-cart-plus btn btn-outline-light "></i></Link>}
+            < ProfilePicture user={props.user} setUser = {props.setUser}/></>)}
           </div>
         </div>
 

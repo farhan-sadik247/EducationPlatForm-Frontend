@@ -75,7 +75,6 @@ function Main() {
 
   const [user, setUser] = useState("")
   const [search, setSearch] = useState("")
-  const [type, getType] = useState(false)
 
   const getUser = async () => {
     try {
@@ -97,7 +96,7 @@ function Main() {
       <Switch>
         <Route path="/" element={ <Home /> } />
         <Route path="/about" element={ <About /> } />
-        <Route path="/details/:courseid" element={ <CourseDetail user = {user}/> } />
+        <Route path="/details/:courseid" element={ <CourseDetail user = {user} setuser ={setUser}/> } />
         <Route path="/test" element={ <Test /> } />
         <Route path="/searchbox" element={ <SearchBox /> } />
         <Route path="/profile-picture" element={ <ProfilePicture /> } />
@@ -113,12 +112,12 @@ function Main() {
         <Route path="/favourite-courses" element={ <FavouriteCourses /> } />
         <Route path="/recommended-courses" element={ <RecommendedCourses /> } />
         <Route path="/profile-update" element={ <ProfileUpdate /> } />
-        <Route path="/change-password" element={ <ChangePassword /> } />
-        <Route path="/user-details" element={ <StudentDetails /> } />
+        <Route path="/change-password" element={ <ChangePassword setuser = {setUser} user = {user}/> } />
+        <Route path="/user-details/:student_id" element={ <StudentDetails /> } />
         <Route path="/user-assignment/:student_id" element={ <UserAssignment /> } />
         <Route path="/std-course-chapters/:chapter_id" element={ <StdCourseChapters /> } />
-        <Route path="/user-forgot-password/:student_id" element={ <UserForgotPassword /> } />
-        <Route path="/user-forgot-change-password/:student_id" element={ <UserForgotChangePassword /> } />
+        <Route path="/user-forgot-password" element={ <UserForgotPassword /> } />
+        <Route path="/user-forgot-change-password" element={ <UserForgotChangePassword /> } />
         
 
         {/* Teacher */}
@@ -127,7 +126,7 @@ function Main() {
         <Route path="/teacher-dashboard" element={ <TeacherDashboard /> } />
         <Route path="/teacher-courses" element={ <TeacherCourses /> } />
         <Route path="/teacher-change-password" element={ <TeacherChangePassword /> } />
-        <Route path="/teacher-profile-update" element={ <TeacherProfileUpdate /> } />
+        <Route path="/teacher-profile-update" element={ <TeacherProfileUpdate user = {user}/> } />
         <Route path="/add-courses" element={ <AddCourse /> } />
         <Route path="/edit-courses" element={ <EditCourse /> } />
         <Route path="/course-chapters/:chapter_id" element={ <CourseChapters /> } />
@@ -142,7 +141,7 @@ function Main() {
         <Route path="/edit-assignment/:user_id/:teacher_id" element={ <EditAssignment/> } />
         <Route path="/show-assignment/:user_id/:teacher_id" element={ <ShowAssignments/> } />
         <Route path="/teacher-forgot-password/:teacher_id" element={ <ForgotPassword/> } />
-        <Route path="/teacher-forgot-change-password/:teacher_id" element={ <TeacherForgotChangePassword/> } />
+        <Route path="/teacher-forgot-change-password" element={ <TeacherForgotChangePassword/> } />
 
 
         {/* List Pages */}

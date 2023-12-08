@@ -6,10 +6,7 @@ import Cookies from "js-cookie";
 
 function FavouriteCourses(){
 
-    const { student_id } = useParams()
-
     let [courses, setCourses] = useState({"course":[], "teacher":[]})
-    console.log(courses)
 
     useEffect(
         () => {getCourses()}, []
