@@ -36,7 +36,7 @@ function PayApp(){
             const order_id = response.data.id
 
             const options = {
-                key: "rzp_test_vahqJG4VG4WTOj",
+                key: "rzp_test_vahqJG4VG4WTOj", // Enter the Key ID generated from the Dashboard
                 name: "Professor's Hideout",
                 description: "Professor's Hideout",
                 image: "/logo001.png",

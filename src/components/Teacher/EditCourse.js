@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import TeacherSidebar from "./TeacherSidebar";
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
@@ -10,31 +10,32 @@ function EditCourse(){
     const [title, settitle] = useState("")
     const [description, setdescription] = useState("")
     const [subscriptionAmount, setSubscriptionAmount] = useState("")
-    const [techs, settechs] = useState("")
-    const [catas, setCatas] = useState([])
-    const [cata, setCata] = useState("")
+    const [discount, setDiscount] = useState("")
     const [warning, usercheck] = useState(false)
+    const [course, setCourse] = useState("")
     const goHome = useNavigate()
+    const {course_id} = useParams()
 
     const handleSubmit = () => {
-        const credential = { title, description, techs, subscriptionAmount, cata}
-        fetch("/course/addcourse", {
+        const credential = { title, description, subscriptionAmount, discount}
+        fetch(`/course/editcourse/${course_id}`, {
             method: "POST",
             headers: {"Content-Type": "application/json", "X-CSRFtoken" : Cookies.get("csrftoken")},
             body: JSON.stringify(credential)
         })
-        goHome(`/details/`)
+        // goHome(`/details/${course.id}`)
     }
 
-    const getCatas = async() => {
-        let res = await fetch("course/getcata")
-        let data = await res.json()
-        setCatas(data)
+
+    let getCourse = async () => {
+        let response = await fetch(`/course/${course_id}/getcourse`)
+        let data = await response.json()
+        setCourse(data)
     }
 
     useEffect (
         () => {
-            fetch(`course/checkname/1${title}`)
+            fetch(`/course/checkname/1${title}`)
             .then (response => response.json())
             .then(data => data === "ase" ? usercheck(true) : usercheck(false) )
         },
@@ -42,7 +43,7 @@ function EditCourse(){
     )
 
     useEffect(
-        () => {getCatas()},[]
+        () => {getCourse()},[]
     )
 
     return(
@@ -56,17 +57,6 @@ function EditCourse(){
                     <h5 className="card-header">Edit Course</h5>
                     <div className="card-body">
                     <form onSubmit={handleSubmit}>
-                    {/* Category */}
-                    <div className="mb-3 row">
-                        <label htmlFor="title" className="form-label">Category</label> 
-                        <select name="category" className="form-control"  onChange={(e)=> {setCata(e.target.value)}}>
-                            <option value="" ></option>
-                            {catas.map((name, index) =>
-                                <option value={catas[index].id} key = {index}>{catas[index].title}</option> )}
-                            
-                            </select>                         
-                        </div>
-                    {/* Category end */}
 
                         <div className="mb-3 row">
                             <label htmlFor="textInput" className="form-label">Course Title</label> 
@@ -88,12 +78,13 @@ function EditCourse(){
                             <label htmlFor="exampleFormControlInput1" className="form-label">Course Subscription Amount</label>
                             <input type="number" className="form-control" id="exampleFormControlInput1" placeholder="Enter amount" value={subscriptionAmount} onChange={(e) => setSubscriptionAmount(e.target.value)} />
                         </div>
+                        <div className="mb-3 row">
+                            <label htmlFor="floatingNumber" className="col-sm-2 col-form-label" > <i className="fa-solid fa-percent"></i>Discount</label>
+                            <div className="col-sm-10">
+                                <input type="text" className="form-control" id="floatingNumber" placeholder="10%" value = {discount} onChange={(e) => setDiscount(e.target.value)}/>
 
-                        <div className="mb-3">
-                        <label htmlFor="exampleFormControlTextarea1" className="form-label">Technologies</label>
-                        <textarea className="form-control" id="exampleFormControlTextarea1"  placeholder="JavaScript,Python,PHP,HTML etc" rows="3" value = {techs} onChange={(e) => settechs(e.target.value)}></textarea>
+                            </div>
                         </div>
-
                         <hr/>
                         {!warning && <button className="btn btn-primary">Submit</button>}
                         {warning && <button className="btn btn-primary" disabled>Submit</button>}
