@@ -33,4 +33,5 @@ urlpatterns = [
     path("addfav", views.addFav, name = "addfav"),
     path("addcart", views.addCart, name = "addcart"),
     path("<str:content_id>/contentteacher", views.contentTeacher, name = "contentTeacher"),
+    path("getpic/<str:id>", views.getpic, name = "getpic"),
 ]

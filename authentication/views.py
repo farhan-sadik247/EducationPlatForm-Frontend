@@ -174,8 +174,8 @@ def getPic(request):
     return HttpResponse([])
 
 
-@api_view(["POST"])
-def changePass(request):
+@api_view(["POST", "GET"])
+def changePass(request, cp):
     if request.method == "POST":
         password = request.data["password"]
         print(request.user.check_password(password))
@@ -186,6 +186,14 @@ def changePass(request):
             user.set_password(pass1)
             user.save()
             return Response("1")
+        
+    if request.method == "GET":
+        name, q, a = [i for i in cp.split("$")]
+        user = Userinfo.objects.get(username = name)
+        if user.ques == int(q) and user.ans == a:
+            return Response(user.id)
+        else:
+            return Response("f")
     return Response([])
 
 @api_view(["GET"])
