@@ -25,13 +25,6 @@ class CreateOrderAPIView(APIView):
                 "data": order_response
             }
             return Response(response, status=status.HTTP_201_CREATED)
-        # else:
-        #     response = {
-        #         "status_code": status.HTTP_400_BAD_REQUEST,
-        #         "message": "bad request",
-        #         "error": create_order_serializer.errors
-        #     }
-            # return Response(response, status=status.HTTP_400_BAD_REQUEST)
         return Response("DONE")
 class TransactionAPIView(APIView):
     """This API will complete order and save the 
@@ -51,10 +44,3 @@ class TransactionAPIView(APIView):
                 "message": "transaction created"
             }
             return Response(response, status=status.HTTP_201_CREATED)
-        # else:
-        #     response = {
-        #         "status_code": status.HTTP_400_BAD_REQUEST,
-        #         "message": "bad request",
-        #         "error": transaction_serializer.errors
-        #     }
-        #     return Response(response, status=status.HTTP_400_BAD_REQUEST)
