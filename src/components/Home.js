@@ -80,7 +80,7 @@ function Home() {
           <div className="card-footer">
             <div className="title">
               <span className="text-dark">Rating: {course2[index].rating}</span>
-              <span className="float-end text-dark" >Views: 54658</span>
+              {/* <span className="float-end text-dark" >Views: 54658</span> */}
             </div>
           </div>
         </div>
