@@ -38,10 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
     'authentication',
     "course",
-
     'rest_framework',
     "corsheaders",
     "razorpaybackend.apps.RazorpaybackendConfig",
@@ -50,14 +48,13 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    "corsheaders.middleware.CorsMiddleware",
-    "django.middleware.common.CommonMiddleware",
 ]
 
 
@@ -141,7 +138,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #     "http://localhost:3000",
 # ]
 
-CORS_ALLOW_ALL_ORIGINS: True
+# CORS_ALLOW_ALL_ORIGINS: True
+CORS_ALLOWED_ORIGINS = [
+    "http://127.0.0.1:8000",
+    "http://localhost:3000"
+]
 
 SESSION_COOKIE_HTTPONLY: False
 
@@ -154,6 +155,10 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'images'
 
 #razorpay
-RAZORPAY_KEY_ID=os.environ.get("RAZORPAY_KEY_ID")
+# RAZORPAY_KEY_ID=os.environ.get("RAZORPAY_KEY_ID")
 
-RAZORPAY_KEY_SECRET=os.environ.get("RAZORPAY_KEY_SECRET")
+# RAZORPAY_KEY_SECRET=os.environ.get("RAZORPAY_KEY_SECRET")
+
+RAZORPAY_KEY_ID="rzp_test_vahqJG4VG4WTOj"
+
+RAZORPAY_KEY_SECRET="1Dhucu97em42iei0WEQSGNza"
