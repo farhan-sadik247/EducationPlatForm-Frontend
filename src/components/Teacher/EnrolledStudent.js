@@ -37,7 +37,7 @@ function EnrolledStudent(){
                                 </tr>
                             </thead>
                                     {student.map((name, index) => 
-                                    (<tbody>
+                                    (<tbody key = {index}>
                                     <td><center>{student[index].fullname}</center></td>
                                     <td><center>{student[index].email} </center></td>
                                     <td><center> {student[index].username} </center></td>

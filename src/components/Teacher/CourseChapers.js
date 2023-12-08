@@ -87,16 +87,15 @@ function CourseChapters(){
                         </thead>  
                         <tbody>
                             {content.map((name, index) => 
-                            (<tr>
+                            (<tr key = {index}>
                                 <td>{content[index].title}</td>
-                                <td>
+                                {/* <td>
                                   <div className="embed-responsive embed-responsive-16by9">
                                     <video controls className="embed-responsive-item">
                                       <source src={content[index].link} type="video/mp4" />
-                                      {/* Your browser does not support the video tag. */}
                                     </video>
                                   </div>
-                                </td>
+                                </td> */}
                                 <td>{content[index].remarks}</td>
                                 <td>
                                   <center>

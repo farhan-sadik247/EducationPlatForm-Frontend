@@ -29,10 +29,11 @@ function CategoryCourses() {
       <h3 className="border-bottom pb-2 md-4"> {cata.title}</h3>
       <div className="row mb-4">
         {courses.map((name, index) => (
-          <div className="col-md-3 mb-4">
+          <div className="col-md-3 mb-4" key = {index}>
             <div className=" card" style={{ color: "blue", fontSize: "18px" }}>
               <a href="#">
-                <img src="/logo001.png" className="card-img-top" alt="..." />
+                {courses[index].pic === null && <img src="/logo001.png" className="card-img-top" alt="..." />}
+                {courses[index].pic !== null && <img src={`http://127.0.0.1:8000/${courses[index].pic}`} className="card-img-top" alt="..." />}
               </a>
               <div className="card-body">
                 <h5 className="card-title">

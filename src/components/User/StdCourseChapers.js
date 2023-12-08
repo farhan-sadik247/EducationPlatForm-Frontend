@@ -45,7 +45,7 @@ function StdCourseChapters(){
                         <tbody>
                             {content.map((name, index) => 
                             ( content[index].type === "assignment" ?
-                                (<tr>
+                                (<tr key = {index}>
                                     <td>{content[index].title}</td>
                                     <td>
                                       {content[index].link}

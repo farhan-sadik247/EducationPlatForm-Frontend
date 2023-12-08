@@ -37,7 +37,7 @@ function AfterSearchPage(props){
                         </thead>
                         <tbody>
                         {course.map((name, index) =>
-                            (<tr>
+                            (<tr key = {index}>
                             <td>
                                 {course[index].pic !== null && <img src={`http://127.0.0.1:8000/${course[index].pic}`} className="rounded border-0 object-fit-cover mr-2" style={{ width: '200px', height: '200px' }} alt="Course Image" />}
                                 {course[index].pic === null && <img src= "/logo001.png" className="rounded border-0 object-fit-cover mr-2" style={{ width: '200px', height: '200px' }} alt="Course Image" />}

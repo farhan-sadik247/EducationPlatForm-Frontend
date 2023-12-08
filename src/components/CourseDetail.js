@@ -6,7 +6,6 @@ import Cookies from "js-cookie";
 function CourseDetail(props){
 
     const {courseid}=useParams();
-    // console.log(props.user.id)
     
     let [course, setCourse] = useState([])
     let [cata, setCata] = useState([])
@@ -20,7 +19,6 @@ function CourseDetail(props){
     let [wish, setWish] = useState(false)
     let [cart, setCart] = useState(false)
     let goHome = useNavigate()
-    console.log(cart)
     
     useEffect(
         () => {getCourse()}, [submit]
@@ -123,7 +121,6 @@ function CourseDetail(props){
 
     const handleEnroll = async () => {
         let cred = {courseid}
-        console.log(cred)
         fetch(`/course/enroll`, {
             method : "POST",
             headers: {"Content-Type" : "application/json", "X-CSRFtoken": Cookies.get("csrftoken")},
@@ -134,7 +131,6 @@ function CourseDetail(props){
 
     const handleWish = async () => {
         let cred = {courseid}
-        console.log(cred)
         fetch(`/course/addfav`, {
             method : "POST",
             headers: {"Content-Type" : "application/json", "X-CSRFtoken": Cookies.get("csrftoken")},
@@ -145,7 +141,6 @@ function CourseDetail(props){
 
     const handleCart = async () => {
         let cred = {courseid}
-        console.log(cred)
         fetch(`/course/addcart`, {
             method : "POST",
             headers: {"Content-Type" : "application/json", "X-CSRFtoken": Cookies.get("csrftoken")},
@@ -158,7 +153,8 @@ function CourseDetail(props){
         <div className="container mt-3">
             <div className="row">
                 <div className="col-4">
-                    <img src="/cse471.png" className="img-thumbnail" alt="Course Image" />
+                    {course.pic === null && <img src="/cse471.png" className="img-thumbnail" alt="Course Image" />}
+                    {course.pic !== null && <img src={`http://127.0.0.1:8000/${course.pic}`} className="img-thumbnail" alt="Course Image" />}
                 </div>
                 <div className="col-8">
                     <h3>{course.title}</h3>
@@ -182,7 +178,7 @@ function CourseDetail(props){
                     {bought && <p>You are Enrolled!  <Link className="btn btn-outline-warning" to="/my-courses">View Course</Link>
                     </p>}
                     {(props.user !== "" && !bought && !wish) && <p><button className=" btn btn-success" type="submit" onClick={handleEnroll}>Enroll Now</button>
-                    <button className="ms-2 btn btn-outline-info border border-primary" onClick={handleWish}><i class="fa-solid fa-heart btn-outline-danger"></i>  Add to Wishlist</button>
+                    <button className="ms-2 btn btn-outline-info border border-primary" onClick={handleWish}><i className="fa-solid fa-heart btn-outline-danger"></i>  Add to Wishlist</button>
                     <button className="ms-2 btn btn-outline-info border border-primary" onClick={handleCart}>  Add to Cart</button>
                     </p>}
                     {(!bought && wish) && <p><button className=" btn btn-success" type="submit" onClick={handleEnroll}>Enroll Now</button>
@@ -190,23 +186,23 @@ function CourseDetail(props){
                     </p>}
                     
                     {(props.user === "") && <p><Link className=" btn btn-success" type="submit" to = "/user-login">Enroll Now</Link>
-                    <Link className="ms-2 btn btn-outline-info border border-primary" to = "/user-login"><i class="fa-solid fa-heart btn-outline-danger"></i>  Add to Wishlist</Link>
+                    <Link className="ms-2 btn btn-outline-info border border-primary" to = "/user-login"><i className="fa-solid fa-heart btn-outline-danger"></i>  Add to Wishlist</Link>
                     <Link className="ms-2 btn btn-outline-info border border-primary" to = "/user-login">  Add to Cart</Link></p>}
 
                 </div>
             </div>  
             {/* Course Video */}
-            <div className="card mt-5">
+            {(props.user.id === teacher.id | bought) && <div className="card mt-5">
             <div className="card" >
                 <div className="fw-bold card-header">
                     {props.user.id === teacher.id && <h5 className="card-header"><Link to = {`/course-chapters/${courseid}`}>Course Contents</Link></h5>}
                     {bought && <h5 className="card-header"><Link to = {`/std-course-chapters/${courseid}`}>Course Contents</Link></h5>}
-                    {!(props.user.id === teacher.id | bought) && <h5 className="card-header">Course Contents</h5>}
+                    {/* {!(props.user.id === teacher.id | bought) && <h5 className="card-header">Course Contents</h5>} */}
                 </div>
 
                 <ul className="list-group list-group-flush">
                 {content.map((name, index) => 
-                (<li className="list-group-item"> {content[index].type !== "assignment" && bought && <Link>{content[index].title}</Link>}
+                (<li className="list-group-item" key = {index}> 
                 {!(content[index].type !== "assignment" && bought) && <>{content[index].title}</>}
                 {content[index].type !== "assignment" && (<span className="float-end">
                 <button className="btn btn-sm btn-outline-danger float-end" data-bs-toggle="modal" data-bs-target="#videpModal1"><i className="fa-brands fa-youtube"></i></button>
@@ -237,9 +233,9 @@ function CourseDetail(props){
                     </li> */}
                 </ul>
                 </div>
-            </div>
+            </div>}
             
-            {/* <h3 className="border-bottom pb-2 md-4 mt-5">Related Courses<Link href="#" className="float-end" style={{ color: 'blue', fontSize: '18px' }} ></Link></h3>
+            <h3 className="border-bottom pb-2 md-4 mt-5">Related Courses<Link href="#" className="float-end" style={{ color: 'blue', fontSize: '18px' }} ></Link></h3>
             <div className="row mb-4">
                 {courses.map((name, index)=>
                 (courses[index].title !== course.title &&
@@ -247,12 +243,12 @@ function CourseDetail(props){
                     <div className=" card" style={{ color: 'blue', fontSize: '18px' }}>
                     <Link to={`/details/${courses[index].id}`}><img src="/logo001.png" className="card-img-top" alt="..." /></Link>
                         <div className="card-body">
-                        <h5 className="card-title"><Link to={`/details/${courses[index].id}`}>{courses[index].title}</Link></h5>
+                        <h5 className="card-title"><Link to={`/details/${courses[index].id}`} onClick= {() => courseid=courses[index].id}>{courses[index].title}</Link></h5>
                         
                         </div>
                     </div>
                 </div> ))}
-                <div className="col-md-3">
+                {/* <div className="col-md-3">
                     <div className=" card" style={{ color: 'blue', fontSize: '18px' }}>
                         <Link href="#"><img src="/logo001.png" className="card-img-top" alt="..." /></Link>
                         <div className="card-body">
@@ -260,8 +256,8 @@ function CourseDetail(props){
                 
                         </div>
                     </div>
-                </div>
-            </div> */}
+                </div> */}
+            </div>
         </div>
     );
 }

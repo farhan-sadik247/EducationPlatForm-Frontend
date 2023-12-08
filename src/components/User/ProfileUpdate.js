@@ -21,13 +21,26 @@ function ProfileUpdate(){
     const navigate = useNavigate()
 
     const handleSubmit = () => {
-        const credential = { username, email, password, dob, phone, pic, gender, address}
-        fetch("/auth/signup", {
+        const credential = { username, email, password, dob, phone, gender, address}
+
+        fetch("/auth/update", {
             method: "POST",
-            headers: {"Content-Type": "application/json", "X-CSRFtokes": Cookies.get("csrftoken")},
+            headers: {"Content-Type": "application/json", "X-CSRFtoken": Cookies.get("csrftoken")},
             body: JSON.stringify(credential)
         })
+        .then(pic && handleImage())
         .then(navigate("/"))
+    }
+
+    const handleImage = () => {
+        let formdata = new FormData()
+        formdata.append("file", pic)
+        console.log(formdata)
+        fetch("/auth/getpic", {
+            method: "POST",
+            headers : {"X-CSRFtoken": Cookies.get("csrftoken")},
+            body : formdata
+        })
     }
 
     useEffect (
@@ -108,7 +121,7 @@ function ProfileUpdate(){
                         
                         <div className="mb-3">
                         <label htmlFor="formFile" className="form-label">Profile Picture</label>
-                        <input className="form-control" type="file" id="formFile" value = {pic} onChange={(e) => setpic(e.target.value)}/>
+                        <input className="form-control" accept = "image/*" type="file" id="formFile" onChange={(e) => setpic(e.target.files[0])}/>
                         </div>
 
                         <div className="mb-3">

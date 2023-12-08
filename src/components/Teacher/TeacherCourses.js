@@ -66,7 +66,7 @@ function TeacherCourses(){
                                 <td><center><Link className="btn btn-primary text-dark" to="/add-chapter/2">Add chapter</Link></center> </td> */}
                                 
                                 {courses.map((coursetitle, index) => (
-                                    <tbody>
+                                    <tbody key = {index}>
                                     <td><center><Link to={`/details/${courses[index].id}`}>{courses[index].title}</Link></center></td>
                                     <td><center>{courses[index].created_at.slice(0,10)} </center></td>
                                     <td><center><Link to="/enrolled-student">Total Student Count</Link></center></td>

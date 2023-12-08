@@ -144,7 +144,7 @@ function SearchPageSidebar(props) {
             <select name="category" className="form-control" onChange={(e) => { setCataid(e.target.value) }}>
               <option value={0}>All</option>
               {catas.map((name, index) => (
-                <option value={catas[index].id}>{catas[index].title}</option>
+                <option value={catas[index].id} key = {index}>{catas[index].title}</option>
               ))}
             </select>
           </div>

@@ -52,7 +52,7 @@ function AddToCart(){
         </tr>
       </thead>
       {courses.course.map((name, index) =>
-      (<tbody>
+      (<tbody key = {index}>
           <tr>
           <td>
           <input type="checkbox" />

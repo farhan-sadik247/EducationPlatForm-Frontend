@@ -53,7 +53,7 @@ function FavouriteCourses(){
                                 </tr>
                             </thead>
                             {courses.course.map((student, index) => (
-                                <tbody>
+                                <tbody key = {index}>
                                     <td><center><Link to="/">{courses.course[index].title}</Link></center></td>
                                     <td><center><Link to="/">{courses?.teacher[index]?.fullname}</Link> </center></td>
                                     <td><center><button className="btn btn-danger text-dark" onClick={()=>handleDelete(courses.course[index].id)}>Remove</button></center></td>

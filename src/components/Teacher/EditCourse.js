@@ -62,7 +62,7 @@ function EditCourse(){
                         <select name="category" className="form-control"  onChange={(e)=> {setCata(e.target.value)}}>
                             <option value="" ></option>
                             {catas.map((name, index) =>
-                                <option value={catas[index].id} >{catas[index].title}</option> )}
+                                <option value={catas[index].id} key = {index}>{catas[index].title}</option> )}
                             
                             </select>                         
                         </div>

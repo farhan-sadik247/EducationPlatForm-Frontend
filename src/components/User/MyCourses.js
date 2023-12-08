@@ -52,7 +52,7 @@ function MyCourses(){
                                 </tr>
                             </thead>
                                 {courses.course?.map((student, index) => (
-                                <tbody>
+                                <tbody key = {index}>
                                     <td><center><Link to={`/details/${courses.course[index].id}`}>{courses.course[index].title}</Link></center></td>
                                     <td><center><Link to={`/teacher-detail/${courses.teacher[index].id}`}>{courses.teacher[index].fullname}</Link> </center></td>
                                     <td><center><button className="btn btn-danger text-dark" onClick={()=>{handleDelete(courses.course[index].id)}}>Remove</button></center></td>

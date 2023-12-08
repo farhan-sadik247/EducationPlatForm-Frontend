@@ -21,7 +21,8 @@ function StudentDetails() {
         <div className="container mt-3">
             <div className="row">
                 <div className="col-4">
-                    <img src="/logo001.png" className="img-thumbnail" alt="Student Image" />
+                    {user.pic === null && <img src="/logo001.png" className="img-thumbnail" alt="Student Image" />}
+                    {user.pic !== null && <img src={`http://127.0.0.1:8000/${user.pic}`} className="img-thumbnail" alt="Student Image" />}
                 </div>
                 <div className="col-8">
                     <h3 className="ms-5">{user.fullname}</h3>
