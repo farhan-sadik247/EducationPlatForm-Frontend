@@ -103,6 +103,7 @@ function CourseDetail(props){
     let getCart= async () => {
         let response = await fetch(`/course/cartCourse`)
         let data = await response.json()
+        console.log(data)
         data.course.map((name, index)=> 
             (data.course[index].id === Number(courseid) ? (setCart(true)) :(false))
         )
@@ -148,6 +149,7 @@ function CourseDetail(props){
         })
         goHome("/add-to-cart")
     }
+    console.log(cart)
 
     return (
         <div className="container mt-3">
@@ -165,7 +167,7 @@ function CourseDetail(props){
                     <p className="fw-bold">Total Enrolled Student: {total}</p>
                     <p className="fw-bold">Rating:
                     {course.rating}/5
-                    <div>{!submit && bought && <select id="rationSelect" name="quantity" onChange={(e) => setRating(e.target.value)}>
+                    <div>{!submit && bought && props.user.is_teacher !== true && <select id="rationSelect" name="quantity" onChange={(e) => setRating(e.target.value)}>
                         <option value="1" >1</option>
                         <option value="2" >2</option>
                         <option value="3" >3</option>
@@ -177,7 +179,7 @@ function CourseDetail(props){
                     </p>
                     {bought && <p>You are Enrolled!  <Link className="btn btn-outline-warning" to="/my-courses">View Course</Link>
                     </p>}
-                    {(props.user !== "" && !bought && !wish) && <p><button className=" btn btn-success" type="submit" onClick={handleEnroll}>Enroll Now</button>
+                    {(props.user !== "" && !bought && !wish && props.user.is_teacher !== true) && <p><button className=" btn btn-success" type="submit" onClick={handleEnroll}>Enroll Now</button>
                     <button className="ms-2 btn btn-outline-info border border-primary" onClick={handleWish}><i className="fa-solid fa-heart btn-outline-danger"></i>  Add to Wishlist</button>
                     <button className="ms-2 btn btn-outline-info border border-primary" onClick={handleCart}>  Add to Cart</button>
                     </p>}
@@ -203,7 +205,7 @@ function CourseDetail(props){
                 <ul className="list-group list-group-flush">
                 {content.map((name, index) => 
                 (<li className="list-group-item" key = {index}> 
-                {!(content[index].type !== "assignment" && bought) && <>{content[index].title}</>}
+                <>{content[index].title}</>
                 {content[index].type !== "assignment" && (<span className="float-end">
                 <button className="btn btn-sm btn-outline-danger float-end" data-bs-toggle="modal" data-bs-target="#videpModal1"><i className="fa-brands fa-youtube"></i></button>
                 </span>)}
@@ -239,7 +241,7 @@ function CourseDetail(props){
             <div className="row mb-4">
                 {courses.map((name, index)=>
                 (courses[index].title !== course.title &&
-                <div className="col-md-3">
+                <div className="col-md-3" key={index}>
                     <div className=" card" style={{ color: 'blue', fontSize: '18px' }}>
                     <Link to={`/details/${courses[index].id}`}><img src="/logo001.png" className="card-img-top" alt="..." /></Link>
                         <div className="card-body">

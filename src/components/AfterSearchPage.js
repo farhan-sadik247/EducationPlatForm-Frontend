@@ -44,7 +44,7 @@ function AfterSearchPage(props){
                             </td>
                             <td>
                                 <div className="course-details">
-                                <Link to={`/details/${course[index].id}`}><h3>{course[index].title}</h3></Link>
+                                <Link to = {`/details/${course[index].id}`}><h3>{course[index].title}</h3></Link>
                                 <p>{course[index].details}</p>
                                 {/* <p>Created by: John Doe</p> */}
                                 <p>Rating: {course[index].rating}</p>

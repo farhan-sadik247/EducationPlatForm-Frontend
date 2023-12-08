@@ -15,7 +15,7 @@ function MyCourses(){
 
     let getCourses = async () => {
 
-        let response = await fetch(`/course/$/boughtCourses`)
+        let response = await fetch(`/course/&/boughtCourses`)
         let data = await response.json()
         setCourses(data)
     }
