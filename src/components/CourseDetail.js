@@ -103,6 +103,7 @@ function CourseDetail(props){
     let getCart= async () => {
         let response = await fetch(`/course/cartCourse`)
         let data = await response.json()
+        console.log(data)
         data.course.map((name, index)=> 
             (data.course[index].id === Number(courseid) ? (setCart(true)) :(false))
         )
@@ -148,6 +149,7 @@ function CourseDetail(props){
         })
         goHome("/add-to-cart")
     }
+    console.log(cart)
 
     return (
         <div className="container mt-3">
@@ -239,7 +241,7 @@ function CourseDetail(props){
             <div className="row mb-4">
                 {courses.map((name, index)=>
                 (courses[index].title !== course.title &&
-                <div className="col-md-3">
+                <div className="col-md-3" key={index}>
                     <div className=" card" style={{ color: 'blue', fontSize: '18px' }}>
                     <Link to={`/details/${courses[index].id}`}><img src="/logo001.png" className="card-img-top" alt="..." /></Link>
                         <div className="card-body">

@@ -17,7 +17,7 @@ function AddCourse(){
     const [pic, setpic] = useState("")
     const goHome = useNavigate()
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         const credential = { title, description, subscriptionAmount, techs, cata }
 
         fetch("/course/addcourse", {
@@ -33,7 +33,7 @@ function AddCourse(){
         let formdata = new FormData()
         formdata.append("file", pic)
         console.log(formdata)
-        fetch("/course/getpic/$", {
+        fetch(`/course/getpic/${title}`, {
             method: "POST",
             headers : {"X-CSRFtoken": Cookies.get("csrftoken")},
             body : formdata
