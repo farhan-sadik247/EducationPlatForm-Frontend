@@ -475,8 +475,8 @@ def contentTeacher(request, content_id):
 @api_view(["POST"])
 def getpic(request, id):
     if request.method == "POST":
-        if id == "$":
-            course = Course.objects.latest("id")
+        if id != "$":
+            course = Course.objects.get(title = id)
             course.pic = request.FILES["file"]
             course.save()
     return Response(" ")
