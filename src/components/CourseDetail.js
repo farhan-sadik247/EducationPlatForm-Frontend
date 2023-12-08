@@ -149,7 +149,6 @@ function CourseDetail(props){
         })
         goHome("/add-to-cart")
     }
-    console.log(cart)
 
     return (
         <div className="container mt-3">
@@ -207,10 +206,10 @@ function CourseDetail(props){
                 (<li className="list-group-item" key = {index}> 
                 <>{content[index].title}</>
                 {content[index].type !== "assignment" && (<span className="float-end">
-                <button className="btn btn-sm btn-outline-danger float-end" data-bs-toggle="modal" data-bs-target="#videpModal1"><i className="fa-brands fa-youtube"></i></button>
+                <button className="btn btn-sm btn-outline-danger float-end" data-bs-toggle="modal" data-bs-target={`#videpModal${index}`}><i className="fa-brands fa-youtube"></i></button>
                 </span>)}
                 {/* start video modal */}
-                    <div className="modal fade" id="videpModal1" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div className="modal fade" id={`videpModal${index}`} tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div className="modal-dialog modal-xl">
                         <div className="modal-content">
                         <div className="modal-header">
