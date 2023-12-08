@@ -79,12 +79,6 @@ function CourseDetail(props){
     let getBought = async () => {
         let response = await fetch(`/course/$${courseid}/boughtCourses`)
         let data = await response.json()
-<<<<<<< HEAD
-        console.log(data)
-        data.course.map((name, index)=> 
-            (data[index].id === Number(courseid) ? (setBought(true)) :(false))
-        )
-=======
         if(data === true){
             setBought(true)
             setSubmit(true)
@@ -97,7 +91,6 @@ function CourseDetail(props){
             setBought(false)
             setSubmit(true)
         }
->>>>>>> 5ff806ac4dd2a87e0259fdc5ab20ce602b842a3f
     }
 
     let getWish = async () => {
