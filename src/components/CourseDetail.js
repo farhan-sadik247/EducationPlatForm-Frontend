@@ -19,8 +19,8 @@ function CourseDetail(props){
     let [bought, setBought] = useState(false)
     let [wish, setWish] = useState(false)
     let [cart, setCart] = useState(false)
-    const [rate, setRate] = useState(false)
     let goHome = useNavigate()
+    console.log(cart)
     
     useEffect(
         () => {getCourse()}, [submit]
@@ -40,7 +40,8 @@ function CourseDetail(props){
     )
     useEffect(
         () => {getBought()
-        getWish()},[]
+        getWish()
+    getCart()},[]
     )
 
     let getCourse = async () => {
@@ -182,14 +183,14 @@ function CourseDetail(props){
                     </p>}
                     {(props.user !== "" && !bought && !wish) && <p><button className=" btn btn-success" type="submit" onClick={handleEnroll}>Enroll Now</button>
                     <button className="ms-2 btn btn-outline-info border border-primary" onClick={handleWish}><i class="fa-solid fa-heart btn-outline-danger"></i>  Add to Wishlist</button>
+                    <button className="ms-2 btn btn-outline-info border border-primary" onClick={handleCart}>  Add to Cart</button>
                     </p>}
                     {(!bought && wish) && <p><button className=" btn btn-success" type="submit" onClick={handleEnroll}>Enroll Now</button>
                         <Link className="ms-2 btn btn-outline-info border border-primary" to="/favourite-courses">  View Wishlist</Link>
                     </p>}
                     {(props.user === "") && <p><Link className=" btn btn-success" type="submit" to = "/user-login">Enroll Now</Link>
                     <Link className="ms-2 btn btn-outline-info border border-primary" to = "/user-login"><i class="fa-solid fa-heart btn-outline-danger"></i>  Add to Wishlist</Link>
-                    </p>}
-                    {!cart && <p><button className="ms-2 btn btn-outline-info border border-primary" onClick={handleCart}>  Add to Cart</button></p>}
+                    <Link className="ms-2 btn btn-outline-info border border-primary" to = "/user-login">  Add to Cart</Link></p>}
 
                 </div>
             </div>  

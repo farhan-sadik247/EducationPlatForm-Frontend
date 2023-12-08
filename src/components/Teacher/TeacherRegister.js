@@ -105,7 +105,7 @@ function TeacherRegister(){
                             </select>
                             {question && (
                             <div>
-                                <label htmlFor="answer">{`What is the answer to "${question}"?`}</label>
+                                <label htmlFor="answer">{`What is your answer?`}</label>
                                 <input type="text" name="answer" id="answer" value={answer} onChange={(e) => setAnswer(e.target.value)} />
                             </div>
                             )}

@@ -6,6 +6,7 @@ import Cookies from "js-cookie";
 function AddToCart(){
 
   let [courses, setCourses] = useState({"course":[], "teacher":[]})
+  let [price, setPrice] = useState(0)
 
     useEffect(
         () => {getCourses()}, []
@@ -57,8 +58,8 @@ function AddToCart(){
           <input type="checkbox" />
           </td>
           <td>
-          {courses.course[index].pic === "" | <img src={`http://127.0.0.1:8000/${courses.course[index].pic}`} className="rounded border-0 object-fit-cover mr-2" style={{ width: '200px', height: '200px' }} alt="Course Image" />}
-          {courses.course[index].pic === "" & <img src="/logo001.png" className="rounded border-0 object-fit-cover mr-2" style={{ width: '200px', height: '200px' }} alt="Course Image" />}
+          {courses.course[index].pic !== null && <img src={`http://127.0.0.1:8000/${courses.course[index].pic}`} className="rounded border-0 object-fit-cover mr-2" style={{ width: '200px', height: '200px' }} alt="Course Image" />}
+          {courses.course[index].pic === null && <img src="/logo001.png" className="rounded border-0 object-fit-cover mr-2" style={{ width: '200px', height: '200px' }} alt="Course Image" />}
           </td>
           <td>
               <div className="course-details">
