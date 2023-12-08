@@ -153,7 +153,7 @@ function Main() {
         <Route path="/add-to-cart" element={ <AddToCart/> } />
         {/* <Route path="/category/:category_slug" element={ <CategoryCourses /> } /> */}
         
-        <Route path="/payment-gateway" element={ <PayApp/> } />
+        <Route path="/payment-gateway/:price" element={ <PayApp/> } />
 
       </Switch>
       <Footer />

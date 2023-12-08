@@ -32,7 +32,7 @@ function PayApp(){
           })
           .then(function (response) {
             // console.log(response.data.data);
-            const order_id = response.data.data.id
+            const order_id = response.data.id
 
             const options = {
                 key: "rzp_test_vahqJG4VG4WTOj", // Enter the Key ID generated from the Dashboard

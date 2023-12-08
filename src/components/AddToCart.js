@@ -8,19 +8,24 @@ function AddToCart(){
   let [courses, setCourses] = useState({"course":[], "teacher":[]})
   let [price, setPrice] = useState(0)
 
+
     useEffect(
         () => {getCourses()}, []
     )
+    let getPrice = (data) => {
+        let total = 0
+        data.course.map((name, index) => (
+            total = total + Number(data.course[index].price)
+        ))
+        setPrice(total)
+    }
 
     let getCourses = async () => {
 
         let response = await fetch(`/course/cartCourses`)
         let data = await response.json()
         setCourses(data)
-        let total = 0
-        courses.course.map((name, index) => (
-            total = total + Number(courses.course[index].price)
-        ))
+        getPrice(data)
     }
 
     const handleDelete = async (index) =>{
