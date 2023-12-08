@@ -117,14 +117,14 @@ def allCourse(request):
 @api_view(["GET"])
 def popCourse(request):
     if request.method == "GET":
-        course = Course.objects.order_by('-rating')[0:3]
+        course = Course.objects.order_by('-rating')[0:4]
         serializer = CourseSerializer(course, many = True)
         return Response(serializer.data)
     
 @api_view(["GET"])
 def lateCourse(request):
     if request.method == "GET":
-        course = Course.objects.order_by('-created_at')[0:3]
+        course = Course.objects.order_by('-created_at')[0:4]
         serializer = CourseSerializer(course, many = True)
         return Response(serializer.data)
 
