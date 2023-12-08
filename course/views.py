@@ -459,6 +459,8 @@ def enRoll(request):
             Bought_item.objects.create(student = user, course = course)
             cart = Cart_item.objects.get(Q(student = user) & Q(course = course))
             cart.delete()
+            fav = Fav_item.objects.get(Q(student = user) & Q(course = course))
+            fav.delete()
         return Response(" ")
         
     if request.method == "POST":
@@ -466,6 +468,10 @@ def enRoll(request):
         course_id = request.data["courseid"]
         course = Course.objects.get(id = course_id)
         Bought_item.objects.create(student = user, course=course)
+        cart = Cart_item.objects.get(Q(student = user) & Q(course = course))
+        cart.delete()
+        fav = Fav_item.objects.get(Q(student = user) & Q(course = course))
+        fav.delete()
 
     
     return Response(" ")
