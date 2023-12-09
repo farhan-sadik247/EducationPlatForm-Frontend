@@ -5,29 +5,30 @@ import { useEffect, useState } from "react";
 function UserAssignment(){
 
     let [contents, setContents] = useState([])
-    let [teacher, setTeacher] = useState([])
-
+    let [teacher, setTeacher] = useState("")
+    let a = {}
+    console.log(teacher)
 
     useEffect(
         () => {getContents()}, []
     )
 
 
-    useEffect(() => {
-        contents.map((name, index) =>{
-            fetch(`/course/${contents[index].id}/contentteacher`)
-            .then(res => res.json())
-            .then(data => teacher[index] = data.fullname)
-            .then(() => console.log(teacher))
+    let getTeacher = async (e) => {
+        e.map( async (name, index) =>{
+            let res = await fetch(`/course/${e[index].id}/contentteacher`)
+            let data = await res.json()
+            a[index] = data.fullname
+            setTeacher(a)
         })
-    }, [contents]
-    )
+    }
     
     let getContents = async () => {
 
         let response = await fetch(`/course/$/getcontent`)
         let data = await response.json()
         setContents(data)
+        getTeacher(data)
     }
 
 

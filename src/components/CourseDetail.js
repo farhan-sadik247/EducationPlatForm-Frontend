@@ -19,6 +19,7 @@ function CourseDetail(props){
     let [wish, setWish] = useState(false)
     let [cart, setCart] = useState(false)
     let goHome = useNavigate()
+    console.log(props)
     
     useEffect(
         () => {getCourse()}, [submit]
