@@ -1,11 +1,29 @@
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 
 function CategoryDetails() {
+
+    const {category_id} = useParams()
+    const [cata, setCata] = useState("")
+    console.log(cata)
+    const getCatas = async() => {
+        let res = await fetch("/course/getcata")
+        let data = await res.json()
+        data.map((name, index) => 
+            (data[index].id === Number(category_id)?(setCata(data[index])):(false))
+        )
+    }
+
+    useEffect(
+        () => {getCatas()}, []
+    )
+
     return (    
         <div className="container mt-3">
             <div className="row">
-                <h3>Python</h3>
-                <p>Category Discription: Python is a computer programming language often used to build websites and software, automate tasks, and conduct data analysis. Python is a general-purpose language, meaning it can be used to create a variety of different programs and isn't specialized for any specific problems. </p>
+                <h3>{cata.title}</h3>
+                <p>Category Discription: {cata.details} </p>
                 </div>
             </div>
     );

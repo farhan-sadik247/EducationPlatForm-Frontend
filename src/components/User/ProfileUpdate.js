@@ -21,13 +21,26 @@ function ProfileUpdate(){
     const navigate = useNavigate()
 
     const handleSubmit = () => {
-        const credential = { username, email, password, dob, phone, pic, gender, address}
-        fetch("/auth/signup", {
+        const credential = { username, email, password, dob, phone, gender, address}
+
+        fetch("/auth/update", {
             method: "POST",
-            headers: {"Content-Type": "application/json", "X-CSRFtokes": Cookies.get("csrftoken")},
+            headers: {"Content-Type": "application/json", "X-CSRFtoken": Cookies.get("csrftoken")},
             body: JSON.stringify(credential)
         })
+        .then(pic && handleImage())
         .then(navigate("/"))
+    }
+
+    const handleImage = () => {
+        let formdata = new FormData()
+        formdata.append("file", pic)
+        console.log(formdata)
+        fetch("/auth/getpic", {
+            method: "POST",
+            headers : {"X-CSRFtoken": Cookies.get("csrftoken")},
+            body : formdata
+        })
     }
 
     useEffect (
@@ -63,7 +76,7 @@ function ProfileUpdate(){
                 </aside>
                 <section className="col-md-9">
                 <div className="card">
-                    <h5 className="card-header">Profile Update</h5>
+                    <h5 className="card-header bg-info">Profile Update</h5>
                     <div className="card-body">
 
                     <form onSubmit={handleSubmit}>
@@ -108,7 +121,8 @@ function ProfileUpdate(){
                         
                         <div className="mb-3">
                         <label htmlFor="formFile" className="form-label">Profile Picture</label>
-                        <input className="form-control" type="file" id="formFile" value = {pic} onChange={(e) => setpic(e.target.value)}/>
+                        <br/>
+                        <input className="form-control"  accept = "image/*" type="file" id="formFile" onChange={(e) => setpic(e.target.files[0])}/>
                         </div>
 
                         <div className="mb-3">
@@ -125,8 +139,8 @@ function ProfileUpdate(){
                         </select>
                         </div>
                         <hr/>
-                        {!warning && <button className="w-100 btn btn-lg btn-primary" type="submit">Register</button>}
-                        {warning && <button className="w-100 btn btn-lg btn-primary" disabled>Register</button>}
+                        {!warning && <button className="w-100 btn btn-lg btn-primary" type="submit">Update</button>}
+                        {warning && <button className="w-100 btn btn-lg btn-primary" disabled>Update</button>}
                         <div className="mb-3 row">        
                         </div>    
                         </form>    

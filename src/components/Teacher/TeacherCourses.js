@@ -57,23 +57,16 @@ function TeacherCourses(){
                                     <th><center>Action</center></th>
                                 </tr>
                             </thead>
-                                {/* <td><center>Learn ReactJs for begginers </center></td>    
-                                <td><center><Link to="/course-chapters">Learn ReactJs for begginers</Link></center></td>    
-                                <td><center><Link to="/">Farhan Sadik</Link></center></td>  
-                                <td>
-                                <center><button className="btn btn-danger text-dark">Remove</button></center> 
-                                </td>  
-                                <td><center><Link className="btn btn-primary text-dark" to="/add-chapter/2">Add chapter</Link></center> </td> */}
                                 
                                 {courses.map((coursetitle, index) => (
-                                    <tbody>
+                                    <tbody key = {index}>
                                     <td><center><Link to={`/details/${courses[index].id}`}>{courses[index].title}</Link></center></td>
                                     <td><center>{courses[index].created_at.slice(0,10)} </center></td>
                                     <td><center><Link to="/enrolled-student">Total Student Count</Link></center></td>
                                     <td><center><Link to={`/add-chapter/${courses[index].id}`} className="btn btn-primary text-dark">Add chapter</Link></center> </td>
                                     <td>
                                         <center>
-                                            <Link to="/edit-courses"><button className="btn btn-info text-dark">Edit</button></Link>
+                                            {/* <Link to="/edit-courses"><button className="btn btn-info text-dark">Edit</button></Link> */}
                                             <button className="btn btn-danger text-dark ms-2" onClick={()=>{handleDelete(courses[index].id)}}>Remove</button>
                                         </center>
                                     </td>

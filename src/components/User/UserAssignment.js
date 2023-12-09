@@ -51,7 +51,7 @@ function UserAssignment(){
                                 </tr>
                             </thead>
                             {contents.map((name, index) =>
-                            (<tbody>
+                            (<tbody key = {index}> 
                                     <td><center><Link to="">{contents[index].title}</Link></center></td>
                                     <td><center><Link to={contents[index].link}> {contents[index].link} </Link> </center></td>
                                     <td><center><Link to={contents[index].sub_link}> {contents[index].sub_link} </Link> </center></td>

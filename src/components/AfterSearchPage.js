@@ -6,6 +6,8 @@ function AfterSearchPage(props){
 
     const [course, setCourse] = useState([])
 
+    console.log(course)
+
     return(
         <div className="container mt-4">
             <div className="row">
@@ -35,13 +37,14 @@ function AfterSearchPage(props){
                         </thead>
                         <tbody>
                         {course.map((name, index) =>
-                            (<tr>
+                            (<tr key = {index}>
                             <td>
-                                <img src="/logo001.png" className="rounded border-0 object-fit-cover mr-2" style={{ width: '200px', height: '200px' }} alt="Course Image" />
+                                {course[index].pic !== null && <img src={`http://127.0.0.1:8000/${course[index].pic}`} className="rounded border-0 object-fit-cover mr-2" style={{ width: '200px', height: '200px' }} alt="Course Image" />}
+                                {course[index].pic === null && <img src= "/logo001.png" className="rounded border-0 object-fit-cover mr-2" style={{ width: '200px', height: '200px' }} alt="Course Image" />}
                             </td>
                             <td>
                                 <div className="course-details">
-                                <h3>{course[index].title}</h3>
+                                <Link to = {`/details/${course[index].id}`}><h3>{course[index].title}</h3></Link>
                                 <p>{course[index].details}</p>
                                 {/* <p>Created by: John Doe</p> */}
                                 <p>Rating: {course[index].rating}</p>
@@ -54,11 +57,11 @@ function AfterSearchPage(props){
                             </td>
                             <td>
                             <button className="btn btn-primary">Enroll Now</button>
-                            <Link to="/add-to-cart"><button className="btn btn-success ms-2"><i className="fa-solid fa-cart-plus"></i></button></Link>
-                            <Link to="/my-courses"><button className="btn btn-success ms-2"><i className="fa-solid fa-heart"></i></button></Link>
+                            {/* <Link to="/add-to-cart"><button className="btn btn-success ms-2"><i className="fa-solid fa-cart-plus"></i></button></Link>
+                            <Link to="/my-courses"><button className="btn btn-success ms-2"><i className="fa-solid fa-heart"></i></button></Link> */}
                             </td>
                             </tr>))}
-                            <tr>
+                            {/* <tr>
                             <td>
                             <img src="/logo001.png" className="rounded border-0 object-fit-cover mr-2" style={{ width: '200px', height: '200px' }} alt="Course Image" />
                             </td>
@@ -76,12 +79,12 @@ function AfterSearchPage(props){
                                 </div>
                             </td>
                             <td>
-                            <button className="btn btn-primary ">Enroll Now</button>
+                            <Link to="/my-courses"><button className="btn btn-primary ">Enroll Now</button></Link>
                             <Link><button className="btn btn-success ms-2"><i className="fa-solid fa-cart-plus"></i></button></Link>
                             <Link ><button className="btn btn-success ms-2"><i className="fa-solid fa-heart"></i></button></Link>
                             
                             </td>
-                            </tr>
+                            </tr> */}
                         </tbody>
                         </table>
                     </div>

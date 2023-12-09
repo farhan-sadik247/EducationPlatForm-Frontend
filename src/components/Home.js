@@ -43,27 +43,27 @@ function Home() {
       {/* Latest Courses */}
       <h3 className="border-bottom pb-2 md-4">Latest Courses<Link to="all-courses" className="float-end" style={{ color: 'blue', fontSize: '18px' }} >See All</Link></h3>
 
-      <div className="row mb-4">
+      <div className="row mb-4" >
       {course1.map((name, index) => 
-        (<div className="col-md-3">
-        <div className=" card" style={{ color: 'blue', fontSize: '18px' }}>
-        <Link to={`/details/${course1[index].id}`}><img src={"cse471.png"} className="card-img-top" alt="..." /></Link>
+        (<div className="col-md-3" key = {index}>
+        <div className=" card" style={{ color: 'blue', fontSize: '18px'}}>
+        <Link to={`/details/${course1[index].id}`}>{course1[index].pic === null && <img src="cse471.png" className="card-img-top ms-2"  alt="..." />}{course1[index].pic !== null && <img src={`http://127.0.0.1:8000/${course1[index].pic}`} className="card-img-top" alt="..." />}</Link>
           <div className="card-body">
             <h5 className="card-title"><Link to={`/details/${course1[index].id}`}>{course1[index].title}</Link></h5>
-            {/* <a href="#" className="btn btn-primary">Details</a> */}
+            {/* <a to="#" className="btn btn-primary">Details</a> */}
           </div>
         </div>
       </div>  
       ))}
-        <div className="col-md-3">
+        {/* <div className="col-md-3">
           <div className=" card" style={{ color: 'blue', fontSize: '18px' }}>
           <Link to="/details/1"><img src="cse471.png" className="card-img-top" alt="..." /></Link>
             <div className="card-body">
               <h5 className="card-title"><Link to="/details/1">SYSTEM ANALYSIS AND DESIGN</Link></h5>
-              {/* <a href="#" className="btn btn-primary">Details</a> */}
+              <a to="#" className="btn btn-primary">Details</a>
             </div>
           </div>
-        </div>   
+        </div>    */}
       </div>
       {/* End Latest Courses */}
 
@@ -71,29 +71,28 @@ function Home() {
       <h3 className="border-bottom pb-3 md-3 mt-5">Popular Courses<Link to="popular-courses" className="float-end" style={{ color: 'blue', fontSize: '18px' }} >See All</Link></h3>
       <div className="row mb-4">
       {course2.map((name, index) => 
-        (<div className="col-md-3">
+        (<div className="col-md-3" key = {index}>
         <div className=" card" style={{ color: 'blue', fontSize: '18px' }}>
-          <a href={`/details/${course2[index].id}`}><img src="logo001.png" className="card-img-top" alt="..." /></a>
+          <Link to={`/details/${course2[index].id}`}>{course2[index].pic === null && <img src="cse471.png" className="card-img-top" alt="..." />}{course2[index].pic !== null && <img src={`http://127.0.0.1:8000/${course2[index].pic}`} className="card-img-top" alt="..." />}</Link>
           <div className="card-body">
-            <h5 className="card-title"><a href={`/details/${course2[index].id}`}>{course2[index].title}</a></h5>
-            {/* <a href="#" className="btn btn-primary">Details</a> */}
+            <h5 className="card-title"><Link to={`/details/${course2[index].id}`}>{course2[index].title}</Link></h5>
           </div>
           <div className="card-footer">
             <div className="title">
               <span className="text-dark">Rating: {course2[index].rating}</span>
-              <span className="float-end text-dark" >Views: 54658</span>
+              {/* <span className="float-end text-dark" >Views: 54658</span> */}
             </div>
           </div>
         </div>
       </div>   
       ))}
 
-        <div className="col-md-3">
+        {/* <div className="col-md-3">
           <div className=" card" style={{ color: 'blue', fontSize: '18px' }}>
-            <a href="#"><img src="logo001.png" className="card-img-top" alt="..." /></a>
+            <a to="#"><img src="logo001.png" className="card-img-top" alt="..." /></a>
             <div className="card-body">
-              <h5 className="card-title"><a href="#">Course Title</a></h5>
-              {/* <a href="#" className="btn btn-primary">Details</a> */}
+              <h5 className="card-title"><a to="#">Course Title</a></h5>
+              <a to="#" className="btn btn-primary">Details</a>
             </div>
             <div className="card-footer">
               <div className="title">
@@ -102,7 +101,7 @@ function Home() {
               </div>
             </div>
           </div>
-        </div>    
+        </div>     */}
       </div>
       {/* End Popular Courses */} 
 
@@ -110,28 +109,26 @@ function Home() {
       <h3 className="border-bottom pb-2 md-4">Featured Teacher<Link to="popular-teachers" className="float-end" style={{ color: 'blue', fontSize: '18px' }} >See All</Link></h3>
       <div className="row mb-4">
       {teacher.map((name, index) => 
-        (<div className="col-md-3 mb-4">
+        (<div className="col-md-3 mb-4" key = {index}>
         <div className=" card" style={{ color: 'blue', fontSize: '18px' }}>
-        <Link to={`/teacher-detail/${teacher[index].id}`}><img src="teacher.png" className="card-img-top" alt="..." /></Link>
+        <Link to={`/teacher-detail/${teacher[index].id}`}>{teacher[index].pic === null && <img src="teacher.png" className="card-img-top" alt="..." />}{teacher[index].pic !== null && <img src={`http://127.0.0.1:8000/${teacher[index].pic}`} className="card-img-top" alt="..." />}</Link>
           <div className="card-body">
             <h5 className="card-title"><Link to={`/teacher-detail/${teacher[index].id}`}>{teacher[index].username}</Link></h5>
-            {/* <a href="#" className="btn btn-primary">Details</a> */}
           </div>
             <div className="card-footer">
-              <div className="title">
+              {/* <div className="title">
                 <span className="text-dark">Rating: {teacher[index].rating}</span>
                 
-              </div>
+              </div> */}
             </div>
         </div>
       </div>  
       ))}
-        <div className="col-md-3">
+        {/* <div className="col-md-3">
           <div className=" card" style={{ color: 'blue', fontSize: '18px' }}>
-            <a href="#"><img src="logo001.png" className="card-img-top" alt="..." /></a>
+            <a to="#"><img src="logo001.png" className="card-img-top" alt="..." /></a>
             <div className="card-body">
               <h5 className="card-title"><Link to="/teacher-detail/1">Teacher Name</Link></h5>
-              {/* <a href="#" className="btn btn-primary">Details</a> */}
             </div>
             <div className="card-footer">
               <div className="title">
@@ -139,12 +136,12 @@ function Home() {
               </div>
             </div>
           </div>
-        </div>   
+        </div>    */}
       </div>
       {/* End Featured Teacher */}   
 
       {/* Student Testimonial */}
-      <h3 className="border-bottom pb-2 md-4">Student Testimonial</h3>
+      <h3 className="border-bottom pb-2 md-4">Some Famous Quote</h3>
       <div id="carouselExampleIndicators" className="carousel slide bg-dark text-white py-5" data-bs-ride="carousel">
   <div className="carousel-indicators">
       <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
@@ -155,30 +152,30 @@ function Home() {
       <div className="carousel-item active">
       <figure className="text-center">
         <blockquote className="blockquote">
-          <p>A well-known quote, contained in a blockquote element.</p>
+          <p>“An investment in knowledge pays the best interest.”</p>
         </blockquote>
-        <figcaption className="blockquote-footer">
-          Someone famous in <cite title="Source Title">Source Title</cite>
+        <figcaption className="blockquote-footer text-light">
+        Benjamin Franklin
         </figcaption>
       </figure>
       </div>
       <div className="carousel-item">
       <figure className="text-center">
         <blockquote className="blockquote">
-          <p>A well-known quote, contained in a blockquote element.</p>
+          <p>“Intellectual growth should commence at birth and cease only at death.”</p>
         </blockquote>
-        <figcaption className="blockquote-footer">
-          Someone famous in <cite title="Source Title">Source Title</cite>
+        <figcaption className="blockquote-footer text-light">
+        Albert Einstein
         </figcaption>
       </figure>
       </div>
       <div className="carousel-item">
       <figure className="text-center">
           <blockquote className="blockquote">
-            <p>A well-known quote, contained in a blockquote element.</p>
+            <p>Education is the passport to the future, for tomorrow belongs to those who prepare for it today.</p>
           </blockquote>
-          <figcaption className="blockquote-footer">
-            Someone famous in <cite title="Source Title">Source Title</cite>
+          <figcaption className="blockquote-footer text-light">
+          Malcolm X 
           </figcaption>
       </figure>
       </div>

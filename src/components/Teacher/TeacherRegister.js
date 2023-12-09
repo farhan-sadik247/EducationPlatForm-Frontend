@@ -9,21 +9,19 @@ function TeacherRegister(){
     const [password, setPassw] = useState("")
     const [cpass, setcpass] = useState("")
     const [skills, setSkills] = useState("")
-    const [load, setLoad] = useState(false)
     
     const [warning, usercheck] = useState(false)
     const [warning2, passcheck] = useState(false)
     const navigate = useNavigate()
 
-    const [question, setQuestion] = useState(null);
+    const [question, setQuestion] = useState("");
     const [answer, setAnswer] = useState('');
 
     const type = true
 
     const handleSubmit = async (e) => {
-        const credential = { username, fullname, email, password, cpass, skills, type}
+        const credential = { username, fullname, email, password, cpass, skills, type, question, answer}
         console.log("disable")
-        setLoad(true)
         fetch(
             "/auth/t_signup", 
             {
@@ -100,14 +98,14 @@ function TeacherRegister(){
                             <label htmlFor="question">Choose a question</label>
                             <select name="question" id="question" onChange={(e) => setQuestion(e.target.value)}>
                             <option value="">-- Select a Question --</option>
-                            <option value="favorite Place">What was your favorite Place?</option>
-                            <option value="favourite author">What is your favourite author?</option>
-                            <option value="favourite movie">What is your favourite movie?</option>
-                            <option value="favourite book">What is your favourite book?</option>
+                            <option value="1">What was your favorite Place?</option>
+                            <option value="2">What is your favourite author?</option>
+                            <option value="3">What is your favourite movie?</option>
+                            <option value= "4">What is your favourite book?</option>
                             </select>
                             {question && (
                             <div>
-                                <label htmlFor="answer">{`What is the answer to "${question}"?`}</label>
+                                <label htmlFor="answer">{`What is your answer?`}</label>
                                 <input type="text" name="answer" id="answer" value={answer} onChange={(e) => setAnswer(e.target.value)} />
                             </div>
                             )}

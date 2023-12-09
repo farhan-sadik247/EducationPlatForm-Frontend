@@ -14,15 +14,30 @@ function AddCourse(){
     const [catas, setCatas] = useState([])
     const [cata, setCata] = useState("")
     const [warning, usercheck] = useState(false)
+    const [pic, setpic] = useState("")
     const goHome = useNavigate()
 
-    const handleSubmit = () => {
-        const credential = { title, description, techs, subscriptionAmount, cata}
+    const handleSubmit = async () => {
+        const credential = { title, description, subscriptionAmount, techs, cata }
+
         fetch("/course/addcourse", {
             method: "POST",
-            headers: {"Content-Type": "application/json", "X-CSRFtoken" : Cookies.get("csrftoken")},
+            headers: {"Content-Type": "application/json", "X-CSRFtoken": Cookies.get("csrftoken")},
             body: JSON.stringify(credential)
-        }).then(goHome("/teacher-courses"))
+        })
+        .then(pic && handleImage())
+        .then(goHome("/teacher-course"))
+    }
+
+    const handleImage = () => {
+        let formdata = new FormData()
+        formdata.append("file", pic)
+        console.log(formdata)
+        fetch(`/course/getpic/${title}`, {
+            method: "POST",
+            headers : {"X-CSRFtoken": Cookies.get("csrftoken")},
+            body : formdata
+        })
     }
 
     const getCatas = async() => {
@@ -61,7 +76,7 @@ function AddCourse(){
                         <select name="category" className="form-control"  onChange={(e)=> {setCata(e.target.value)}}>
                             <option value="" ></option>
                             {catas.map((name, index) =>
-                                <option value={catas[index].id} >{catas[index].title}</option> )}
+                                <option value={catas[index].id} key = {index}>{catas[index].title}</option> )}
                             
                             </select>                         
                         </div>
@@ -78,9 +93,9 @@ function AddCourse(){
                         <textarea className="form-control" id="exampleFormControlTextarea1" rows="3" value = {description} onChange={(e) => setdescription(e.target.value)}></textarea>
                         </div>
 
-                        <div className="input-group mb-3">
-                        <label className="input-group-text" htmlFor="inputGroupFile01">Upload Featured Image</label>
-                        <input type="file" className="form-control" id="inputGroupFile01" />
+                        <div className="mb-3">
+                        <label htmlFor="formFile" className="form-label">Upload Featuredd Image</label>
+                        <input className="form-control" accept = "image/*" type="file" id="formFile" onChange={(e) => setpic(e.target.files[0])}/>
                         </div>
 
                         <div className="mb-3">

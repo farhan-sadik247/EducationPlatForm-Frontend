@@ -6,10 +6,7 @@ import Cookies from "js-cookie";
 
 function FavouriteCourses(){
 
-    const { student_id } = useParams()
-
     let [courses, setCourses] = useState({"course":[], "teacher":[]})
-    console.log(courses)
 
     useEffect(
         () => {getCourses()}, []
@@ -56,9 +53,9 @@ function FavouriteCourses(){
                                 </tr>
                             </thead>
                             {courses.course.map((student, index) => (
-                                <tbody>
-                                    <td><center><Link to="/">{courses.course[index].title}</Link></center></td>
-                                    <td><center><Link to="/">{courses?.teacher[index]?.fullname}</Link> </center></td>
+                                <tbody key = {index}>
+                                    <td><center><Link to={`/details/${courses.course[index].id}`}>{courses.course[index].title}</Link></center></td>
+                                    <td><center><Link to={`/details/${courses.course[index].id}`}>{courses?.teacher[index]?.fullname}</Link> </center></td>
                                     <td><center><button className="btn btn-danger text-dark" onClick={()=>handleDelete(courses.course[index].id)}>Remove</button></center></td>
                                 </tbody>))} 
                         </table>

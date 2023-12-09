@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 function ProfilePicture(props) {
@@ -16,25 +15,39 @@ function ProfilePicture(props) {
                 data-bs-toggle="dropdown"
                 
             >
-                <img
+                {props.user.pic !== null && <img
                     id="userProfileImage"
                     src={`http://127.0.0.1:8000/${props.user.pic}`}  
                     alt="User Profile"
                     className="rounded-circle border-0 object-fit-cover"
                     style={{ width: '40px', height: '40px' }}
-                />
+                />}
+                {props.user.pic === null && <img
+                    id="userProfileImage"
+                    src={"logo001.png"} 
+                    alt="User Profile"
+                    className="rounded-circle border-0 object-fit-cover"
+                    style={{ width: '40px', height: '40px' }}
+                />}
             </button>
             
                 <ul className="dropdown-menu">
                 <li className="d-flex align-items-center">
                     <div className="d-flex align-items-center px-1">
-                        <img
+                        {props.user.pic !== null && <img
                             id="userProfileImageDropdown"
                             src={`http://127.0.0.1:8000/${props.user.pic}`}
                             alt="User Profile"
                             className="rounded-circle border-0 object-fit-cover mr-2"
                             style={{ width: '40px', height: '40px' }}
-                        />
+                        />}
+                        {props.user.pic === null && <img
+                            id="userProfileImageDropdown"
+                            src="logo001.png"
+                            alt="User Profile"
+                            className="rounded-circle border-0 object-fit-cover mr-2"
+                            style={{ width: '40px', height: '40px' }}
+                        />}
                         <div>
                             <center>
                             <span className="px-2">{props.user.username}</span>

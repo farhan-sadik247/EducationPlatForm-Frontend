@@ -39,13 +39,13 @@ function StdCourseChapters(){
                             <tr>
                                 <th><center>Chapter Name</center></th>
                                 <th><center>Video</center></th>
-                                <th><center>Remarks</center></th>
+                                <th><center>Details</center></th>
                             </tr>
                         </thead>  
                         <tbody>
                             {content.map((name, index) => 
                             ( content[index].type === "assignment" ?
-                                (<tr>
+                                (<tr key = {index}>
                                     <td>{content[index].title}</td>
                                     <td>
                                       {content[index].link}
@@ -55,15 +55,15 @@ function StdCourseChapters(){
                                 :
                                 (<tr>
                                 <td>{content[index].title}</td>
-                                <td>
+                                {/* <td>
                                   <div className="embed-responsive embed-responsive-16by9">
                                     <video controls className="embed-responsive-item">
                                       <source src={content[index].link} type="video/mp4" />
-                                      {/* Your browser does not support the video tag. */}
+                                      
                                     </video>
                                   </div>
-                                </td>
-                                <td>{content[index].remarks}</td>
+                                </td> */}
+                                <td>{content[index].description}</td>
                             </tr>)))}
                             {/* Add more rows for other chapters */}
                         </tbody>

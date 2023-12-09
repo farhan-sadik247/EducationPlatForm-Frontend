@@ -1,0 +1,27 @@
+.price-checkbox {
+    display: flex; /* Makes the checkbox and its label inline */
+    margin: 0; /* Removes default margin */
+  }
+  
+  .price-checkbox:first-child {
+    margin-right: 20px; /* Adds margin between the two checkboxes */
+  }
+  
+  .price-checkbox input[type="checkbox"] {
+    margin-right: 10px; /* Adds margin between the checkbox and its label */
+  }
+  
+  .price-label {
+    color: #777; /* Adds gray color to the price label */
+  }
+  
+  .free:checked ~ .price-label {
+    /* Changes the color of the free label when checked */
+    color: green;
+  }
+  
+  .paid:checked ~ .price-label {
+    /* Changes the color of the paid label when checked */
+    color: #007bff;
+  }
+  

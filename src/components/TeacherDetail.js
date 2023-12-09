@@ -60,7 +60,8 @@ function TeacherDetail() {
         <div className="container mt-3">
             <div className="row">
                 <div className="col-4">
-                    <img src="/logo001.png" className="img-thumbnail" alt="Teacher Image" />
+                    {teacher.pic === null && <img src="/logo001.png" className="img-thumbnail" alt="Teacher Image" />}
+                    {teacher.pic !== null && <img src={`http://127.0.0.1:8000/${teacher.pic}`} className="img-thumbnail" alt="Teacher Image" />}
                 </div>
                 <div className="col-8">
                     <h3>{teacher.fullname}</h3>
@@ -69,7 +70,7 @@ function TeacherDetail() {
 
                     <p className="fw-bold">Skills: {teacher.skills} </p>
                     <p className="fw-bold">Recent Course: <Link to={`/details/${course.id}`}>{course.title}</Link></p>
-                    <p className="fw-bold">Rating:
+                    {/* <p className="fw-bold">Rating:
                     <select id="rationSelect" name="quantity" onChange= {(e) => (setRating(e))}>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -78,7 +79,7 @@ function TeacherDetail() {
                         <option value="5">5</option>
                     </select>
                     out of 5 <button className=" btn btn-success" type="submit" onClick={handleSubmit}>Submit</button>
-                    </p>
+                    </p> */}
                 </div>
             </div>  
             {/* Course Video */}
@@ -89,9 +90,9 @@ function TeacherDetail() {
                 </div>
                 <div className="list-group list-group-flush">
                 {courses.map((name, index) => 
-                    (<Link to={`/details/${courses[index].id}`} className="list-group-item list-group-item-active ">{courses[index].title}</Link> 
+                    (<Link to={`/details/${courses[index].id}`} className="list-group-item list-group-item-active " key = {index}>{courses[index].title}</Link> 
                 ))}
-                    <Link to="/details/1" className="list-group-item list-group-item-active ">ReactJS Course 1</Link>
+                    {/* <Link to="/details/1" className="list-group-item list-group-item-active ">ReactJS Course 1</Link> */}
                 </div>
                 </div>
             </div>
