@@ -33,7 +33,7 @@ function UserAssignment(){
 
 
     return(
-        <div className="container mt-4">
+        <div className=" container mt-4">
             <div className="row">
                 <aside className="col-md-3">
                     <Sidebar />
@@ -41,8 +41,8 @@ function UserAssignment(){
                 <section className="col-md-9">
                 <div className="card">
                     <h5 className="card-header">My Assignments</h5>
-                    <div className="card-body">
-                        <table className="table table-bordered">
+                    <div className="card-body " style={{'width': '100%'}}>
+                        <table className="table table-bordered " >
                             <thead>
                                 <tr>
                                     <th><center>Assignment Title</center></th>
