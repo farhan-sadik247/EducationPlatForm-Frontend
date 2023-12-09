@@ -76,7 +76,7 @@ function ProfileUpdate(){
                 </aside>
                 <section className="col-md-9">
                 <div className="card">
-                    <h5 className="card-header">Profile Update</h5>
+                    <h5 className="card-header bg-info">Profile Update</h5>
                     <div className="card-body">
 
                     <form onSubmit={handleSubmit}>
@@ -139,8 +139,8 @@ function ProfileUpdate(){
                         </select>
                         </div>
                         <hr/>
-                        {!warning && <button className="w-100 btn btn-lg btn-primary" type="submit">Register</button>}
-                        {warning && <button className="w-100 btn btn-lg btn-primary" disabled>Register</button>}
+                        {!warning && <button className="w-100 btn btn-lg btn-primary" type="submit">Update</button>}
+                        {warning && <button className="w-100 btn btn-lg btn-primary" disabled>Update</button>}
                         <div className="mb-3 row">        
                         </div>    
                         </form>    

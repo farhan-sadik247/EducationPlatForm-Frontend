@@ -25,7 +25,7 @@ function PopularCourses() {
     {course.map((name, index) => 
         (<div className="col-md-3 mb-4">
         <div className=" card" style={{ color: 'blue', fontSize: '18px' }}>
-        <Link to={`/details/${course[index].id}`}>{course[index].pic === null && <img src="logo001.png" className="card-img-top" alt="..." />}{course[index].pic === null && <img src={`http://127.0.0.1:8000/${course[index].pic}`} className="card-img-top" alt="..." />}</Link>
+        <Link to={`/details/${course[index].id}`}>{course[index].pic === null && <img src="logo001.png" className="card-img-top" style={{ height: '200px', objectFit: 'cover' }} alt="..." />}{course[index].pic !== null && <img src={`http://127.0.0.1:8000/${course[index].pic}`} className="card-img-top" style={{ height: '200px', objectFit: 'cover' }} alt="..." />}</Link>
           <div className="card-body">
             <h5 className="card-title"><Link to={`/details/${course[index].id}`}>{course[index].title}</Link></h5>
             {/* <a href="#" className="btn btn-primary">Details</a> */}

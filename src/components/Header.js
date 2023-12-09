@@ -13,7 +13,7 @@ function Header(props) {
       <div className="container">
 
         <Link className="navbar-brand" to="/">
-          <i className="bi bi-mortarboard-fill"></i>Professor's Hideout
+          <i class="fa-solid fa-graduation-cap"></i>Professor's Hideout
         </Link>
         
         <button

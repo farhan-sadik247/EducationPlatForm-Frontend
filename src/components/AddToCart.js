@@ -98,7 +98,7 @@ function AddToCart(){
           </td>
           </tr>
       </tbody>))}
-      <tbody>
+      {/* <tbody>
           <tr>
           <td>
           <input type="checkbox" />
@@ -128,7 +128,7 @@ function AddToCart(){
           </td>
           </td>
           </tr>
-      </tbody>
+      </tbody> */}
     </table>
     <div className="cart-total">
     <strong className="float-start">Total: ${price}</strong>
