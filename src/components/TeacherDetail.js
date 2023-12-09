@@ -92,7 +92,7 @@ function TeacherDetail() {
                 {courses.map((name, index) => 
                     (<Link to={`/details/${courses[index].id}`} className="list-group-item list-group-item-active " key = {index}>{courses[index].title}</Link> 
                 ))}
-                    <Link to="/details/1" className="list-group-item list-group-item-active ">ReactJS Course 1</Link>
+                    {/* <Link to="/details/1" className="list-group-item list-group-item-active ">ReactJS Course 1</Link> */}
                 </div>
                 </div>
             </div>

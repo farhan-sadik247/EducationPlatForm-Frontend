@@ -141,7 +141,7 @@ function Home() {
       {/* End Featured Teacher */}   
 
       {/* Student Testimonial */}
-      <h3 className="border-bottom pb-2 md-4">Student Testimonial</h3>
+      <h3 className="border-bottom pb-2 md-4">Some Famous Quote</h3>
       <div id="carouselExampleIndicators" className="carousel slide bg-dark text-white py-5" data-bs-ride="carousel">
   <div className="carousel-indicators">
       <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
@@ -152,30 +152,30 @@ function Home() {
       <div className="carousel-item active">
       <figure className="text-center">
         <blockquote className="blockquote">
-          <p>A well-known quote, contained in a blockquote element.</p>
+          <p>“An investment in knowledge pays the best interest.”</p>
         </blockquote>
-        <figcaption className="blockquote-footer">
-          Someone famous in <cite title="Source Title">Source Title</cite>
+        <figcaption className="blockquote-footer text-light">
+        Benjamin Franklin
         </figcaption>
       </figure>
       </div>
       <div className="carousel-item">
       <figure className="text-center">
         <blockquote className="blockquote">
-          <p>A well-known quote, contained in a blockquote element.</p>
+          <p>“Intellectual growth should commence at birth and cease only at death.”</p>
         </blockquote>
-        <figcaption className="blockquote-footer">
-          Someone famous in <cite title="Source Title">Source Title</cite>
+        <figcaption className="blockquote-footer text-light">
+        Albert Einstein
         </figcaption>
       </figure>
       </div>
       <div className="carousel-item">
       <figure className="text-center">
           <blockquote className="blockquote">
-            <p>A well-known quote, contained in a blockquote element.</p>
+            <p>Education is the passport to the future, for tomorrow belongs to those who prepare for it today.</p>
           </blockquote>
-          <figcaption className="blockquote-footer">
-            Someone famous in <cite title="Source Title">Source Title</cite>
+          <figcaption className="blockquote-footer text-light">
+          Malcolm X 
           </figcaption>
       </figure>
       </div>
