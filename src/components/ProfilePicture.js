@@ -24,7 +24,7 @@ function ProfilePicture(props) {
                 />}
                 {props.user.pic === null && <img
                     id="userProfileImage"
-                    src={"logo001.png"} 
+                    src="logo001.png" 
                     alt="User Profile"
                     className="rounded-circle border-0 object-fit-cover"
                     style={{ width: '40px', height: '40px' }}
