@@ -19,6 +19,7 @@ function CourseDetail(props){
     let [wish, setWish] = useState(false)
     let [cart, setCart] = useState(false)
     let goHome = useNavigate()
+    console.log(props)
     
     useEffect(
         () => {getCourse()}, [submit]
@@ -255,7 +256,8 @@ function CourseDetail(props){
                 (courses[index].title !== course.title &&
                 <div className="col-md-3" key={index}>
                     <div className=" card" style={{ color: 'blue', fontSize: '18px' }}>
-                    <Link to={`/details/${courses[index].id}`}><img src="/logo001.png" className="card-img-top" alt="..." /></Link>
+                    {courses[index].pic === null && <Link to={`/details/${courses[index].id}`}><img src="/logo001.png" className="card-img-top" alt="..." /></Link>}
+                    {courses[index].pic !== null && <Link to={`/details/${courses[index].id}`}><img src={`http://127.0.0.1:8000/${courses[index].pic}`} className="card-img-top" alt="..." /></Link>}
                         <div className="card-body">
                         <h5 className="card-title"><Link to={`/details/${courses[index].id}`} onClick= {() => courseid=courses[index].id}>{courses[index].title}</Link></h5>
                         

@@ -11,7 +11,7 @@ function Sidebar(){
                 <Link to="/user-assignment/1" className="list-group-item list-group-item-action"><center>Assignments</center></Link>
                 <Link to="/profile-update" className="list-group-item list-group-item-action"><center>Profile Update</center></Link>
                 <Link to="/change-password" className="list-group-item list-group-item-action"><center>Change Password</center></Link>
-                <Link to="/user-login" className="list-group-item list-group-item-action text-danger"><center>Sign out</center></Link>
+                {/* <Link to="/user-login" className="list-group-item list-group-item-action text-danger"><center>Sign out</center></Link> */}
             </div>
         </div>
     );
